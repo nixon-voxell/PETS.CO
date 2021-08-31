@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register account</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Register account</title>
+
+  <link rel="stylesheet" href="./materialize/css/base.css">
+  <script src="./materialize/js/materialize.js"></script>
+
+  <nav>
+    <div class="nav-wrapper blue-grey darken-4">
+      <a href="index.html"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">Login</a></li>
+        <li><a href="sign_up.html">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
 </head>
 <body>
-    <h1>
-    <font face="Arial">
-        &nbsp Register an account
-    </h1>
-    </font>
-    <br>
+  <h1 class="yellow-text">
+  <font face="Arial">
+    &nbsp Register an account
+  </h1>
+  </font>
+  <br>
 
-    <form action="/register_page.php">
-        <dl>
-            <dt>
-                <label for="username">Username</label>
-            </dt>
-            <dd>
-                
-            </dd>
-            <dt>
-                <label for="email">Email Address</label>
-            </dt>
-            <dd>
+  <form action="/register_page.php">
+    <dl>
+      <dt>
+        <label for="username">Username</label>
+      </dt>
+      <dd>
 
-            </dd>
-            <dt>
-                <label for="password">Password</label>
-            </dt>
-            <dd>
+      </dd>
+      <dt>
+        <label for="email">Email Address</label>
+      </dt>
+      <dd>
 
-            </dd>
-            <dt>
-                <label for="confirmpassword">Repeat Password</label>
-            </dt>
-        </dl>
-    </form>
+      </dd>
+      <dt>
+        <label for="password">Password</label>
+      </dt>
+      <dd>
+
+      </dd>
+      <dt>
+        <label for="confirmpassword">Repeat Password</label>
+      </dt>
+    </dl>
+  </form>
 </body>
 </html>
