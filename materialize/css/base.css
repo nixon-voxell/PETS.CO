@@ -11,7 +11,7 @@ html
 
 body
 {
-  background: linear-gradient(rgba(2,0,36,1) 0%, rgb(149, 151, 10) 25%, rgb(255, 215, 0) 100%);
+  /* background: linear-gradient(rgba(2,0,36,1) 0%, rgb(149, 151, 10) 25%, rgb(255, 215, 0) 100%); */
 }
 
 nav {
