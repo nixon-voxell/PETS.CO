@@ -1,5 +1,8 @@
 @import url(materialize.css);
 
+@font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
+@font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
+
 html
 {
   height: 100%;
