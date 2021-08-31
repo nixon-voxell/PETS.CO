@@ -1,0 +1,17 @@
+@import url(materialize.css);
+
+html
+{
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+body
+{
+  background: linear-gradient(rgba(2,0,36,1) 0%, rgb(149, 151, 10) 25%, rgb(255, 215, 0) 100%);
+}
+
+nav {
+  height: 100px;
+  line-height: 100px;
+}
