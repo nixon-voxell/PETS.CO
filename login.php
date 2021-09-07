@@ -1,5 +1,5 @@
 <?php
-include 'nav.php';
+include "nav.php";
 ?>
 
 <body>
@@ -26,10 +26,10 @@ include 'nav.php';
     </div>
     
     <p>
-      Not yet a member ? <a href="sign_up.html">Sign up</a>
+      Not yet a member ? <a href="sign_up.php">Sign up</a>
     </p>
-  </form> 
+  </form>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body> 
-</html> 
+</body>
+</html>

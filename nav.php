@@ -13,7 +13,7 @@
 
   <nav>
     <div class="nav-wrapper blue-grey darken-4">
-      <a href="index.html"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
+      <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="login.php">Login</a></li>
         <li><a href="sign_up.php">Sign Up</a></li>
