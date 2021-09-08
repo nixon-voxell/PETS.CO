@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +19,16 @@
     <div class="nav-wrapper blue-grey darken-4">
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="login.php">Login</a></li>
-        <li><a href="sign_up.php">Sign Up</a></li>
+        <?php
+          if(isset($_SESSION["id"])){
+            echo "<li><a href='cart.php'>Cart</a></li>";
+            echo "<li><a href='includes/logout_inc.php'>Log out</a></li>";
+          }
+          else {
+            echo "<li><a href='login.php'>Login</a></li>";
+            echo "<li><a href='sign_up.php'>Sign Up</a></li>";  
+          }
+        ?>
       </ul>
     </div>
   </nav>

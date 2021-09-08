@@ -1,5 +1,5 @@
 <?php
-include 'nav.php';
+  include "includes/nav.php";
 ?>
 
 <body>
