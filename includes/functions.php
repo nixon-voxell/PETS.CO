@@ -72,19 +72,20 @@ function createUser($conn, $username, $pwd, $email){
   mysqli_stmt_close($stmt);
   header("location: ../sign_up.php?error=none");
   exit();
-
-  //login functions
-  function emptyInputLogin($username, $pwd){
-    $result="";
-    if (empty($username) or (empty($pwd))) {
-      $result = true;
-    }
-    else{
-      $result = false;
-    }
-    return $result;
-  }
 }
+
+//login functions
+function emptyInputLogin($username, $pwd){
+  $result="";
+  if (empty($username) or empty($pwd)) {
+    $result = true;
+  }
+  else{
+    $result = false;
+  }
+  return $result;
+}
+
 
 function loginUser($conn, $username, $pwd){
   $uidExists = uidExists($conn, $username, $username);

@@ -26,7 +26,7 @@
           }
           else {
             echo "<li><a href='login.php'>Login</a></li>";
-            echo "<li><a href='sign_up.php'>Sign Up</a></li>";  
+            echo "<li><a href='sign_up.php'>Sign Up</a></li>";
           }
         ?>
       </ul>

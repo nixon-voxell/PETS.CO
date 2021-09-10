@@ -19,6 +19,6 @@ nav {
   line-height: 100px;
 }
 
-#errormsg {
+.errormsg {
   color: red;
 }
