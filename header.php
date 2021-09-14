@@ -1,12 +1,9 @@
-<?php
-  session_start();
-?>
+<?php session_start(); ?>
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PETS.CO</title>
 
   <link rel="stylesheet" href="./materialize/css/base.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,17 +17,20 @@
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
-          if(isset($_SESSION["id"])){
-            echo "<li><a href='cart.php'>Cart</a></li>";
-            echo "<li><a href='includes/logout_inc.php'>Log out</a></li>";
+          if(isset($_SESSION["id"]))
+          {
+            echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
+            echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           }
-          else {
-            echo "<li><a href='login.php'>Login</a></li>";
-            echo "<li><a href='sign_up.php'>Sign Up</a></li>";
+          else
+          {
+            echo "<li><a id='login' href='login.php'>Login</a></li>";
+            echo "<li><a id='sign_up' href='sign_up.php'>Sign Up</a></li>";
           }
-        ?>
+          ?>
       </ul>
     </div>
   </nav>
-
+  
+  <script src="./materialize/js/navbar.js"></script>
   <div class="content">

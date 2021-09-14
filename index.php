@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "includes/navbar.php"; ?>
+<title>PETS.CO</title>
+<?php include "header.php"; ?>
 
-<?php include "includes/footer.php"; ?>
+<?php include "footer.php"; ?>
 </html>

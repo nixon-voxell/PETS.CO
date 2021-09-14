@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include "includes/navbar.php"; ?>
+<title>PETS.CO - Sign Up</title>
+<?php include "header.php"; ?>
 
 <div class="container">
-  <h3 class="black-text">Register</h3>
-  <form class="col s12" action="includes/signup_inc.php" method="post">
+  <h3 class="grey-text">Register</h3>
+  <form class="col s12" action="includes/signup.inc.php" method="post">
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">account_circle</i>
@@ -72,5 +73,5 @@
   </div>
 </div>
 
-<?php include "includes/footer.php"; ?>
+<?php include "footer.php"; ?>
 </html>
