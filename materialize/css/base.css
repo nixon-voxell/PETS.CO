@@ -3,15 +3,10 @@
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
 
-html
+html, body
 {
   height: 100%;
   background-repeat: no-repeat;
-}
-
-body
-{
-  /* background: linear-gradient(rgba(2,0,36,1) 0%, rgb(149, 151, 10) 25%, rgb(255, 215, 0) 100%); */
 }
 
 nav {
@@ -19,6 +14,12 @@ nav {
   line-height: 100px;
 }
 
-.errormsg {
+.errormsg
+{
   color: red;
+}
+
+.content
+{
+  min-height: 100%;
 }

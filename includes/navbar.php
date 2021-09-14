@@ -2,8 +2,6 @@
   session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +12,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
   <script src="./materialize/js/materialize.js"></script>
+</head>
 
+<body>
   <nav>
     <div class="nav-wrapper blue-grey darken-4">
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
@@ -32,4 +32,5 @@
       </ul>
     </div>
   </nav>
-</head>
+
+  <div class="content">

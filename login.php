@@ -1,8 +1,7 @@
-<?php
-  include "includes/nav.php";
-?>
-<body>
-  <form method="post" action="includes/login_inc.php">
+<!DOCTYPE html>
+<html lang="en">
+<?php include "includes/navbar.php"; ?>
+<form method="post" action="includes/login_inc.php">
   <div class="container">
     <div class = "header">
       <h2><i class="material-icons">sentiment_very_satisfied</i>
@@ -39,8 +38,7 @@
       ?>
     </div>
   </div>
-  </form>
+</form>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+<?php include "includes/footer.php"; ?>
 </html>

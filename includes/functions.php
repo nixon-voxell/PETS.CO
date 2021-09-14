@@ -1,36 +1,18 @@
 <?php 
 //sign up functions
-function emptyInputSignup($username, $pwd, $repeatPwd, $email){
-  $result="";
-  if (empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email))) {
-    $result = true;
-  }
-  else{
-    $result = false;
-  }
-  return $result;
+function emptyInputSignup($username, $pwd, $repeatPwd, $email)
+{
+  return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email));
 }
 
-function invalidUid($username){
-  $result="";
-  if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
-    $result = true;    
-  }
-  else{
-    $result = false;
-  }
-  return $result;
+function invalidUid($username)
+{
+  return !preg_match("/^[a-zA-Z0-9]*$/", $username);
 }
 
-function pwdMatch($pwd, $repeatPwd){
-  $result="";
-  if($pwd !== $repeatPwd){
-    $result = true;    
-  }
-  else{
-    $result = false;
-  }
-  return $result;
+function pwdMatch($pwd, $repeatPwd)
+{
+  return $pwd !== $repeatPwd;
 }
 
 function uidExists($conn, $username, $email){
@@ -57,10 +39,11 @@ function uidExists($conn, $username, $email){
   mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $username, $pwd, $email){
+function createUser($conn, $username, $pwd, $email)
+{
   $sql = "INSERT INTO account (username, password, email) VALUES (?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql)){ 
+  if (!mysqli_stmt_prepare($stmt, $sql)){
     header("location: ../sign_up.php?error=stmtfailed");
     exit();
   }
@@ -110,6 +93,3 @@ function loginUser($conn, $username, $pwd){
     exit();
   }
 }
-
-
-
