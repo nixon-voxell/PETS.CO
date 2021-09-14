@@ -4,20 +4,19 @@
 <body>
   <form method="post" action="includes/login_inc.php">
   <div class="container">
-    <div class = "header">
-      <h2><i class="material-icons">sentiment_very_satisfied</i>
-        <font size="5">Please Login:</font></h2>
-    </div>
+    <h2 class="black-text">
+      Login 
+    </h2>
     <div class="row">
       <div class="input-field col s5">
-        <i class="material-icons">stars</i>
+      <i class="material-icons prefix">account_circle</i>
         <label>Username or Email</label>
         <input type="text" name="username">
       </div>
     </div>
     <div class="row">
       <div class="input-field col s5">
-        <i class="material-icons">stars</i>
+      <i class="material-icons prefix"> password</i>
         <label>Password</label>
         <input type="password" name="pwd">
       </div>
