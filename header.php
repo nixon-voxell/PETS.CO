@@ -25,7 +25,7 @@
           else
           {
             echo "<li><a id='login' href='login.php'>Login</a></li>";
-            echo "<li><a id='sign_up' href='sign_up.php'>Sign Up</a></li>";
+            echo "<li><a id='sign_up' href='signup.php'>Sign Up</a></li>";
           }
           ?>
       </ul>

@@ -22,7 +22,7 @@
     </div>
     <div class="row">
         <button type="submit" name="submit" class="btn">Login</button>
-        <p class="grey-text">Not yet a member? <a href="sign_up.php">Sign Up!</a></p>
+        <p class="grey-text">Not yet a member? <a href="signup.php">Sign Up!</a></p>
     </div>
     <div class="errormsg">
       <?php
