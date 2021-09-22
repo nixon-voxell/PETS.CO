@@ -4,7 +4,7 @@
 $dbServername = "localhost";
 $dbUsername = "root";
 $dbPassword = "";
-$dbName = "petstore_acc";
+$dbName = "petsco";
 
 // secure connection to database
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);

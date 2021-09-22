@@ -21,8 +21,7 @@
           {
             echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
-          }
-          else
+          } else
           {
             echo "<li><a id='login' href='login.php'>Login</a></li>";
             echo "<li><a id='signup' href='signup.php'>Sign Up</a></li>";
