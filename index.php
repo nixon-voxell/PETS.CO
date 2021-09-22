@@ -4,4 +4,6 @@
 <?php include "header.php"; ?>
 
 <?php include "footer.php"; ?>
+
+<?php include "includes/init.inc.php"; ?>
 </html>

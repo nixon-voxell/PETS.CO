@@ -7,8 +7,7 @@ if (isset($_POST["submit"]))
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
 
-  // require_once "dbhandler.php";
-  require_once "functions.php";
+  require_once "utils/signup_util.php";
 
   if(EmptyInputSignup($username, $pwd, $repeatPwd, $email) !== false)
     header("location: ../signup.php?error=emptyinput");

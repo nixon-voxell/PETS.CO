@@ -6,8 +6,7 @@ if (isset($_POST["submit"]))
   $username = $_POST["username"];
   $pwd = $_POST["pwd"];
 
-  require_once "dbhandler.php";
-  require_once "functions.php";
+  require_once "utils/login_util.php";
 
   if(EmptyInputLogin($username, $pwd) !== false)
   {
