@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require "includes/utils/dbhandler.php";
+
+if(isset($_SESSION["username"]))
+{
+  $sql = "SELECT * FROM account WHERE username='$_SESSION[username]'";
+  $query = mysqli_query($conn, $sql);
+  
+  $row = mysqli_fetch_array($query);
+  $email = $row['email'];
+}
+?>
 
 <head>
   <meta charset="UTF-8">
@@ -20,6 +32,7 @@
           if(isset($_SESSION["id"]))
           {
             echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
+            echo "<li><a id='manageuserprofile' href='manageuserprofile.php?email=$email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
           {
