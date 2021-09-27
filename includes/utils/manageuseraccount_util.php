@@ -30,7 +30,7 @@ function UpdateUser($conn, $username, $pwd, $email)
   session_start();
   $_SESSION["username"] = $username;
   $_SESSION["email"] = $email;
- 
+
   header("location: ../manageuserprofile.php?error=none");
   exit();
 }
