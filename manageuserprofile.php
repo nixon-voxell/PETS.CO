@@ -4,17 +4,19 @@
 <?php 
 include "header.php"; 
 $username=$_SESSION['username'];
-// $email=$_GET['email']; 
+$email=$_SESSION['email'];
+$id=$_SESSION['id'];
 ?>
 
 <div class="container">
-  <h3 class="grey-text">Manage Personal Profile</h3>
-  <form class="col s12" action="includes/manageuserprofile.inc.php" method="post">
+  <h3 class="grey-text">Manage Personal Profile</h3><br>
+  <form class="col s12" action="includes/manageuserprofile.inc.php" method="post"> 
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">account_circle</i>
         <?php
-        echo "<input name='username' type='text' value='$username'/>";
+        echo "<input name='id' type='hidden' value='$id'/>";
+        echo"<input name='username' type='text' value='$username'/>";
         ?>
         <label for="username">Enter New Username</label>
         <span class="helper-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
@@ -45,6 +47,7 @@ $username=$_SESSION['username'];
         <label for="repeatPwd"> Repeat New Password</label>
       </div>
     </div>
+    <br>
     <button type="submit" name="update" class="btn">Update Account</button>
   </form>
 

@@ -1,14 +1,15 @@
 <?php 
 session_start(); 
 require "includes/utils/dbhandler.php";
+require "includes/utils/common_util.php";
 
-if(isset($_SESSION["username"]))
+if(isset($_SESSION["id"]))
 {
-  $sql = "SELECT * FROM account WHERE username='$_SESSION[username]'";
-  $query = mysqli_query($conn, $sql);
-  
-  $row = mysqli_fetch_array($query);
-  $email = $row['email'];
+$id=$_SESSION["id"];
+$sql = "SELECT * FROM account WHERE id='$id'";
+$query = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($query);
+$email = $row['email'];
 }
 ?>
 

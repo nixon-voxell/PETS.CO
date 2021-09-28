@@ -4,7 +4,6 @@ require_once "common_util.php";
 
 function EmptyInputLogin($username, $pwd) { return empty($username) or empty($pwd); }
 
-
 function LoginUser($conn, $username, $pwd)
 {
   $UIDExists = UIDExists($conn, $username, $username);
@@ -27,6 +26,7 @@ function LoginUser($conn, $username, $pwd)
     session_start();
     $_SESSION["id"] = $UIDExists["id"];
     $_SESSION["username"] = $UIDExists["username"];
+    $_SESSION["email"] = $UIDExists["email"];
     header("location: ../index.php");
     exit();
   }
