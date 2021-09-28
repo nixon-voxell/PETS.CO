@@ -29,11 +29,11 @@ function UpdateUser($conn, $username, $pwd, $email,$id)
   mysqli_stmt_close($stmt);
   
   session_start();
+  $_SESSION["id"] = $id;
   $_SESSION["username"] = $username;
   $_SESSION["email"] = $email;
-  $_SESSION["id"] = $id;
 
-  header("location: ../index.php?error=none.AccountHasBeenUpdated!");
+  header("location: ../index.php?error=none");
   exit();
   }
   ?>
