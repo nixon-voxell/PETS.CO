@@ -3,14 +3,14 @@
 class Item
 {
   private $itemID;
-  private $name;
-  private $brand;
-  private $description;
-  private $category;
-  private $sellingPrice;
-  private $quantityInStock;
+  public $name;
+  public $brand;
+  public $description;
+  public $category;
+  public $sellingPrice;
+  public $quantityInStock;
 
-  private $reviews;
+  public $reviews;
 
   function __construct($itemID, $conn)
   {
@@ -29,9 +29,9 @@ class Item
 
     if (mysqli_stmt_execute($stmt))
     {
-      $orderItem = mysqli_stmt_get_result($stmt);
+      $result = mysqli_stmt_get_result($stmt);
 
-      $row = $orderItem->fetch_array(MYSQLI_ASSOC);
+      $row = $result->fetch_array(MYSQLI_ASSOC);
       $this->name = $row["Name"];
       $this->brand = $row["Brand"];
       $this->description = $row["Description"];
@@ -42,7 +42,7 @@ class Item
 
     mysqli_stmt_close($stmt);
   }
-
+  
   // copy reviews and ratings from database
   public function GetReviews($conn)
   {
@@ -51,18 +51,54 @@ class Item
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
     mysqli_stmt_bind_param($stmt, "i", $this->itemID);
-
+    
     if (mysqli_stmt_execute($stmt))
     {
-      $reviewDetail = mysqli_stmt_get_result($stmt);
-      while ($row = $reviewDetail->fetch_array(MYSQLI_ASSOC))
-        array_push($this->reviews, new Review($row["Feedback"], $row["Rating"]));
+      $result = mysqli_stmt_get_result($stmt);
+      while ($row = $result->fetch_array(MYSQLI_ASSOC))
+      {
+        $feedback = $row["Feedback"];
+        $rating = $row["Rating"];
+        // check to see if a review has been made or not
+        if ($rating != NULL)
+        {
+          // if feedback is empty, we assign it as empty string
+          if ($feedback != NULL) array_push($this->reviews, new Review($feedback, $rating));
+          else array_push($this->reviews, new Review("", $rating));
+        }
+      }
     }
+    mysqli_stmt_close($stmt);
   }
 
+  // check whether this item has any reviews
   public function HasReviews()
   {
     if (isset($this->reviews) && count($this->reviews) > 0) return true;
     return false;
+  }
+
+  // copy object data to database
+  public function SetData($conn)
+  {
+    $sql = "UPDATE Items SET
+      Name = ?, Brand = ?, Description = ?, Category = ?, SellingPrice = ?, QuantityInStock = ?
+      WHERE ItemID = ?";
+    $stmt = mysqli_stmt_init($conn);
+    mysqli_stmt_prepare($stmt, $sql);
+    mysqli_stmt_bind_param(
+      $stmt, "sssiiii",
+      $this->name,
+      $this->brand,
+      $this->description,
+      $this->category,
+      $this->sellingPrice,
+      $this->quantityInStock,
+      $this->itemID
+    );
+    
+    $success = mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    return $success;
   }
 }

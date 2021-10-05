@@ -23,9 +23,9 @@ class OrderItem
 
     if (mysqli_stmt_execute($stmt))
     {
-      $orderItem = mysqli_stmt_get_result($stmt);
+      $result = mysqli_stmt_get_result($stmt);
 
-      $row = $orderItem->fetch_array(MYSQLI_ASSOC);
+      $row = $result->fetch_array(MYSQLI_ASSOC);
       $this->price = $row["Price"];
       $this->quantity = $row["Quantity"];
       $this->addedDateTime = $row["AddedDateTime"];

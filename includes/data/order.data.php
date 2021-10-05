@@ -23,11 +23,11 @@ class Order
 
     if (mysqli_stmt_execute($stmt))
     {
-      $orderitemIDs = mysqli_stmt_get_result($stmt);
+      $result = mysqli_stmt_get_result($stmt);
 
       // create multiple OrderItem instances
       $this->orderItems = array();
-      while ($row = $orderitemIDs->fetch_array(MYSQLI_ASSOC))
+      while ($row = $result->fetch_array(MYSQLI_ASSOC))
         array_push($this->orderItems, new OrderItem($row["OrderItemID"], $conn));
     }
 
