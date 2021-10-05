@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start(); 
 require "includes/utils/dbhandler.php";
 
@@ -20,6 +20,7 @@ if(isset($_SESSION["username"]))
   <link rel="stylesheet" href="./materialize/css/base.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="./materialize/js/materialize.js"></script>
 </head>
 
