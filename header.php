@@ -4,11 +4,15 @@ require "includes/utils/dbhandler.php";
 
 if(isset($_SESSION["username"]))
 {
-  $sql = "SELECT * FROM account WHERE username='$_SESSION[username]'";
-  $query = mysqli_query($conn, $sql);
-  
-  $row = mysqli_fetch_array($query);
-  $email = $row['email'];
+$id=$_SESSION["id"];
+$sql = "SELECT * FROM account WHERE id=$id";
+
+write_log('pass3-'.$id);
+
+
+$query = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($query);
+$email = $row['email'];
 }
 ?>
 
