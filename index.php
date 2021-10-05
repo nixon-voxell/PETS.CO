@@ -5,7 +5,7 @@
 
 <div class="carousel carousel-slider center">
   <div class="carousel-fixed-item center">
-    <a class="btn waves-effect waves-teal black cyan-text">Get Started!</a>
+    <a class="btn waves-effect white cyan-text">Get Started!</a>
   </div>
   <div class="carousel-item red white-text" href="#one!">
     <h2>First Panel</h2>
@@ -26,7 +26,7 @@
 </div>
 
 <?php include "footer.php"; ?>
-<script src="./materialize/js/index.js"></script>
+<!-- <script src="./static/js/index.js"></script> -->
 
 <!-- database table initialization -->
 <?php include "includes/init.inc.php"; ?>

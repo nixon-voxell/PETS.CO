@@ -15,7 +15,7 @@ function LoginUser($conn, $username, $pwd)
     exit();
   }
 
-  $pwdHashed = $UIDExists["password"];
+  $pwdHashed = $UIDExists["Password"];
   $checkPwd = password_verify($pwd, $pwdHashed);
 
   if($checkPwd === false)
@@ -25,8 +25,8 @@ function LoginUser($conn, $username, $pwd)
   } else if ($checkPwd === true)
   {
     session_start();
-    $_SESSION["id"] = $UIDExists["id"];
-    $_SESSION["username"] = $UIDExists["username"];
+    $_SESSION["MemberID"] = $UIDExists["MemberID"];
+    $_SESSION["Username"] = $UIDExists["Username"];
     header("location: ../index.php");
     exit();
   }

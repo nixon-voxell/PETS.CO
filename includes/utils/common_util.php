@@ -2,7 +2,7 @@
 
 function UIDExists($conn, $username, $email)
 {
-  $sql = "SELECT * FROM account where username = ? OR email = ?;";
+  $sql = "SELECT * FROM Members where Username = ? OR Email = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {

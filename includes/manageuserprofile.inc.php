@@ -22,8 +22,7 @@ if (isset($_POST["update"]))
     header("location: ../signup.php?error=usrnametaken");
 
   UpdateUser($conn, $username, $pwd, $email);
-  $_SESSION['email']=$email;
-  write-log('email-'.$email);
+  $_SESSION["Email"]=$email;
   header("location: ../index.php?email='$email'");
 }
 

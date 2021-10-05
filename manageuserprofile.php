@@ -3,7 +3,7 @@
 <title>PETS.CO - Manage Personal Account</title>
 <?php 
 include "header.php"; 
-$username=$_SESSION['username'];
+$username = $_SESSION["Username"];
 // $email=$_GET['email']; 
 ?>
 
