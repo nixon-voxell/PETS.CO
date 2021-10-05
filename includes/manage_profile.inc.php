@@ -7,7 +7,7 @@ if (isset($_POST["update"]))
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
 
-  require_once "utils/manageuseraccount_util.php";
+  require_once "utils/manage_profile_util.php";
 
   if(EmptyInputUpdate($username, $pwd, $repeatPwd, $email))
   {
@@ -22,8 +22,7 @@ if (isset($_POST["update"]))
     header("location: ../signup.php?error=usrnametaken");
 
   UpdateUser($conn, $username, $pwd, $email);
-  $_SESSION['email']=$email;
-  write-log('email-'.$email);
+  $_SESSION["Email"]=$email;
   header("location: ../index.php?email='$email'");
 }
 

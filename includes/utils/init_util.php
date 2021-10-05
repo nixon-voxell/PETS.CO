@@ -4,86 +4,78 @@ function CreateNeededTables($conn)
 {
   $tables = array();
 
-  // account table
+  // Members table
   array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS account (
-    id INT(100) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL,
-    `password`VARCHAR(512) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    privilegeLevel INT(50) NOT NULL
+    $tables, "CREATE TABLE IF NOT EXISTS Members(
+      MemberID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      Username VARCHAR(64) NOT NULL,
+      Password VARCHAR(512) NOT NULL,
+      Email VARCHAR(64) NOT NULL,
+      PriviledgeLevel INT NOT NULL
     )"
   );
 
-  // orders table
+  // Orders table
   array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS orders (
-    OrderID INT(100) NOT NULL PRIMARY KEY,
-    id INT(100) NOT NULL,
-    FOREIGN KEY (id) REFERENCES account(id),
-    OrderDate DATE NOT NULL,
-    DeliveredDate DATE NOT NULL,
-    CartFlag INT(50) NOT NULL
+    $tables, "CREATE TABLE IF NOT EXISTS Orders(
+      OrderID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      MemberID INT NOT NULL,
+      FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+      CartFlag BIT NOT NULL DEFAULT 1
     )"
   );
 
-  // payment table
+  // Payment table
   array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS payment (
-    PaymentID INT(100) NOT NULL PRIMARY KEY,
-    OrderID INT(100) NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES orders(OrderID),
-    PaymentDate DATE NOT NULL
+    $tables, "CREATE TABLE IF NOT EXISTS Payment(
+      PaymentID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      OrderID INT NOT NULL,
+      FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+      PaymentDate DATE NOT NULL
     )"
   );
 
-  // items table
+  // Items table
   array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS items (
-    ItemID INT(100) NOT NULL PRIMARY KEY,
-    Description VARCHAR(512) NOT NULL,
-    SellingPrice VARCHAR(50) NOT NULL,
-    QuantityInStock INT(50) NOT NULL
+    $tables, "CREATE TABLE IF NOT EXISTS Items(
+      ItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      Name VARCHAR(64) NOT NULL,
+      Brand VARCHAR(64) NOT NULL,
+      Description VARCHAR(512) NOT NULL,
+      Category INT NOT NULL,
+      SellingPrice VARCHAR(64) NOT NULL,
+      QuantityInStock INT NOT NULL
     )"
   );
 
-  // orderItems table
+  // OrderItems table
   array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS orderItems (
-    OrderItemID INT(100) NOT NULL PRIMARY KEY,
-    OrderID INT(100) NOT NULL,
-    ItemID INT(100) NOT NULL,
-    FOREIGN KEY (OrderID) REFERENCES orders(OrderID),
-    FOREIGN KEY (ItemID) REFERENCES items(ItemID),
-    Price VARCHAR(50) NOT NULL,
-    Quantity INT(50) NOT NULL
+    $tables, "CREATE TABLE IF NOT EXISTS OrderItems(
+      OrderItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+      OrderID INT NOT NULL,
+      ItemID INT NOT NULL,
+      FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+      FOREIGN KEY (ItemID) REFERENCES Items(ItemID),
+      Price VARCHAR(64) NOT NULL,
+      Quantity INT NOT NULL,
+      AddedDatetime DATETIME NOT NULL,
+      Feedback VARCHAR(512),
+      Rating INT
     )"
   );
 
-  // reviews table
-  array_push(
-    $tables, "CREATE TABLE IF NOT EXISTS reviews (
-    ReviewID INT(100) NOT NULL PRIMARY KEY,
-    OrderItemID INT(100) NOT NULL,
-    FOREIGN KEY (OrderItemID) REFERENCES orderItems(OrderItemID),
-    ReviewDate DATE NOT NULL,
-    Feedback VARCHAR(512),
-    RATING INT(50) NOT NULL
-    )"
-  );
-
+  $stmt = mysqli_stmt_init($conn);
   for ($i=0; $i < count($tables); $i++)
-  {
-    CreateTable($conn, $tables[$i]);
-  }
+    ExecuteSQL($stmt, $tables[$i]);
+
+  mysqli_stmt_close($stmt);
 }
 
-function CreateTable($conn, $sql)
+function ExecuteSQL($stmt, $sql)
 {
-  $stmt = mysqli_stmt_init($conn);
+  // TODO: log to a file
   if (!mysqli_stmt_prepare($stmt, $sql))
     echo("ERROR");
 
   mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
 }

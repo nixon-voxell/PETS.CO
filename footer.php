@@ -19,4 +19,6 @@
   <div class="footer-copyright">
     <div class="container">© 2021 PETS.co All rights reserved.</div>
   </div>
+
+  <script src="./static/js/footer.js"></script>
 </footer>

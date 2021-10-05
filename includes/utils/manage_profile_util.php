@@ -13,11 +13,11 @@ function PwdMatch($pwd, $repeatPwd)
 
 function UpdateUser($conn, $username, $pwd, $email)
 {
-  $sql = "update account set password=?, email=?, where username=?;";
+  $sql = "update Members set password=?, email=?, where username=?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
-    header("location: ../manageuserprofile.php?error=Statementfailed");
+    header("location: ../manage_profile.php?error=Statementfailed");
     exit();
   }
   
@@ -28,9 +28,9 @@ function UpdateUser($conn, $username, $pwd, $email)
   mysqli_stmt_close($stmt);
 
   session_start();
-  $_SESSION["username"] = $username;
-  $_SESSION["email"] = $email;
- 
-  header("location: ../manageuserprofile.php?error=none");
+  $_SESSION["Username"] = $username;
+  $_SESSION["Email"] = $email;
+
+  header("location: ../manage_profile.php?error=none");
   exit();
 }
