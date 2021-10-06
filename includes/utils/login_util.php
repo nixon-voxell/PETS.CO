@@ -9,10 +9,6 @@ function LoginUser($conn, $loginName, $pwd)
 {
   $UIDExists = UIDExists($conn, $loginName);
 
-  write_log($UIDExists["Password"]);
-  write_log($UIDExists["MemberID"]);
-  write_log($UIDExists["Email"]);
-
   if ($UIDExists === false)
   {
     header("location: ../login.php?error=wronglogin");
