@@ -17,7 +17,7 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix"> password</i>
-        <input name="pwd" type="password" class="validate" minlength="6" maxlength="20">
+        <input name="pwd" type="password" class="validate" minlength="8" maxlength="20">
         <label for="password"> Password</label>
         <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
       </div>
@@ -25,7 +25,7 @@
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix"> password</i>
-        <input name="repeatPwd" type="password" class="validate" maxlength="14">
+        <input name="repeatPwd" type="password" class="validate" maxlength="20">
         <label for="repeatPwd"> Repeat Password</label>
       </div>
     </div>

@@ -8,7 +8,7 @@ function EmptyInputSignup($username, $pwd, $repeatPwd, $email)
 function InvalidUid($username)
 { return !preg_match("/^[a-zA-Z0-9]*$/", $username); }
 
-function PwdMatch($pwd, $repeatPwd)
+function PwdNotMatch($pwd, $repeatPwd)
 { return $pwd !== $repeatPwd; }
 
 function CreateUser($conn, $username, $pwd, $email)

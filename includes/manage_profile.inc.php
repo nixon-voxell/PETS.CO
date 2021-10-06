@@ -1,34 +1,30 @@
 <?php
+require_once "utils/manage_profile_util.php";
+require_once "utils/common_util.php";
 
-if (isset($_POST["update"]))
-{
+if (isset($_POST["update"])) {
   $username = $_POST["username"];
   $pwd = $_POST["pwd"];
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
+  $id = $_POST["id"];
 
-  require_once "utils/manage_profile_util.php";
-
-  if(EmptyInputUpdate($username, $pwd, $repeatPwd, $email))
+  if (PwdNotMatch($pwd, $repeatPwd))
+  {
+    header("location: ../signup.php?error=passwordsdontmatch");
+    exit();
+  }
+  else if (InputIsEmpty($username, $pwd, $repeatPwd, $email))
   {
     header("location: ../signup.php?error=emptyinput");
     exit();
   }
-  else if(InvalidUid($username))
-    header("location: ../signup.php?error=invaliduserid");
-  else if(PwdMatch($pwd, $repeatPwd))
-    header("location: ../signup.php?error=passwordsdontmatch");
-  else if(UIDExists($conn, $username, $email))
-    header("location: ../signup.php?error=usrnametaken");
-
-  UpdateUser($conn, $username, $pwd, $email);
-  $_SESSION["Email"]=$email;
-  header("location: ../index.php?email='$email'");
+  UpdateUser($conn, $username, $pwd, $email,$id);
+  header("location: ../index.php");
 }
-
-else
-{
-  header("location: ../signup.php");
+  else
+  {
+  header("location: ../manage_profile.php");
   exit();
-}
+  }
 ?>
