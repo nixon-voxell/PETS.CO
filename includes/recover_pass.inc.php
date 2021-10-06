@@ -55,9 +55,9 @@ if (isset($_POST["submit_email"]))
 }
 
 // if user click submit OTP button
-if (isset($_POST["submitotp"]))
+if (isset($_POST["submit_otp"]))
 {
-  $otp = $_POST["enteredotp"];
+  $otp = $_POST["entered_otp"];
 
   if (empty($otp))
   {
@@ -67,7 +67,7 @@ if (isset($_POST["submitotp"]))
   {
     $_SESSION["Info"] = "";
 
-    $otp_code = mysqli_real_escape_string($conn, $_POST["enteredotp"]);
+    $otp_code = mysqli_real_escape_string($conn, $_POST["entered_otp"]);
     $check_otp = "SELECT * FROM Members WHERE otp = $otp_code";
     $code_res = mysqli_query($conn, $check_otp);
 
@@ -79,9 +79,7 @@ if (isset($_POST["submitotp"]))
       $_SESSION["Info"] = $info;
       header("location: new_pass.php");
       exit();
-    } else {
-      $errors["otp-error"] = "You've entered incorrect code!";
-    }
+    } else $errors["otp_error"] = "You've entered incorrect code!";
   }
 }
 
@@ -116,7 +114,7 @@ if (isset($_POST["change_pass"]))
         $info = "You've changed your password! Redirecting to login page...";
         $_SESSION["Info"] = $info;
         header( "refresh:5;url=login.php" );
-      } else $errors["db-error"] = "Faied to change your password!";
+      } else $errors["db_error"] = "Faied to change your password!";
     }
   }
 }

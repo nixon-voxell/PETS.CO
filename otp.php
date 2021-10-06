@@ -48,13 +48,13 @@ if($email !== false)
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix"> pin</i>
-          <input name="enteredotp" type="number" class="validate" minlength="5" maxlength="5">
+          <input name="entered_otp" type="number" class="validate" minlength="5" maxlength="5">
           <label for="password"> OTP code here</label>
           <span class="helper-text" data-error="5 Digit OTP" data-success="correct">5 Digit OTP</span>
         </div>
       </div>
 
-      <input class="btn btn-block" type="submit" name="submitotp" value="Submit OTP">
+      <input class="btn btn-block" type="submit" name="submit_otp" value="Submit OTP">
     </form>
   </div>
 </html>
