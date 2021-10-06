@@ -7,7 +7,7 @@ if (isset($_POST["submit"]))
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
 
-  require_once "utils/signup_util.php";
+  require_once "./utils/common_util.php";
 
   if(EmptyInputSignup($username, $pwd, $repeatPwd, $email) !== false)
   {
@@ -22,6 +22,8 @@ if (isset($_POST["submit"]))
     header("location: ../signup.php?error=usrnametaken");
 
   CreateUser($conn, $username, $pwd, $email);
+  echo "<p>You have signed up! Redirecting to login page...</p>";
+  header( "refresh:1.5;url=login.php" );
 }
 
 else

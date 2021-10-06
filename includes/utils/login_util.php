@@ -4,14 +4,9 @@ require_once "common_util.php";
 
 function EmptyInputLogin($username, $pwd) { return empty($username) or empty($pwd); }
 
-
-function LoginUser($conn, $loginName, $pwd)
+function LoginUser($conn, $username, $pwd)
 {
-  $UIDExists = UIDExists($conn, $loginName);
-
-  write_log($UIDExists["Password"]);
-  write_log($UIDExists["MemberID"]);
-  write_log($UIDExists["Email"]);
+  $UIDExists = UIDExists($conn, $username, $username);
 
   if ($UIDExists === false)
   {
@@ -19,7 +14,7 @@ function LoginUser($conn, $loginName, $pwd)
     exit();
   }
 
-  $pwdHashed = $UIDExists["Password"];
+  $pwdHashed = $UIDExists["password"];
   $checkPwd = password_verify($pwd, $pwdHashed);
 
   if($checkPwd === false)
@@ -29,9 +24,10 @@ function LoginUser($conn, $loginName, $pwd)
   } else if ($checkPwd === true)
   {
     session_start();
-    $_SESSION["MemberID"] = $UIDExists["MemberID"];
-    $_SESSION["Username"] = $UIDExists["Username"];
-    $_SESSION["Email"] = $UIDExists["Email"];
+    $_SESSION["id"] = $UIDExists["id"];
+    $_SESSION["username"] = $UIDExists["username"];
+    $_SESSION["email"] = $UIDExists["email"];
+    $_SESSION["privilegeLevel"] = $UIDExists["privilegeLevel"];
     header("location: ../index.php");
     exit();
   }

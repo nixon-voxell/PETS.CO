@@ -3,8 +3,8 @@
 <title>PETS.CO - Manage Personal Account</title>
 <?php 
   include "header.php";
-  $username = $_SESSION["Username"];
-  $email = $_SESSION['Email']; 
+  $username = $_SESSION["username"];
+  $email = $_SESSION["email"]; 
 ?>
 
 <div class="container">
