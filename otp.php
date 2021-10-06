@@ -21,7 +21,7 @@ if($email !== false)
       <h3 class="grey-text">Code Verification</h3>
       <!-- error message -->
       <?php 
-      if(isset($_SESSION["info"])){
+      if(isset($_SESSION["Info"])){
         ?>
         <div class="card-panel light-blue lighten-4">
             <?php echo "Check your OTP code - $email"; ?>

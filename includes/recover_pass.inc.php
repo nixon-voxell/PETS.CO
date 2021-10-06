@@ -1,6 +1,7 @@
 <?php
 
 require "utils/dbhandler.php";
+require "utils/common_util.php";
 $errors = array();
 $email = "";
 
@@ -11,7 +12,7 @@ if (isset($_POST["submit_email"]))
 
   if (empty($email))
   {
-    header("location: reset_pass.php?reset=emptyinput");
+    header("location: recover_pass.php?reset=emptyinput");
     exit();
 
   } else
@@ -43,19 +44,13 @@ if (isset($_POST["submit_email"]))
         if (mail($email, $subject, $message, $sender))
         {
           $info = "Please check your email for otp code - $email";
-          $_SESSION["info"] = $info;
-          $_SESSION["email"] = $email;
+          $_SESSION["Info"] = $info;
+          $_SESSION["Email"] = $email;
           header("location: recover_pass.php?reset=success");
           exit();
-        } else{
-          header("location: reset_pass.php?reset=otperror");
-        }
-      } else{
-        header("location: reset_pass.php?reset=error");
-      }
-    } else{
-      header("location: reset_pass.php?reset=emailinvalid");
-    }
+        } else header("location: recover_pass.php?reset=otperror");
+      } else header("location: recover_pass.php?reset=error");
+    } else header("location: recover_pass.php?reset=emailinvalid");
   }
 }
 
@@ -66,11 +61,11 @@ if (isset($_POST["submitotp"]))
 
   if (empty($otp))
   {
-    header("location: reset_pass.php?reset=emptyinput");
+    header("location: recover_pass.php?reset=emptyinput");
     exit();
   } else
   {
-    $_SESSION["info"] = "";
+    $_SESSION["Info"] = "";
 
     $otp_code = mysqli_real_escape_string($conn, $_POST["enteredotp"]);
     $check_otp = "SELECT * FROM Members WHERE otp = $otp_code";
@@ -79,12 +74,12 @@ if (isset($_POST["submitotp"]))
     if (mysqli_num_rows($code_res) > 0){
       $fetch_data = mysqli_fetch_assoc($code_res);
       $email = $fetch_data["email"];
-      $_SESSION["email"] = $email;
+      $_SESSION["Email"] = $email;
       $info = "Please create a new password and save it";
-      $_SESSION["info"] = $info;
+      $_SESSION["Info"] = $info;
       header("location: new_pass.php");
       exit();
-    } else{
+    } else {
       $errors["otp-error"] = "You've entered incorrect code!";
     }
   }
@@ -102,7 +97,7 @@ if (isset($_POST["change_pass"]))
     exit();
   } else
   {
-    $_SESSION["info"] = "";
+    $_SESSION["Info"] = "";
 
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $cpassword = mysqli_real_escape_string($conn, $_POST["cpassword"]);
@@ -112,14 +107,14 @@ if (isset($_POST["change_pass"]))
     } else
     {
       $otp = 0;
-      $email = $_SESSION["email"]; //getting this email using session
+      $email = $_SESSION["Email"]; //getting this email using session
       $encryptpass = password_hash($password, PASSWORD_BCRYPT);
       $update_pass = "UPDATE Members SET otp = $otp, password = '$encryptpass' WHERE email = '$email'";
       $run_query = mysqli_query($conn, $update_pass);
       if ($run_query)
       {
         $info = "You've changed your password! Redirecting to login page...";
-        $_SESSION["info"] = $info;
+        $_SESSION["Info"] = $info;
         header( "refresh:5;url=login.php" );
       } else $errors["db-error"] = "Faied to change your password!";
     }
