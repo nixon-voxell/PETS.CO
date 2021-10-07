@@ -1,4 +1,4 @@
-@import url(materialize.css);
+@import url(../materialize/css/materialize.css);
 
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
@@ -23,4 +23,11 @@ nav
 .content
 {
   min-height: 100%;
+}
+
+.wide-container
+{
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
 }

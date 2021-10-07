@@ -1,5 +1,5 @@
 <?php
-require_once "utils/manageuseraccount_util.php";
+require_once "utils/manage_profile_util.php";
 require_once "utils/common_util.php";
 
 if (isset($_POST["update"])) {
@@ -9,24 +9,22 @@ if (isset($_POST["update"])) {
   $email = $_POST["email"];
   $id = $_POST["id"];
 
-  if(PwdMatch($pwd, $repeatPwd) !== false) {
+  if (PwdNotMatch($pwd, $repeatPwd))
+  {
     header("location: ../signup.php?error=passwordsdontmatch");
     exit();
   }
-  else if(EmptyInputUpdate($username, $pwd, $repeatPwd, $email) !==false) {
+  else if (InputIsEmpty($username, $pwd, $repeatPwd, $email))
+  {
     header("location: ../signup.php?error=emptyinput");
     exit();
   }
   UpdateUser($conn, $username, $pwd, $email,$id);
-  {
-  $_SESSION['email']=$email;
-  
-  header("location: ../index.php?email='$email'");
-  }
+  header("location: ../index.php");
 }
   else
   {
-  header("location: ../manageuserprofile.php");
+  header("location: ../manage_profile.php");
   exit();
   }
 ?>

@@ -9,7 +9,7 @@
 
 <?php
 include "header.php";
-require_once "includes/controllerUserData.php";
+require_once "includes/recover_pass.inc.php";
 
 $email = $_SESSION['email'];
 
@@ -21,7 +21,7 @@ if($email !== false)
       <h3 class="grey-text">Code Verification</h3>
       <!-- error message -->
       <?php 
-      if(isset($_SESSION["info"])){
+      if(isset($_SESSION["Info"])){
         ?>
         <div class="card-panel light-blue lighten-4">
             <?php echo "Check your OTP code - $email"; ?>
@@ -48,13 +48,13 @@ if($email !== false)
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix"> pin</i>
-          <input name="enteredotp" type="number" class="validate" minlength="5" maxlength="5">
+          <input name="entered_otp" type="number" class="validate" minlength="5" maxlength="5">
           <label for="password"> OTP code here</label>
           <span class="helper-text" data-error="5 Digit OTP" data-success="correct">5 Digit OTP</span>
         </div>
       </div>
 
-      <input class="btn btn-block" type="submit" name="submitotp" value="Submit OTP">
+      <input class="btn btn-block" type="submit" name="submit_otp" value="Submit OTP">
     </form>
   </div>
 </html>

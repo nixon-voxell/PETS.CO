@@ -9,7 +9,7 @@
 
 <?php
 include "header.php";
-require_once "includes/controllerUserData.php";
+require_once "includes/recover_pass.inc.php";
 
 $email = $_SESSION['email'];
 
@@ -21,11 +21,11 @@ if($email !== false)
       <h3 class="grey-text">Create New Password</h3>
       <!-- error message -->
       <?php 
-      if(isset($_SESSION["info"]))
+      if(isset($_SESSION["Info"]))
       {
         ?>
         <div class="card-panel light-blue lighten-4">
-            <?php echo $_SESSION["info"]; ?>
+            <?php echo $_SESSION["Info"]; ?>
         </div>
         <?php
       }

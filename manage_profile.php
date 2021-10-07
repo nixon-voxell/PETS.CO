@@ -2,15 +2,15 @@
 <html lang="en">
 <title>PETS.CO - Manage Personal Account</title>
 <?php 
-include "header.php"; 
-$username=$_SESSION['username'];
-$email=$_SESSION['email'];
-$id=$_SESSION['id'];
+  include "header.php";
+  $id = $_SESSION["MemberID"];
+  $username = $_SESSION["Username"];
+  $email = $_SESSION['Email']; 
 ?>
 
 <div class="container">
-  <h3 class="grey-text">Manage Personal Profile</h3><br>
-  <form class="col s12" action="includes/manageuserprofile.inc.php" method="post"> 
+  <h3 class="grey-text">Manage Personal Profile</h3>
+  <form class="col s12" action="includes/manage_profile.inc.php" method="post">
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">account_circle</i>

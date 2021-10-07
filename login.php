@@ -5,7 +5,7 @@
 
 <form method="post" action="includes/login.inc.php">
   <div class="container">
-    <h3 class="grey-text">Login </h3>
+    <h3 class="grey-text">Login</h3>
     <div class="row">
       <div class="input-field col s6">
       <i class="material-icons prefix">account_circle</i>

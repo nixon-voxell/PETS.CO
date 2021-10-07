@@ -1,4 +1,4 @@
-<?php require_once "includes/controllerUserData.php"; ?>
+<?php require_once "includes/recover_pass.inc.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@
         <span class="helper-text" data-error="wrong" data-success="correct"></span>
       </div>
     </div>
-    <input class="btn btn-block" type="submit" name="submitemail" value="Recover my Password">
+    <input class="btn btn-block" type="submit" name="submit_email" value="Recover my Password">
     <div class="errormsg">
       <?php
         if (isset($_GET["reset"]))
