@@ -54,9 +54,7 @@ function CreateNeededTables($conn)
       Description VARCHAR(512) NOT NULL,
       Category INT NOT NULL,
       SellingPrice VARCHAR(64) NOT NULL,
-      QuantityInStock INT NOT NULL,
-      OrderID INT NOT NULL,
-      FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+      QuantityInStock INT NOT NULL
     )"
   );
 

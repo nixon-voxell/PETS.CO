@@ -66,10 +66,10 @@ body {
   <div class="divider"></div>
 
   <li>
-      <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
+    <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
   </li>
   <li>
-      <a href=""><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
+    <a href=""><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
   </li>
 </ul>
 
@@ -118,7 +118,7 @@ body {
             $sql = mysqli_query($conn, "SELECT memberid, cartflag from Orders WHERE memberid = '$uid' and cartflag = '1'")
             or die ("Select statement FAILED!");
             
-            while(list($usrid, $cartFlag) = mysqli_fetch_array($sql))
+            while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
             if ($usrid == $uid && $cartFlag == "1")
             {?>
             <div class="row">
@@ -158,7 +158,7 @@ body {
                 </div>
               </div>
             </div>
-          <?php }elseif ($usrid == $uid && $cartFlag == "0")
+          <?php } else if ($usrid == $uid && $cartFlag == "0")
           {?>
           <h5 class="text-blue-grey">#1</h5>
           <div class="row">
@@ -191,7 +191,7 @@ body {
               </div>
             </div>
           </div>
-          <?php }else echo "ERROR!"; }?>
+          <?php } else echo "ERROR!"; }?>
           </tbody>
           </table>
         </div>

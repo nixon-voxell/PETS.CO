@@ -3,7 +3,7 @@ session_start();
 require "includes/utils/dbhandler.php";
 require "includes/utils/common_util.php";
 
-if(isset($_SESSION["MemberID"]))
+if (isset($_SESSION["MemberID"]))
 {
 $id = $_SESSION["MemberID"];
 $sql = "SELECT * FROM Members WHERE MemberID='$id'";
@@ -21,7 +21,6 @@ $email = $row["Email"];
 
   <link rel="stylesheet" href="./static/css/base.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="./static/materialize/js/materialize.js"></script>
 </head>
@@ -30,7 +29,7 @@ $email = $row["Email"];
   <nav style="height: 100px";>
     <div class="nav-wrapper blue-grey darken-4">
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-top: 15px";>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
           if(isset($_SESSION["MemberID"]))
           {
