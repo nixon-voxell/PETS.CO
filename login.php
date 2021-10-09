@@ -23,13 +23,14 @@
     <div class="row">
         <button type="submit" name="submit" class="btn">Login</button>
         <p class="grey-text">Not yet a member? <a href="signup.php">Sign Up!</a></p>
+        <p><a href="recover_pass.php">Forgot Password?</a></p>
     </div>
     <div class="errormsg">
       <?php
         if (isset($_GET["error"]))
         {
           if($_GET["error"] == "emptyinput")
-            echo "<p>*Fill in all fields!<p>";
+            echo "<p>*Fill in all fields!</p>";
           else if ($_GET["error"] == "wronglogin")
             echo "<p>*Incorrect credentials!</p>";
         }

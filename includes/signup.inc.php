@@ -16,7 +16,7 @@ if (isset($_POST["submit"]))
   }
   else if(InvalidUid($username) !== false)
     header("location: ../signup.php?error=invaliduid");
-  else if(PwdMatch($pwd, $repeatPwd) !== false)
+  else if(PwdNotMatch($pwd, $repeatPwd) !== false)
     header("location: ../signup.php?error=passwordsdontmatch");
   else if(UIDExists($conn, $username, $email) !== false)
     header("location: ../signup.php?error=usrnametaken");
