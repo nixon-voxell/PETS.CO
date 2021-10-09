@@ -1,21 +1,30 @@
 <?php
+function ExecuteSQL($stmt, $sql)
+{
+  // TODO: log to a file
+  if (!mysqli_stmt_prepare($stmt, $sql))
+    echo("ERROR");
+    exit();
+
+  mysqli_stmt_execute($stmt);
+}
 
 function CreateNeededTables($conn)
 {
   $tables = array();
 
-  // Members table
+  //Members table no error
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Members(
       MemberID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
       Username VARCHAR(64) NOT NULL,
       Password VARCHAR(512) NOT NULL,
       Email VARCHAR(64) NOT NULL,
-      PriviledgeLevel INT NOT NULL
+      PrivilegeLevel INT NOT NULL
     )"
   );
 
-  // Orders table
+  // Orders table (display cart (items table) /payment + orderitems tables) no error
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Orders(
       OrderID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -25,7 +34,7 @@ function CreateNeededTables($conn)
     )"
   );
 
-  // Payment table
+  // Payment table (payment history) no error
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Payment(
       PaymentID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -35,7 +44,7 @@ function CreateNeededTables($conn)
     )"
   );
 
-  // Items table
+  // Items table no error
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Items(
       ItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -44,11 +53,13 @@ function CreateNeededTables($conn)
       Description VARCHAR(512) NOT NULL,
       Category INT NOT NULL,
       SellingPrice VARCHAR(64) NOT NULL,
-      QuantityInStock INT NOT NULL
+      QuantityInStock INT NOT NULL,
+      OrderID INT NOT NULL,
+      FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     )"
   );
 
-  // OrderItems table
+  // OrderItems table no error
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS OrderItems(
       OrderItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -71,11 +82,3 @@ function CreateNeededTables($conn)
   mysqli_stmt_close($stmt);
 }
 
-function ExecuteSQL($stmt, $sql)
-{
-  // TODO: log to a file
-  if (!mysqli_stmt_prepare($stmt, $sql))
-    echo("ERROR");
-
-  mysqli_stmt_execute($stmt);
-}

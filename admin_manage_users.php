@@ -5,9 +5,18 @@
 <?php 
 include "header.php"; 
 include "includes/admin/controller_admin.php";
-$username = $_SESSION["username"];
-$email = $_SESSION["email"]; 
+$username = $_SESSION["Username"];
+$email = $_SESSION["Email"]; 
 ?>
+
+<style>
+body {
+  background-image: url('admin_background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
 
 <!-- Nav bar-->
 <nav>
@@ -36,7 +45,7 @@ $email = $_SESSION["email"];
   <!-- admin profile end -->
   <div class="container">
     <div class="divider"></div>
-    <li>
+    <li style="color: purple; font-weight: bold">
       <i class="material-icons blue-text">supervisor_account</i>Account Management
     </li>
   </div>
@@ -50,7 +59,7 @@ $email = $_SESSION["email"];
   <div class="divider"></div>
 
   <div class="container">
-    <li>
+    <li style="color: purple; font-weight: bold">
       <i class="material-icons blue-text">view_carousel</i>Product/Orders
     </li>
   </div>
@@ -60,7 +69,7 @@ $email = $_SESSION["email"];
       <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
   </li>
   <li>
-      <a href=""><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
+      <a href="admin_view_orders.php"><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
   </li>
 </ul>
 
@@ -68,25 +77,23 @@ $email = $_SESSION["email"];
 
 <!-- manage users start -->
 <div class="container">
-  <h3 class="grey-text"> Manage Users </h3>
+  <h3 class="white-text"> Manage Users </h3>
 
   <div class="row">
-    <div class="col s12 m10">
+    <div class="col s12 m10; z-depth-5">
       <div class="card blue">
         <div class="card-content white-text">
-          <span class="card-title" >Users List</span>
-          <table class="centered" class="responsive-table">
+          <span class="card-title" style="color: purple; font-weight: bold; text-align: center">Users List</span>
+          <table class="centered; responsive-table">
             <thead class="text-primary">
               <tr><th>ID</th><th>Username</th><th>Email</th><th>Password</th><th>Privilege Level</th></tr>
             </thead>
             <tbody>
             <?php
-              $result = mysqli_query($conn,"select id,username,email,password,privilegeLevel from account order by username")or die ("Select statement FAILED!");
+              $result = mysqli_query($conn,"select memberid, username, email, password, PrivilegeLevel from members order by username")or die ("Select statement FAILED!");
 
-              while(list($id,$username,$email,$password,$priviledge_level)=mysqli_fetch_array($result))
-              {
-              echo "<tr><td>$id</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
-              }
+              while(list($id, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
+                echo "<tr><td>$id</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
             ?>
             </tbody>
           </table>
@@ -102,7 +109,7 @@ $email = $_SESSION["email"];
       <div class="input-field col s8">
         <i class="material-icons prefix">account_circle</i>
         <input name="username" type="text" class="validate" minlength="5" maxlength="12">
-        <span class="helper-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
+        <span class="helper-text" style = "color:azure" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
         <label for="username"> Username</label>
       </div>
     </div>
@@ -110,7 +117,7 @@ $email = $_SESSION["email"];
       <div class="input-field col s8">
         <i class="material-icons prefix"> password</i>
         <input name="pwd" type="password" class="validate" minlength="6" maxlength="20">
-        <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
+        <span class="helper-text" style = "color:azure" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
         <label for="pwd"> Password</label>
       </div>
     </div>
@@ -158,7 +165,7 @@ $email = $_SESSION["email"];
         </div>
       </div>
     </div>
-    <input class="btn orange btn-block" type="submit" name="submituser" value="Create User">
+    <input class="btn orange btn-block; z-depth-5" type="submit" name="submituser" value="Create User">
     </form>
   </div>
 
@@ -168,9 +175,9 @@ $email = $_SESSION["email"];
     <div class="row">
       <div class="input-field col s8">
         <i class="material-icons prefix">account_circle</i>
-        <input name="userid" type="text" class="validate" minlength="1" maxlength="2">
+        <input name="userid" type="text" class="validate" minlength="1" maxlength="3">
         <label for="username">ID</label>
-        <span class="helper-text" data-error="Max 2 Characters" data-success="correct">Max 2 Characters</span>
+        <span class="helper-text" style = "color:azure" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
         <div class="errormsg">
         <?php
           if (isset($_GET["error"]))
@@ -184,7 +191,7 @@ $email = $_SESSION["email"];
         </div>
       </div>
     </div>
-    <input class="btn red btn-block" type="submit" name="deleteuser" value="Delete User">
+    <input class="btn red btn-block; z-depth-5" type="submit" name="deleteuser" value="Delete User">
     </form>
   </div>
 </div>

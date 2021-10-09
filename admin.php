@@ -4,9 +4,19 @@
 </head>
 <?php 
 include "header.php"; 
-$username = $_SESSION["username"];
-$email = $_SESSION["email"]; 
+$username = $_SESSION["Username"];
+$email = $_SESSION["Email"]; 
 ?>
+
+<style>
+body {
+  background-image: url('admin_background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
 <!-- Nav bar-->
 <nav>
   <div class="nav wrapper">
@@ -32,9 +42,11 @@ $email = $_SESSION["email"];
     </div>
   </li>
   <!-- admin profile end -->
+
   <div class="container">
     <div class="divider"></div>
     <li>
+    <li style="color: purple; font-weight: bold">
       <i class="material-icons blue-text">supervisor_account</i>Account Management
     </li>
   </div>
@@ -49,6 +61,7 @@ $email = $_SESSION["email"];
 
   <div class="container">
     <li>
+    <li style="color: purple; font-weight: bold">
       <i class="material-icons blue-text">view_carousel</i>Product/Orders
     </li>
   </div>
@@ -58,20 +71,24 @@ $email = $_SESSION["email"];
       <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
   </li>
   <li>
-      <a href=""><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
+      <a href="admin_view_orders.php"><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
   </li>
 </ul>
 
 <!--SideNav Finished-->
 
 <div class="container">
-<h3 class="black-text"> Home - Shortcuts</h3>
+<div class="container center">
+<h3 class="white-text"> Home - Shortcuts</h3>
   
 <div class="row">
-    <div class="col s12 m4">
+<div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px">
+    <div class="col s12 m12; z-depth-5">
     <div class="card blue-grey">
         <div class="card-content white-text">
           <span class="card-title">Manage Products</span>
+        <i class="material-icons blue-text" style="margin-right: 10px;">border_color</i>
+        <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
           <a href="#">Go To Manage Products Page</a>
@@ -81,13 +98,16 @@ $email = $_SESSION["email"];
   </div>
 
   <div class="row">
-    <div class="col s12 m4">
+  <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px";>
+    <div class="col s12 m12; z-depth-5">
     <div class="card blue-grey">
         <div class="card-content white-text">
-          <span class="card-title">Manage Customer Cart/Orders </span>
+          <span class="card-title">View Customer Cart/Orders </span>
+          <i class="material-icons blue-text">supervisor_account</i>
+          <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
-          <a href="#">Go To Customer Cart/Orders Page</a>
+          <a href="admin_view_orders.php">Go To View Customer Cart/Orders Page</a>
         </div>
       </div>
     </div>
@@ -100,3 +120,4 @@ $email = $_SESSION["email"];
     $(".sidenav").sidenav();
   });
 </script>
+    </div>

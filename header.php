@@ -3,14 +3,14 @@ session_start();
 require "includes/utils/dbhandler.php";
 require "includes/utils/common_util.php";
 
-if(isset($_SESSION["id"]))
+if(isset($_SESSION["MemberID"]))
 {
-$id = $_SESSION["id"];
-$sql = "SELECT * FROM account WHERE id='$id'";
+$id = $_SESSION["MemberID"];
+$sql = "SELECT * FROM Members WHERE MemberID='$id'";
 write_log('pass3-'.$id);
 $query = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($query);
-$email = $row["email"];
+$email = $row["Email"];
 }
 ?>
 
@@ -32,12 +32,12 @@ $email = $row["email"];
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-top: 15px";>
         <?php
-          if(isset($_SESSION["id"]))
+          if(isset($_SESSION["MemberID"]))
           {
             if (isAdmin())
               echo "<li><a id='admin' href='admin.php'>Admin Panel</a></li>";
             echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
-            echo "<li><a id='manage_profile' href='manage_profile.php?email=$email'>Manage Profile</a></li>";
+            echo "<li><a id='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
           {
@@ -48,3 +48,6 @@ $email = $row["email"];
       </ul>
     </div>
   </nav>
+    
+  <script src="./static/js/header.js"></script>
+  <div class="content">
