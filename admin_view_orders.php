@@ -80,9 +80,9 @@ body {
   <h3 class="white-text"> View Customers Cart/Orders </h3>
   <div class="row">
     <div class="col s12 m10; z-depth-5">
-      <div class="card blue">
+      <div class="card #212121 grey darken-4">
         <div class="card-content white-text">
-          <span class="card-title" style="text-align: center; color: purple; font-weight: bold">Customers List</span>
+          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
           <table class="centered; responsive-table">
             <thead class="text-primary">
               <tr><th>Username</th><th>Email</th><th>OrderID</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
