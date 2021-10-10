@@ -21,7 +21,7 @@ function CreateNeededTables($conn)
       Password VARCHAR(512) NOT NULL,
       Email VARCHAR(64) NOT NULL,
       PriviledgeLevel INT NOT NULL,
-      OTP INT(255) NOT NULL
+      OTP INT NOT NULL
     )"
   );
 
