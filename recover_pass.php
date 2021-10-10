@@ -26,7 +26,7 @@
       <?php
         if (isset($_GET["reset"]))
         {
-          if($_GET["reset"] == "success")
+          if ($_GET["reset"] == "success")
             echo "<p>*Check your e-mail spam folder!<p></br>";
           else if ($_GET["reset"] == "emptyinput")
             echo "<p>*Fill in all fields!</p>";

@@ -1,1 +1,2 @@
-includes/logs/
+/logs/
+*.log

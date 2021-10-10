@@ -1,6 +1,17 @@
-<?php
-  session_start();
-  require "includes/utils/dbhandler.php";
+<?php 
+session_start(); 
+require "includes/utils/dbhandler.php";
+require "includes/utils/common_util.php";
+
+if (isset($_SESSION["MemberID"]))
+{
+$id = $_SESSION["MemberID"];
+$sql = "SELECT * FROM Members WHERE MemberID='$id'";
+write_log('pass3-'.$id);
+$query = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($query);
+$email = $row["Email"];
+}
 ?>
 
 <head>
@@ -10,21 +21,22 @@
 
   <link rel="stylesheet" href="./static/css/base.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="./static/materialize/js/materialize.js"></script>
 </head>
 
 <body>
-  <nav>
+  <nav style="height: 100px";>
     <div class="nav-wrapper blue-grey darken-4">
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
-          if(isset($_SESSION["MemberID"]))
+          if (isset($_SESSION["MemberID"]))
           {
-            echo "<li><a id='cart' href='cart.php'>Cart<span class='new badge' id='cart_badge'>0</span></a></li>";
-            echo "<li><a id='manage_profile' href='manage_profile.php'>Manage Profile</a></li>";
+            if (isAdmin())
+              echo "<li><a id='admin' href='admin.php'>Admin Panel</a></li>";
+            echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
+            echo "<li><a id='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
           {
@@ -35,6 +47,6 @@
       </ul>
     </div>
   </nav>
-  
+    
   <script src="./static/js/header.js"></script>
   <div class="content">

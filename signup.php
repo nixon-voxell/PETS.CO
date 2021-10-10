@@ -44,7 +44,7 @@
     <?php
       if (isset($_GET["error"]))
       {
-        if($_GET["error"] == "emptyinput")
+        if ($_GET["error"] == "emptyinput")
           echo "<p>*Fill in all fields!<p>";
 
         else if ($_GET["error"] == "invaliduid")
@@ -56,18 +56,8 @@
         else if ($_GET["error"] == "passwordsdontmatch")
           echo "<p>*Passwords doesn't match!</p>";
 
-        else if ($_GET["error"] == "stmtfailed")
-          echo "<p>*Something went wrong, please try again!</p>";
-
         else if ($_GET["error"] == "usrnametaken")
-          echo "<p>*Username already taken!</p>";
-
-        else if ($_GET["error"] == "none")
-        {
-          echo "<p>You have signed up! Redirecting to login page...</p>";
-          header( "refresh:1.5;url=login.php" );
-          exit();
-        }
+          echo "<p>*Username/Email already taken!</p>";
       }
     ?>
   </div>
