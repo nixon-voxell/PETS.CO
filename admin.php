@@ -35,7 +35,7 @@ body {
   <li>
     <div class="user-view">
       <div class="background">
-        <img src="adminimage.jpg" style="width: 300px; height: 220px;">
+        <img src="admin_image.jpg" style="width: 300px; height: 220px;">
       </div>
       <span class="black-text name"><?php echo "Welcome back, $username" ?></span>
       <span class="black-text email"><?php echo "$email" ?></span>

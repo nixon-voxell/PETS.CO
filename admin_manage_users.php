@@ -59,7 +59,7 @@ body {
   <div class="divider"></div>
 
   <div class="container">
-    <li style="color: purple; font-weight: bold">
+  <li style="color: purple; font-weight: bold">
       <i class="material-icons blue-text">view_carousel</i>Product/Orders
     </li>
   </div>
@@ -77,23 +77,25 @@ body {
 
 <!-- manage users start -->
 <div class="container">
-  <h3 class="white-text"> Manage Users </h3>
+<h3 class="white-text"> Manage Users </h3>
 
   <div class="row">
-    <div class="col s12 m10; z-depth-5">
+  <div class="col s12 m10; z-depth-5">
       <div class="card #212121 grey darken-4">
         <div class="card-content white-text">
-          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Users List</span>
+        <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Users List</span>
           <table class="centered; responsive-table">
             <thead class="text-primary">
               <tr><th>ID</th><th>Username</th><th>Email</th><th>Password</th><th>Privilege Level</th></tr>
             </thead>
             <tbody>
             <?php
-              $result = mysqli_query($conn,"select memberid, username, email, password, PrivilegeLevel from members order by username")or die ("Select statement FAILED!");
+              $result = mysqli_query($conn,"select MemberID, Username, Email, Password, PriviledgeLevel from members order by Username")or die ("Select statement FAILED!");
 
-              while(list($id, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
-                echo "<tr><td>$id</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
+              while(list($id,$username,$email,$password,$privilege_level)=mysqli_fetch_array($result))
+              {
+              echo "<tr><td>$id</td><td>$username</td><td>$email</td><td>$password</td><td>$privilege_level</td></tr>";
+              }
             ?>
             </tbody>
           </table>
@@ -114,7 +116,7 @@ body {
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s8" style = "color:azure">
+    <div class="input-field col s8" style = "color:azure">
         <i class="material-icons prefix"> password</i>
         <input name="pwd" type="password" class="validate" minlength="6" maxlength="20">
         <span class="helper-text" style = "color:azure" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>

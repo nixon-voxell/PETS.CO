@@ -1,18 +1,17 @@
 <?php 
-require "./includes/utils/dbhandler.php";
+require "includes/utils/dbhandler.php";
 require_once "includes/utils/common_util.php";
 
 if (!function_exists("EmptyInputCreateUser")) 
 {
-  function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel)
-  { return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)) or (empty($privilegeLevel)); }
+function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel)
+{ return empty($username) || (empty($pwd)) || (empty($repeatPwd)) || (empty($email)) || (empty($privilegeLevel)); }
 }
-
 if (!function_exists("AddUser")) 
 {
   function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
   {
-    $sql = "INSERT INTO members (username, password, email, privilegeLevel) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO members (Username, Password, Email, PriviledgeLevel) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {
@@ -32,7 +31,7 @@ if (!function_exists("DeleteUser"))
 {
   function DeleteUser($conn, $userid)
   {
-    $sql = "DELETE FROM members WHERE id='$userid';";
+    $sql = "DELETE FROM members WHERE MemberID='$userid';";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql))
     {
@@ -44,7 +43,6 @@ if (!function_exists("DeleteUser"))
     mysqli_stmt_close($stmt);
   }
 }
-
 if (!function_exists("EmptyInputSelectUser")) 
 {
 function EmptyInputSelectUser($userid)
@@ -63,7 +61,6 @@ if (!function_exists("ShowCustomerList"))
       echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
   }
 }
-
 if (isset($_POST["submituser"]))
 {
   $username = $_POST["username"];
@@ -92,9 +89,16 @@ if (isset($_POST["deleteuser"]))
 {
   $userid = $_POST["userid"];
 
-  if (EmptyInputSelectUser($userid) !== false)
+  function EmptyInputDeleteUser($userid)
+  { return empty($userid); }
+
+  if (EmptyInputDeleteUser($userid) !== false)
+  { 
     header ("location: admin_manage_users.php?error=emptyid");
+    exit();
+  }
 
   DeleteUser($conn, $userid);
   header ("location: admin_manage_users.php?error=deleted");
 }
+?>

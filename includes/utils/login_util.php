@@ -28,7 +28,7 @@ function LoginUser($conn, $loginName, $pwd)
     $_SESSION["MemberID"] = $UIDExists["MemberID"];
     $_SESSION["Username"] = $UIDExists["Username"];
     $_SESSION["Email"] = $UIDExists["Email"];
-    $_SESSION["PrivilegeLevel"] = $UIDExists["PrivilegeLevel"];
+    $_SESSION["PriviledgeLevel"] = $UIDExists["PriviledgeLevel"];
     header("location: ../index.php");
     exit();
   }
