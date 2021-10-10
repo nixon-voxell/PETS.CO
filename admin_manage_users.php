@@ -23,7 +23,7 @@ body {
   <div class="nav wrapper">
     <div class="container">
       <a href="admin.php" class="brand-logo center">Admin Panel</a>
-      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" data-activates="slide-out"><i class="material-icons">menu</i></a>
+      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
     </div>
   </div>
 </nav>
@@ -109,7 +109,7 @@ body {
       <div class="input-field col s8" style = "color:azure">
         <i class="material-icons prefix">account_circle</i>
         <input name="username" type="text" class="validate" minlength="5" maxlength="12">
-        <span class="helper-text" style = "color:azure" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
+        <span class="helper-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
         <label for="username"> Username</label>
       </div>
     </div>
@@ -117,7 +117,7 @@ body {
       <div class="input-field col s8" style = "color:azure">
         <i class="material-icons prefix"> password</i>
         <input name="pwd" type="password" class="validate" minlength="6" maxlength="20">
-        <span class="helper-text" style = "color:azure" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
+        <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
         <label for="pwd"> Password</label>
       </div>
     </div>
@@ -176,8 +176,8 @@ body {
       <div class="input-field col s8" style = "color:azure">
         <i class="material-icons prefix">account_circle</i>
         <input name="userid" type="text" class="validate" minlength="1" maxlength="3">
-        <label for="username">ID</label>
-        <span class="helper-text" style = "color:azure" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
+        <label for="userid">ID</label>
+        <span class="helper-text" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
         <div class="errormsg">
         <?php
           if (isset($_GET["error"]))

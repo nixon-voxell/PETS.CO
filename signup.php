@@ -58,6 +58,13 @@
 
         else if ($_GET["error"] == "usrnametaken")
           echo "<p>*Username/Email already taken!</p>";
+
+        else if ($_GET["error"] == "none")
+        {
+          echo "<p>You have signed up! Redirecting to login page...</p>";
+          header( "refresh:1.5;url=login.php" );
+          exit();
+        }
       }
     ?>
   </div>

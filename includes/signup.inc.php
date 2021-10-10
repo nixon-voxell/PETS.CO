@@ -1,4 +1,23 @@
 <?php
+require_once "utils/common_util.php";
+require_once "utils/dbhandler.php";
+
+function CreateUser($conn, $username, $pwd, $email)
+{
+  $sql = "INSERT INTO Members (Username, Password, Email) VALUES (?, ?, ?);";
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $sql))
+  {
+    echo "<p>*Something went wrong, please try again!</p>";
+    exit();
+  }
+
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+  mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+}
 
 if (isset($_POST["submit"]))
 {
@@ -7,23 +26,30 @@ if (isset($_POST["submit"]))
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
 
-  require_once "./utils/common_util.php";
-
-  if (EmptyInputSignup($username, $pwd, $repeatPwd, $email) !== false)
+  if (UIDExists($conn, $username, $email) !== false)
+  {
+    header("location: ../signup.php?error=usrnametaken");
+    exit();
+  }
+  else if (PwdMatch($pwd, $repeatPwd) !== false)
+  {
+    header("location: ../signup.php?error=passwordsdontmatch");
+    exit();
+  }
+  else if (InvalidUid($username) !== false)
+  {
+    header("location: ../signup.php?error=invaliduid");
+    exit();
+  }
+  else if(EmptyInput($username, $pwd, $repeatPwd, $email) !== false)
   {
     header("location: ../signup.php?error=emptyinput");
     exit();
   }
-  else if (InvalidUid($username) !== false)
-    header("location: ../signup.php?error=invaliduid");
-  else if (PwdNotMatch($pwd, $repeatPwd) !== false)
-    header("location: ../signup.php?error=passwordsdontmatch");
-  else if (UIDExists($conn, $username, $email) !== false)
-    header("location: ../signup.php?error=usrnametaken");
 
   CreateUser($conn, $username, $pwd, $email);
-  echo "<p>You have signed up! Redirecting to login page...</p>";
-  header( "refresh:1.5;url=login.php" );
+  header("location: ../signup.php?error=none");
+  exit();
 }
 
 else

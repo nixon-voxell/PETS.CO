@@ -23,7 +23,7 @@ body {
   <div class="nav wrapper">
     <div class="container">
       <a href="admin.php" class="brand-logo center">Admin Panel</a>
-      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" data-activates="slide-out"><i class="material-icons">menu</i></a>
+      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
     </div>
   </div>
 </nav>
