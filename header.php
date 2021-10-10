@@ -5,12 +5,12 @@ require "includes/utils/common_util.php";
 
 if (isset($_SESSION["MemberID"]))
 {
-$id = $_SESSION["MemberID"];
-$sql = "SELECT * FROM Members WHERE MemberID='$id'";
-write_log('pass3-'.$id);
-$query = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($query);
-$email = $row["Email"];
+  $id = $_SESSION["MemberID"];
+  $sql = "SELECT * FROM Members WHERE MemberID='$id'";
+  write_log('pass3-'.$id);
+  $query = mysqli_query($conn, $sql);
+  $row = mysqli_fetch_array($query);
+  $email = $row["Email"];
 }
 ?>
 
@@ -35,7 +35,7 @@ $email = $row["Email"];
           {
             if (isAdmin())
               echo "<li><a id='admin' href='admin.php'>Admin Panel</a></li>";
-            echo "<li><a id='cart' href='cart.php'>Cart</a></li>";
+            echo "<li><a id='cart' href='cart.php'>Cart<span class='new badge' id='cart_badge'>0</span></a></li>";
             echo "<li><a id='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
