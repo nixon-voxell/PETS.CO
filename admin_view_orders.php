@@ -85,7 +85,7 @@ body {
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
           <table class="centered; responsive-table">
             <thead class="text-primary">
-              <tr><th>Username</th><th>Email</th><th>OrderID</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
+              <tr><th>Username</th><th>Email</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
             </thead>
             <tbody>
             <?php ShowCustomerList($conn); ?>
@@ -120,77 +120,12 @@ body {
             
             while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
             if ($usrid == $uid && $cartFlag == "1")
-            {?>
-            <div class="row">
-              <div class="col s8">
-              <ul class="collapsible popout" id="cart">
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">pets</i>First</div>
-                  <div class="collapsible-body row" style="margin: 0px;">
-                    <span class="col s6">Date Added: </span>
-                    <span class="col s6">Category: Pet</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">toys</i>Second</div>
-                  <div class="collapsible-body row" style="margin: 0px;">
-                    <span class="col s6">Date Added: </span>
-                    <span class="col s6">Category: Accessory</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">restaurant</i>Third</div>
-                  <div class="collapsible-body row" style="margin: 0px;">
-                    <span class="col s6">Date Added: </span>
-                    <span class="col s6">Category: Food</span>
-                  </div>
-                </li>
-              </ul>
-              </div>
-              <div class="col s4">
-                <div class="card brown darken-3">
-                  <div class="card-content white-text">
-                    <span class="card-title" style="font-weight: bold;">Cart Details</span>
-                    <p>Total Items: </p>
-                    <p>Delivery Charges: </p>
-                    <p>Sum Total: </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <?php } else if ($usrid == $uid && $cartFlag == "0")
-          {?>
-          <h5 class="text-blue-grey">#1</h5>
-          <div class="row">
-            <div class="col s8">
-              <ul class="collapsible popout" id="orders">
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-                  <div class="collapsible-body"><span>Date Added: </span></div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-                  <div class="collapsible-body"><span>Date Added: </span></div>
-                </li>
-                <li>
-                  <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-                  <div class="collapsible-body"><span>Date Added: </span></div>
-                </li>
-              </ul>
-            </div>
+            {
+              include "cart_items.php" ?>
 
-            <div class="col s4">
-              <div class="card grey darken-3">
-                <div class="card-content white-text">
-                  <span class="card-title" style="font-weight: bold;">Order Details</span>
-                  <p>Total Items: </p>
-                  <p>Delivery Charges: </p>
-                  <p>Sum Total: </p>
-                  <p>Date: </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php } else if ($usrid == $uid && $cartFlag == "0")
+          { include "cart_orders.php" ?>
+          
           <?php } else echo "ERROR!"; }?>
           </tbody>
           </table>

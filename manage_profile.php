@@ -75,7 +75,7 @@
 
         else if ($_GET["error"] == "none")
         {
-          echo "<p>You have signed up! Redirecting to login page...</p>";
+          echo "<p>Successfully changed your profile.</p>";
           exit();
         }
       }

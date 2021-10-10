@@ -24,9 +24,9 @@ if (isset($_POST["update"]))
   header("location: ../manage_profile.php?error=none");
   exit();
 }
-  else
-  {
-    header("location: ../manage_profile.php");
-    exit();
-  }
+else
+{
+  header("location: ../manage_profile.php");
+  exit();
+}
 ?>

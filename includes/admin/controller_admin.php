@@ -1,5 +1,5 @@
 <?php 
-require_once "includes/utils/dbhandler.php";
+require "includes/utils/dbhandler.php";
 require_once "includes/utils/common_util.php";
 
 function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel)
@@ -7,7 +7,8 @@ function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLev
 
 function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
 {
-  $sql = "INSERT INTO members (username, password, email, privilegeLevel) VALUES (?, ?, ?, ?);";
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+  $sql = "INSERT INTO members (username, password, email, privilegeLevel) VALUES ($username, $hashedPwd, $email, $privilegeLevel);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
@@ -15,9 +16,6 @@ function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
     exit();
   }
 
-  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-  mysqli_stmt_bind_param($stmt, "ssss", $username, $hashedPwd, $email, $privilegeLevel);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
 }
@@ -46,30 +44,40 @@ function ShowCustomerList($conn)
   or die ("Select statement FAILED!");
 
   while (list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
-    echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
+    echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
 }
 
 if (isset($_POST["submituser"]))
 {
-  $username = $_POST["username"];
-  $pwd = $_POST["pwd"];
-  $repeatPwd = $_POST["repeatPwd"];
-  $email = $_POST["email"];
+  $usrname = $_POST["username"];
+  $pass = $_POST["pwd"];
+  $repeatPass = $_POST["repeatPwd"];
+  $emailadd = $_POST["email"];
   $privilegeLevel = $_POST["level"];
 
-  if (EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel) !== false)
+  if (PwdMatch($pass, $repeatPass) !== false)
+  {
+    header("location: admin_manage_users.php?error=passwordsdontmatch");
+    exit();
+  }
+  else if (InvalidUid($usrname) !== false)
+  {
+    header("location: admin_manage_users.php?error=invaliduid");
+    exit();
+  }
+  else if (UIDExists($conn, $usrname, $emailadd ) !== false)
+  {
+    header("location: admin_manage_users.php?error=usrnametaken");
+    exit();
+  }
+  else if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
   {
     header("location: admin_manage_users.php?error=emptyinput");
   }
-  else if (InvalidUid($username) !== false)
-    header("location: admin_manage_users.php?error=invaliduid");
-  else if (PwdMatch($pwd, $repeatPwd) !== false)
-    header("location: admin_manage_users.php?error=passwordsdontmatch");
-  else if (UIDExists($conn, $username, $email) !== false)
-    header("location: admin_manage_users.php?error=usrnametaken");
 
-  AddUser($conn, $username, $pwd, $email, $privilegeLevel);
+  AddUser($conn, $usrname, $pass, $emailadd, $privilegeLevel);
   header ("location: admin_manage_users.php?error=none");
+  exit();
 }
 
 if (isset($_POST["deleteuser"]))

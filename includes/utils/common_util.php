@@ -1,8 +1,23 @@
 <?php
-require_once "dbhandler.php";
-// include_once "login_util.php";
 
-function UIDExists($conn, $loginName)
+function CreateUser($conn, $username, $pwd, $email)
+{
+  $sql = "INSERT INTO Members (Username, Password, Email) VALUES (?, ?, ?);";
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $sql))
+  {
+    echo "<p>*Something went wrong, please try again!</p>";
+    exit();
+  }
+
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+  mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_close($stmt);
+}
+
+function UIDExists($conn, $loginName, $email)
 {
   $sql = "SELECT * FROM Members where Username = ? OR Email = ?;";
   $stmt = mysqli_stmt_init($conn);
@@ -12,7 +27,7 @@ function UIDExists($conn, $loginName)
     exit();
   }
   
-  mysqli_stmt_bind_param($stmt, "ss", $loginName, $loginName);
+  mysqli_stmt_bind_param($stmt, "ss", $loginName, $email);
   mysqli_stmt_execute($stmt);
   
   $result = mysqli_stmt_get_result($stmt);
