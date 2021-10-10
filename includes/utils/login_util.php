@@ -18,7 +18,7 @@ function LoginUser($conn, $loginName, $pwd)
   $pwdHashed = $UIDExists["Password"];
   $checkPwd = password_verify($pwd, $pwdHashed);
 
-  if($checkPwd === false)
+  if ($checkPwd === false)
   {
     header("location: ../login.php?error=wronglogin");
     exit();

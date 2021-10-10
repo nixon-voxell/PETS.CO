@@ -59,7 +59,7 @@ if (!function_exists("ShowCustomerList"))
     $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by username")
     or die ("Select statement FAILED!");
 
-    while(list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
+    while (list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
       echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
   }
 }

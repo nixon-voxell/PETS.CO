@@ -92,7 +92,7 @@ body {
             <?php
               $result = mysqli_query($conn,"select memberid, username, email, password, PrivilegeLevel from members order by username")or die ("Select statement FAILED!");
 
-              while(list($id, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
+              while (list($id, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
                 echo "<tr><td>$id</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
             ?>
             </tbody>

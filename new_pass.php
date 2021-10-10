@@ -13,7 +13,7 @@ require_once "includes/recover_pass.inc.php";
 
 $email = $_SESSION['email'];
 
-if($email !== false)
+if ($email !== false)
 {
   ?>
   <div class="container">
@@ -21,7 +21,7 @@ if($email !== false)
       <h3 class="grey-text">Create New Password</h3>
       <!-- error message -->
       <?php 
-      if(isset($_SESSION["Info"]))
+      if (isset($_SESSION["Info"]))
       {
         ?>
         <div class="card-panel light-blue lighten-4">
@@ -31,7 +31,7 @@ if($email !== false)
       }
       ?>
       <?php
-      if(count($errors) > 0)
+      if (count($errors) > 0)
       {
         ?>
         <div class="card-panel red lighten-2">
@@ -70,7 +70,7 @@ if($email !== false)
       <?php
         if (isset($_GET["error"]))
         {
-          if($_GET["error"] == "emptyinput")
+          if ($_GET["error"] == "emptyinput")
             echo "<p>*Fill in all fields!<p>";
         }
       ?>

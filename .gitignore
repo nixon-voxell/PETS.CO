@@ -1,2 +1,2 @@
-includes/logs/
-includes/admin/logs/
+/logs/
+*.log

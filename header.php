@@ -31,7 +31,7 @@ $email = $row["Email"];
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
-          if(isset($_SESSION["MemberID"]))
+          if (isset($_SESSION["MemberID"]))
           {
             if (isAdmin())
               echo "<li><a id='admin' href='admin.php'>Admin Panel</a></li>";
