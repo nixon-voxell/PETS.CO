@@ -1,14 +1,11 @@
 <?php 
-require "includes/utils/dbhandler.php";
-require_once "includes/utils/common_util.php";
 
 function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel)
 { return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)) or (empty($privilegeLevel)); }
 
 function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
 {
-  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-  $sql = "INSERT INTO members (username, password, email, privilegeLevel) VALUES ($username, $hashedPwd, $email, $privilegeLevel);";
+  $sql = "INSERT INTO Members (Username, Password, Email, PrivilegeLevel) VALUES (?, ?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
@@ -16,13 +13,16 @@ function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
     exit();
   }
 
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+  mysqli_stmt_bind_param($stmt, "ssss", $username, $hashedPwd, $email, $privilegeLevel);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
 }
 
 function DeleteUser($conn, $userid)
 {
-  $sql = "DELETE FROM members WHERE id='$userid';";
+  $sql = "DELETE FROM Members WHERE MemberID='$userid';";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
@@ -55,22 +55,25 @@ if (isset($_POST["submituser"]))
   $emailadd = $_POST["email"];
   $privilegeLevel = $_POST["level"];
 
+  require_once "includes/utils/dbhandler.php";
+  require_once "includes/utils/common_util.php";
+
   if (PwdMatch($pass, $repeatPass) !== false)
   {
     header("location: admin_manage_users.php?error=passwordsdontmatch");
     exit();
   }
-  else if (InvalidUid($usrname) !== false)
+  if (InvalidUid($usrname) !== false)
   {
     header("location: admin_manage_users.php?error=invaliduid");
     exit();
   }
-  else if (UIDExists($conn, $usrname, $emailadd ) !== false)
+  if (UIDExists($conn, $usrname, $emailadd ) !== false)
   {
     header("location: admin_manage_users.php?error=usrnametaken");
     exit();
   }
-  else if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
+  if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
   {
     header("location: admin_manage_users.php?error=emptyinput");
   }
@@ -84,9 +87,15 @@ if (isset($_POST["deleteuser"]))
 {
   $userid = $_POST["userid"];
 
+  require_once "includes/utils/dbhandler.php";
+
   if (EmptyInputSelectUser($userid) !== false)
+  {
     header ("location: admin_manage_users.php?error=emptyid");
-    
+    exit();
+  }
+
   DeleteUser($conn, $userid);
   header ("location: admin_manage_users.php?error=deleted");
+  exit();
 }

@@ -17,7 +17,7 @@ function CreateUser($conn, $username, $pwd, $email)
   mysqli_stmt_close($stmt);
 }
 
-function UIDExists($conn, $loginName, $email)
+function UIDExists($conn, $loginName)
 {
   $sql = "SELECT * FROM Members where Username = ? OR Email = ?;";
   $stmt = mysqli_stmt_init($conn);
@@ -27,7 +27,7 @@ function UIDExists($conn, $loginName, $email)
     exit();
   }
   
-  mysqli_stmt_bind_param($stmt, "ss", $loginName, $email);
+  mysqli_stmt_bind_param($stmt, "ss", $loginName, $loginName);
   mysqli_stmt_execute($stmt);
   
   $result = mysqli_stmt_get_result($stmt);

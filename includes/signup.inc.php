@@ -7,8 +7,8 @@ if (isset($_POST["submit"]))
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
 
-  require_once "utils/dbhandler.php";
-  require_once "utils/common_util.php";
+  require_once "./utils/dbhandler.php";
+  require_once "./utils/common_util.php";
 
   if (EmptyInput($username, $pwd, $repeatPwd, $email) !== false)
   {

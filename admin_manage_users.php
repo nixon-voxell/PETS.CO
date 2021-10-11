@@ -184,7 +184,7 @@ body {
           {
             if ($_GET["error"] == "emptyid")
               echo "<p>Please Enter An ID!<p>";
-            elseif ($_GET["error"] == "deleted")
+            else if ($_GET["error"] == "deleted")
               echo "<p>Deleted User.</p>";
           }
         ?>
