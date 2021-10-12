@@ -32,7 +32,7 @@ body {
   <h3 class="grey-text">Customers Cart/Orders </h3>
   <div class="row" style="padding-bottom: 10px;">
     <div class="col s12 m10; z-depth-5">
-      <div class="card grey darken-4">
+      <div class="card grey darken-3">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
           <table class="responsive-table">
@@ -52,9 +52,9 @@ body {
   </div>
   <div class="row">
     <div class="col s12 m10; z-depth-5">
-      <div class="card grey darken-4">
-        <div class="card-content black-text">
-          <span class="card-title center-align white-text" style="font-weight: bold">Selected MemberID <?php if ($cartflag = 1) echo "Cart"; else echo "Previous Order";?> Details</span>
+      <div class="card grey darken-3">
+        <div class="card-content">
+          <span class="card-title center-align cyan-text" style="font-weight: bold">Selected MemberID <?php if ($cartflag = 1) echo "Cart"; else echo "Previous Order";?> Details</span>
           <table class="centered responsive-table">
           <tbody>
           <?php 
