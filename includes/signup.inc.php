@@ -22,7 +22,7 @@ if (isset($_POST["submit"]))
     exit();
   }
 
-  if (PwdMatch($pwd, $repeatPwd))
+  if (PwdNotMatch($pwd, $repeatPwd))
   {
     header("location: ../signup.php?error=passwordsdontmatch");
     exit();

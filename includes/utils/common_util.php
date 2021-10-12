@@ -38,6 +38,16 @@ function UIDExists($conn, $loginName)
   mysqli_stmt_close($stmt);
 }
 
+include_once "login_util.php";
+define( "PRIVILEGE_LEVEL_ADMIN", "1" );
+
+function isAdmin() 
+{
+  if ( isset( $_SESSION["MemberID"] ) && $_SESSION["PrivilegeLevel"] == PRIVILEGE_LEVEL_ADMIN ) 
+    return true;
+  else 
+    return false;
+}
 function write_log($log_msg)
 {
   $log_filename = "logs";
