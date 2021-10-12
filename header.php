@@ -9,9 +9,32 @@
 </head>
 
 <?php 
-  session_start();
-  $email = $_SESSION["Email"];
+  include "includes/data/member.data.php";
+  include "includes/data/order.data.php";
+  include "includes/data/order_item.data.php";
+  include "includes/data/item.data.php";
+  include "includes/data/review.data.php";
   include_once "includes/utils/common_util.php";
+  session_start();
+  // $member = NULL;
+  // $memberID = NULL;
+  // $username = NULL;
+  // $email = NULL;
+  // $cart = NULL;
+  // $orders = NULL;
+  $priviledgeLevel = 0;
+  if (isset($_SESSION["Member"]))
+  {
+    /** @var Member $member */
+    $member = $_SESSION["Member"];
+    // write_log($member);
+    $memberID = $member->GetMemberID();
+    $username = $member->GetUsername();
+    $email = $member->GetEmail();
+    $priviledgeLevel = $member->GetPriviledgeLevel();
+    $cart = $member->GetCart();
+    $orders = $member->GetOrders();
+  }
 ?>
 
 <body>
@@ -20,17 +43,17 @@
       <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
-          if (isset($_SESSION["MemberID"]))
+          if (isset($_SESSION["Member"]))
           {
-            if (isAdmin())
-              echo "<li><a id='admin' href='admin.php'>Admin Panel</a></li>";
-            echo "<li><a id='cart' href='cart.php'>Cart<span class='new badge' id='cart_badge'>0</span></a></li>";
-            echo "<li><a id='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
+            if ($priviledgeLevel == 1)
+              echo "<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>";
+            echo "<li><a class='cart' href='cart.php'>Cart<span class='new badge' id='cart_badge'>0</span></a></li>";
+            echo "<li><a class='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
           {
-            echo "<li><a id='login' href='login.php'>Login</a></li>";
-            echo "<li><a id='signup' href='signup.php'>Sign Up</a></li>";
+            echo "<li><a class='login' href='login.php'>Login</a></li>";
+            echo "<li><a class='signup' href='signup.php'>Sign Up</a></li>";
           }
           ?>
       </ul>

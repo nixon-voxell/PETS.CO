@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>PETS.CO - Manage Personal Account</title>
-<?php
-  session_start(); 
-  require "includes/utils/dbhandler.php";
-  require "includes/utils/common_util.php";
-
-  if (isset($_SESSION["MemberID"]))
-  {
-    $id = $_SESSION["MemberID"];
-    $sql = "SELECT * FROM Members WHERE MemberID='$id'";
-    write_log('pass3-'.$id);
-    $query = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_array($query);
-    $email = $row["Email"];
-  }
-
-  $id = $_SESSION["MemberID"];
-  $username = $_SESSION["Username"];
-  $email = $_SESSION['Email']; 
-?>
+<?php include "header.php"; ?>
 
 <div class="container">
   <h3 class="grey-text">Manage Personal Profile</h3>
+  <button id="edit" class="btn orange" onclick="edit_profile(this)">Edit</button>
   <form class="col s12" action="includes/manage_profile.inc.php" method="post">
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix">account_circle</i>
         <?php
-        echo "<input name='id' type='hidden' value='$id'/>";
+        echo "<input name='id' type='hidden' value='$memberID'/>";
         echo"<input name='username' type='text' value='$username'/>";
         ?>
         <label for="username">Enter New Username</label>
@@ -45,7 +28,7 @@
         <span class="helper-text" data-error="wrong" data-success="correct"></span>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="enter_pwd">
       <div class="input-field col s6">
         <i class="material-icons prefix"> password</i>
         <input name="pwd" type="password" class="validate" minlength="6" maxlength="20">
@@ -53,7 +36,7 @@
         <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="enter_repeat_pwd">
       <div class="input-field col s6">
         <i class="material-icons prefix"> password</i>
         <input name="repeatPwd" type="password" class="validate" maxlength="14">
@@ -96,5 +79,6 @@
   </div>
 </div>
 
+<script src="./static/js/manage_profile.js"></script>
 <?php include "footer.php"; ?>
 </html>

@@ -8,9 +8,9 @@ if (isset($_POST["update"]))
   $pwd = $_POST["pwd"];
   $repeatPwd = $_POST["repeatPwd"];
   $email = $_POST["email"];
-  $id = $_POST["id"];
+  $memberID = $_POST["id"];
 
-  if (PwdMatch($pwd, $repeatPwd))
+  if (PwdNotMatch($pwd, $repeatPwd))
   {
     header("location: ../manage_profile.php?error=passwordsdontmatch");
     exit();
@@ -20,7 +20,7 @@ if (isset($_POST["update"]))
     header("location: ../manage_profile.php?error=emptyinput");
     exit();
   }
-  UpdateUser($conn, $username, $pwd, $email, $id);
+  UpdateUser($conn, $username, $pwd, $email, $memberID);
   header("location: ../manage_profile.php?error=none");
   exit();
 }

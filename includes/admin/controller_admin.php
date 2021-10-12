@@ -58,7 +58,7 @@ if (isset($_POST["submituser"]))
   require_once "includes/utils/dbhandler.php";
   require_once "includes/utils/common_util.php";
 
-  if (PwdMatch($pass, $repeatPass) !== false)
+  if (PwdNotMatch($pass, $repeatPass) !== false)
   {
     header("location: admin_manage_users.php?error=passwordsdontmatch");
     exit();

@@ -11,9 +11,9 @@
 include "header.php";
 require_once "includes/recover_pass.inc.php";
 
-$email = $_SESSION['email'];
+$submit_email = $_SESSION["Email"];
 
-if ($email !== false)
+if ($submit_email !== false)
 {
   ?>
   <div class="container">
@@ -24,7 +24,7 @@ if ($email !== false)
       if (isset($_SESSION["Info"])){
         ?>
         <div class="card-panel light-blue lighten-4">
-            <?php echo "Check your OTP code - $email"; ?>
+            <?php echo "Check your OTP code - $submit_email"; ?>
         </div>
         <?php
       }

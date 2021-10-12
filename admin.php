@@ -2,77 +2,88 @@
 <html lang="en">
 <title>PETS.CO - Admin Panel</title>
 </head>
-<?php 
-include "header.php"; 
-$username = $_SESSION["Username"];
-$email = $_SESSION["Email"]; 
-?>
+<?php include "header.php"; ?>
 
 <style>
-body {
+body
+{
   background-image: url('admin_background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
+}
+
+.glow-text
+{
+  text-shadow: 0px 0px 5px cyan;
+  font-weight: bold;
+}
+
+.glow-title
+{
+  background-color: cyan;
+  color: white;
+  font-weight: bold;
+  pointer-events: none;
+  box-shadow: 2px 2px 20px cyan;
 }
 </style>
 
 <!-- Nav bar-->
 <nav>
   <div class="nav wrapper">
-    <div class="container">
-      <a href="admin.php" class="brand-logo center">Admin Panel</a>
-      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
-    </div>
+    <a href="admin.php" class="brand-logo center">Admin Panel</a>
+    <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
   </div>
 </nav>
 <!-- Nav bar end-->
 
 <!-- Side nav start-->
-<ul class="sidenav" id="slide-out">
+<ul class="sidenav grey darken-4" style="height: 100%" id="slide-out">
 
   <!-- admin profile -->
   <li>
     <div class="user-view">
       <div class="background">
-        <img src="adminimage.jpg" style="width: 300px; height: 220px;">
+        <img src="admin_image.jpg" style="height: 180px; opacity: 70%">
       </div>
-      <span class="black-text name"><?php echo "Welcome back, $username" ?></span>
-      <span class="black-text email"><?php echo "$email" ?></span>
+      <span class="white-text glow-text"><?php echo "Welcome back, $username" ?></span>
+      <span class="white-text glow-text"><?php echo "$email" ?></span>
     </div>
   </li>
   <!-- admin profile end -->
 
-  <div class="container">
+  <div>
+    <li>
+      <a class="glow-title">
+        <i class="material-icons blue-text">supervisor_account</i>Account Management
+      </a>
+    </li>
     <div class="divider"></div>
+
     <li>
-    <li style="color: purple; font-weight: bold">
-      <i class="material-icons blue-text">supervisor_account</i>Account Management
+      <a class="white-text" href="admin_manage_users.php">
+        <i class="material-icons blue-text">account_box</i>View/Manage Users
+      </a>
+    </li>
+    <div class="divider"></div>
+
+    <li>
+      <a class="glow-title">
+        <i class="material-icons blue-text">view_carousel</i>Product/Orders
+      </a>
+    </li>
+    <div class="divider"></div>
+
+    <li>
+      <a class="white-text" href="">
+        <i class="material-icons blue-text">border_color</i>View/Manage Products</a>
+    </li>
+    <li>
+      <a class="white-text" href="admin_view_orders.php">
+        <i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
     </li>
   </div>
-
-  <div class="divider"></div>
-  <li>
-    <a href="admin_manage_users.php"><i class="material-icons blue-text">account_box</i>View/Manage Users
-    </a>
-  </li>
-
-  <div class="divider"></div>
-
-  <div class="container">
-    <li>
-    <li style="color: purple; font-weight: bold">
-      <i class="material-icons blue-text">view_carousel</i>Product/Orders
-    </li>
-  </div>
-  <div class="divider"></div>
-
-  <li>
-      <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
-  </li>
-  <li>
-      <a href="admin_view_orders.php"><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
-  </li>
 </ul>
 
 <!--SideNav Finished-->

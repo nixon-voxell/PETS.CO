@@ -1,0 +1,66 @@
+<style>
+.glow-text
+{
+  text-shadow: 0px 0px 5px cyan;
+  font-weight: bold;
+}
+
+.glow-title
+{
+  background-color: cyan;
+  color: white;
+  font-weight: bold;
+  pointer-events: none;
+  box-shadow: 2px 2px 20px cyan;
+}
+</style>
+
+<!-- Side nav start-->
+<ul class="sidenav grey darken-4" style="height: 100%" id="slide-out">
+
+  <!-- admin profile -->
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="admin_image.jpg" style="height: 180px; opacity: 70%">
+      </div>
+      <span class="white-text glow-text"><?php echo "Welcome back, $username" ?></span>
+      <span class="white-text glow-text"><?php echo "$email" ?></span>
+    </div>
+  </li>
+  <!-- admin profile end -->
+
+  <div>
+    <li>
+      <a class="glow-title">
+        <i class="material-icons blue-text">supervisor_account</i>Account Management
+      </a>
+    </li>
+    <div class="divider"></div>
+
+    <li>
+      <a class="white-text" href="admin_manage_users.php">
+        <i class="material-icons blue-text">account_box</i>View/Manage Users
+      </a>
+    </li>
+    <div class="divider"></div>
+
+    <li>
+      <a class="glow-title">
+        <i class="material-icons blue-text">view_carousel</i>Product/Orders
+      </a>
+    </li>
+    <div class="divider"></div>
+
+    <li>
+      <a class="white-text" href="">
+        <i class="material-icons blue-text">border_color</i>View/Manage Products</a>
+    </li>
+    <li>
+      <a class="white-text" href="admin_view_orders.php">
+        <i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
+    </li>
+  </div>
+</ul>
+
+<!--SideNav Finished-->

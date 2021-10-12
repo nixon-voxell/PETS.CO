@@ -2,7 +2,7 @@
 require_once "dbhandler.php";
 require_once "common_util.php";
 
-function UpdateUser($conn, $username, $pwd, $email, $id)
+function UpdateUser($conn, $username, $pwd, $email, $memberID)
 {
   $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
   $sql = "UPDATE Members SET Username = ?, Password=?, Email = ? where MemberID = ?;";
@@ -15,11 +15,14 @@ function UpdateUser($conn, $username, $pwd, $email, $id)
   
   $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
-  mysqli_stmt_bind_param($stmt, "sssi", $username, $hashedPwd, $email, $id);
+  mysqli_stmt_bind_param($stmt, "sssi", $username, $hashedPwd, $email, $memberID);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
   
   session_start();
-  $_SESSION["Username"] = $username;
-  $_SESSION["Email"] = $email;
+  /** @var Member $member */
+  $member = $_SESSION["Member"];
+  $member->SetUsername($username);
+  $member->SetEmail($email);
+  $_SESSION["Member"] = $member;
 }

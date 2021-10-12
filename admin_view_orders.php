@@ -3,10 +3,8 @@
 <title>PETS.CO - View Orders Panel</title>
 </head>
 <?php 
-include "header.php"; 
-include "includes/admin/controller_admin.php";
-$username = $_SESSION["Username"];
-$email = $_SESSION["Email"]; 
+  include "header.php";
+  include "includes/admin/controller_admin.php";
 ?>
 
 <style>
@@ -21,59 +19,13 @@ body {
 <!-- Nav bar-->
 <nav>
   <div class="nav wrapper">
-    <div class="container">
-      <a href="admin.php" class="brand-logo center">Admin Panel</a>
-      <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
-    </div>
+    <a href="admin.php" class="brand-logo center">Admin Panel</a>
+    <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
   </div>
 </nav>
 <!-- Nav bar end-->
 
-<!-- Side nav start-->
-<ul class="sidenav" id="slide-out">
-  
-  <!-- admin profile -->
-  <li>
-    <div class="user-view">
-      <div class="background">
-        <img src="adminimage.jpg" style="width: 300px; height: 220px;">
-      </div>
-      <span class="black-text name"><?php echo "Welcome back, $username" ?></span>
-      <span class="black-text email"><?php echo "$email" ?></span>
-    </div>
-  </li>
-  <!-- admin profile end -->
-  <div class="container">
-    <div class="divider"></div>
-    <li style="color: purple; font-weight: bold">
-      <i class="material-icons blue-text">supervisor_account</i>Account Management
-    </li>
-  </div>
-
-  <div class="divider"></div>
-  <li>
-    <a href="admin_manage_users.php"><i class="material-icons blue-text">account_box</i>View/Manage Users
-    </a>
-  </li>
-
-  <div class="divider"></div>
-
-  <div class="container">
-    <li style="color: purple; font-weight: bold">
-      <i class="material-icons blue-text">view_carousel</i>Product/Orders
-    </li>
-  </div>
-  <div class="divider"></div>
-
-  <li>
-    <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
-  </li>
-  <li>
-    <a href=""><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
-  </li>
-</ul>
-
-<!--SideNav Finished-->
+<?php include "side_nav.html"; ?>
 
 <!-- manage users start -->
 <div class="container">
@@ -88,7 +40,10 @@ body {
               <tr><th>Username</th><th>Email</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
             </thead>
             <tbody>
-            <?php ShowCustomerList($conn); ?>
+            <?php 
+              include_once "includes/utils/dbhandler.php";
+              ShowCustomerList($conn); 
+            ?>
             </tbody>
           </table>
         </div>

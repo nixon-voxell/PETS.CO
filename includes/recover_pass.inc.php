@@ -3,23 +3,23 @@
 require "utils/dbhandler.php";
 require "utils/common_util.php";
 $errors = array();
-$email = "";
+$submit_email = "";
 
 // if user click recover pass button in recover pass form
 if (isset($_POST["submit_email"]))
 {
-  $email = $_POST["submit_email"];
+  $submit_email = $_POST["submit_email"];
 
-  if (empty($email))
+  if (empty($submit_email))
   {
     header("location: recover_pass.php?reset=emptyinput");
     exit();
 
   } else
   {
-    $email = mysqli_real_escape_string($conn, $_POST["email"]);
+    $submit_email = mysqli_real_escape_string($conn, $_POST["email"]);
 
-    $check_email = "SELECT * FROM Members WHERE Email = '$email'";
+    $check_email = "SELECT * FROM Members WHERE Email = '$submit_email'";
 
     $query = mysqli_query($conn, $check_email);
 
@@ -28,7 +28,7 @@ if (isset($_POST["submit_email"]))
     {
       // otp code to reset password
       $otp = rand(999999, 111111);
-      $insertotp = "UPDATE Members SET OTP = $otp WHERE Email = '$email'";
+      $insertotp = "UPDATE Members SET OTP = $otp WHERE Email = '$submit_email'";
       $query = mysqli_query($conn, $insertotp);
       if ($query)
       {
@@ -41,11 +41,11 @@ if (isset($_POST["submit_email"]))
         
         // Our email
         $sender = "From: pets.co.customerservice@gmail.com";
-        if (mail($email, $subject, $message, $sender))
+        if (mail($submit_email, $subject, $message, $sender))
         {
-          $info = "Please check your email for otp code - $email";
+          $info = "Please check your email for otp code - $submit_email";
           $_SESSION["Info"] = $info;
-          $_SESSION["Email"] = $email;
+          $_SESSION["Email"] = $submit_email;
           header("location: recover_pass.php?reset=success");
           exit();
         } else header("location: recover_pass.php?reset=otperror");
@@ -73,8 +73,8 @@ if (isset($_POST["submit_otp"]))
 
     if (mysqli_num_rows($code_res) > 0){
       $fetch_data = mysqli_fetch_assoc($code_res);
-      $email = $fetch_data["email"];
-      $_SESSION["Email"] = $email;
+      $submit_email = $fetch_data["email"];
+      $_SESSION["Email"] = $submit_email;
       $info = "Please create a new password and save it";
       $_SESSION["Info"] = $info;
       header("location: new_pass.php");
@@ -105,9 +105,9 @@ if (isset($_POST["change_pass"]))
     } else
     {
       $otp = 0;
-      $email = $_SESSION["Email"]; //getting this email using session
+      $submit_email = $_SESSION["Email"]; //getting this email using session
       $encryptpass = password_hash($password, PASSWORD_BCRYPT);
-      $update_pass = "UPDATE Members SET otp = $otp, password = '$encryptpass' WHERE email = '$email'";
+      $update_pass = "UPDATE Members SET otp = $otp, password = '$encryptpass' WHERE email = '$submit_email'";
       $run_query = mysqli_query($conn, $update_pass);
       if ($run_query)
       {

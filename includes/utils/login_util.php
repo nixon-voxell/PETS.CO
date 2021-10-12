@@ -7,15 +7,15 @@ function EmptyInputLogin($username, $pwd) { return empty($username) or empty($pw
 
 function LoginUser($conn, $loginName, $pwd)
 {
-  $UIDExists = UIDExists($conn, $loginName);
+  $memberDetail = UIDExists($conn, $loginName);
 
-  if ($UIDExists === false)
+  if ($memberDetail === false)
   {
     header("location: ../login.php?error=wronglogin");
     exit();
   }
 
-  $pwdHashed = $UIDExists["Password"];
+  $pwdHashed = $memberDetail["Password"];
   $checkPwd = password_verify($pwd, $pwdHashed);
 
   if ($checkPwd === false)
@@ -25,11 +25,21 @@ function LoginUser($conn, $loginName, $pwd)
   } else if ($checkPwd === true)
   {
     session_start();
-    $_SESSION["MemberID"] = $UIDExists["MemberID"];
-    $_SESSION["Username"] = $UIDExists["Username"];
-    $_SESSION["Email"] = $UIDExists["Email"];
-    $_SESSION["PrivilegeLevel"] = $UIDExists["PrivilegeLevel"];
+    require_once "../includes/data/member.data.php";
+    $member = new Member(
+      $memberDetail["MemberID"],
+      $memberDetail["Username"],
+      $memberDetail["Email"],
+      $memberDetail["PrivilegeLevel"],
+      $conn
+    );
+
+    $_SESSION["Member"] = $member;
     header("location: ../index.php");
     exit();
+    // $_SESSION["MemberID"] = $memberDetail["MemberID"];
+    // $_SESSION["Username"] = $memberDetail["Username"];
+    // $_SESSION["Email"] = $memberDetail["Email"];
+    // $_SESSION["PrivilegeLevel"] = $memberDetail["PrivilegeLevel"];
   }
 }

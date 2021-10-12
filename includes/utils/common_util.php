@@ -2,17 +2,40 @@
 
 function CreateUser($conn, $username, $pwd, $email)
 {
-  $sql = "INSERT INTO Members (Username, Password, Email) VALUES (?, ?, ?);";
   $stmt = mysqli_stmt_init($conn);
+  // create member
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+  $sql = "INSERT INTO Members(Username, Password, Email) VALUES ('$username', '$hashedPwd', '$email');";
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
-    echo "<p>*Something went wrong, please try again!</p>";
+    echo "<p>*User creation error, please try again!</p>";
     exit();
   }
 
-  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+  // mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
+  mysqli_stmt_execute($stmt);
 
-  mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
+  // get member id
+  $sql = "SELECT MemberID FROM Members where Username = '$username';";
+  if (!mysqli_stmt_prepare($stmt, $sql))
+  {
+    echo "<p>*MemberID error, please try again!</p>";
+    exit();
+  }
+
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_get_result($stmt);
+  $row = mysqli_fetch_assoc($result);
+  $memberID = $row["MemberID"];
+
+  // create cart
+  $sql = "INSERT INTO Orders(MemberID) VALUES ($memberID);";
+  if (!mysqli_stmt_prepare($stmt, $sql))
+  {
+    echo "<p>*Cart creation error, please try again!</p>";
+    exit();
+  }
+
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
 }
@@ -29,25 +52,15 @@ function UIDExists($conn, $loginName)
   
   mysqli_stmt_bind_param($stmt, "ss", $loginName, $loginName);
   mysqli_stmt_execute($stmt);
-  
+
   $result = mysqli_stmt_get_result($stmt);
-  
+
   if ($row = mysqli_fetch_assoc($result)) return $row;
   else return false;
 
   mysqli_stmt_close($stmt);
 }
 
-include_once "login_util.php";
-define( "PRIVILEGE_LEVEL_ADMIN", "1" );
-
-function isAdmin() 
-{
-  if ( isset( $_SESSION["MemberID"] ) && $_SESSION["PrivilegeLevel"] == PRIVILEGE_LEVEL_ADMIN ) 
-    return true;
-  else 
-    return false;
-}
 function write_log($log_msg)
 {
   $log_filename = "logs";
