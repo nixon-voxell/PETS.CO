@@ -3,6 +3,7 @@
 class OrderItem
 {
   private $orderItemID;
+  private $itemID;
   private $price;
   private $quantity;
   private $addedDateTime;
@@ -26,6 +27,7 @@ class OrderItem
       $result = mysqli_stmt_get_result($stmt);
 
       $row = $result->fetch_array(MYSQLI_ASSOC);
+      $this->itemID = $row["ItemID"];
       $this->price = $row["Price"];
       $this->quantity = $row["Quantity"];
       $this->addedDateTime = $row["AddedDateTime"];

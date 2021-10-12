@@ -1,19 +1,3 @@
-<?php 
-session_start(); 
-require "includes/utils/dbhandler.php";
-require "includes/utils/common_util.php";
-
-if (isset($_SESSION["MemberID"]))
-{
-  $id = $_SESSION["MemberID"];
-  $sql = "SELECT * FROM Members WHERE MemberID='$id'";
-  write_log('pass3-'.$id);
-  $query = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_array($query);
-  $email = $row["Email"];
-}
-?>
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">

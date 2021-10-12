@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>PETS.CO - Manage Personal Account</title>
-<?php 
-  include "header.php";
+<?php
+  session_start(); 
+  require "includes/utils/dbhandler.php";
+  require "includes/utils/common_util.php";
+
+  if (isset($_SESSION["MemberID"]))
+  {
+    $id = $_SESSION["MemberID"];
+    $sql = "SELECT * FROM Members WHERE MemberID='$id'";
+    write_log('pass3-'.$id);
+    $query = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($query);
+    $email = $row["Email"];
+  }
+
   $id = $_SESSION["MemberID"];
   $username = $_SESSION["Username"];
   $email = $_SESSION['Email']; 
