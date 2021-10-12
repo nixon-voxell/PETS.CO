@@ -4,6 +4,7 @@ class Member
 {
   private $memberID;
   private $username;
+  private $password;
   private $email;
   private $priviledgeLevel;
 
@@ -32,6 +33,7 @@ class Member
 
       $row = $result->fetch_array(MYSQLI_ASSOC);
       $this->memberID = $row["MemberID"];
+      $this->password = $row["Password"];
       $this->email = $row["Email"];
       $this->priviledgeLevel = $row["PriviledgeLevel"];
     }

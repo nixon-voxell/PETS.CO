@@ -3,8 +3,10 @@ function ExecuteSQL($stmt, $sql)
 {
   // TODO: log to a file
   if (!mysqli_stmt_prepare($stmt, $sql))
-    echo("ERROR");
+  {
+    write_log("Error creating table");
     exit();
+  }
 
   mysqli_stmt_execute($stmt);
 }
