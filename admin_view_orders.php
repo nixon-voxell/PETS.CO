@@ -29,17 +29,17 @@ body {
 
 <!-- manage users start -->
 <div class="container">
-  <h3 class="white-text"> View Customers Cart/Orders </h3>
-  <div class="row">
+  <h3 class="grey-text">Customers Cart/Orders </h3>
+  <div class="row" style="padding-bottom: 10px;">
     <div class="col s12 m10; z-depth-5">
-      <div class="card #212121 grey darken-4">
+      <div class="card grey darken-4">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
-          <table class="centered; responsive-table">
-            <thead class="text-primary">
+          <table class="responsive-table">
+            <thead class="text-white" style="border-bottom: 2px solid red;">
               <tr><th>Username</th><th>Email</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
             </thead>
-            <tbody>
+            <tbody style="border-bottom: 2px solid white;">
             <?php 
               include_once "includes/utils/dbhandler.php";
               ShowCustomerList($conn); 
@@ -49,12 +49,13 @@ body {
         </div>
       </div>
     </div>
+  </div>
   <div class="row">
     <div class="col s12 m10; z-depth-5">
-      <div class="card cyan">
+      <div class="card grey darken-4">
         <div class="card-content black-text">
-          <span class="card-title" style="text-align: center; color: white; font-weight: bold">Selected MemberID <?php if ($cartflag = 1) echo "Cart"; else echo "Previous Order";?> Details</span>
-          <table class="centered; responsive-table">
+          <span class="card-title center-align white-text" style="font-weight: bold">Selected MemberID <?php if ($cartflag = 1) echo "Cart"; else echo "Previous Order";?> Details</span>
+          <table class="centered responsive-table">
           <tbody>
           <?php 
           // View Selected Customer Cart/Orders 
@@ -88,9 +89,8 @@ body {
       </div>
     </div>
   </div>
-</div>
 
-<div class="row z-depth-5" style="padding: 10px;">
+  <div class="row z-depth-5" style="padding: 10px;">
   <div class="card-panel #00acc1 cyan darken-1 z-depth-5 white-text" style="font-size: 20px">Select MemberID to View Cart/Ordered Items</div>      
     <form class="col s12" action="admin_view_orders.php" method="post">
     <div class="row">
@@ -103,9 +103,9 @@ body {
     </div>
 
     <input class="btn cyan btn-block; z-depth-5" type="submit" name="selectuser" value="Select ID">
-    <div class="card-panel cyan darken-1; z-depth-5" style="font-size: 20px">
-    </div>   
+    <div class="card-panel cyan darken-1; z-depth-5" style="font-size: 20px"></div>
     </form>
+  </div>
 </div>
 
 <script>

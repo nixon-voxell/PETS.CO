@@ -5,22 +5,22 @@
   <div class="col s8">
     <ul class="collapsible popout" id="cart">
       <li>
-        <div class="collapsible-header"><i class="material-icons">pets</i>First</div>
-        <div class="collapsible-body row" style="margin: 0px;">
+        <div class="collapsible-header cyan white"><i class="material-icons">pets</i>First</div>
+        <div class="collapsible-body row white" style="margin: 0px;">
           <span class="col s6">Date Added: </span>
           <span class="col s6">Category: Pet</span>
         </div>
       </li>
       <li>
-        <div class="collapsible-header"><i class="material-icons">toys</i>Second</div>
-        <div class="collapsible-body row" style="margin: 0px;">
+        <div class="collapsible-header white"><i class="material-icons">toys</i>Second</div>
+        <div class="collapsible-body row white" style="margin: 0px;">
           <span class="col s6">Date Added: </span>
           <span class="col s6">Category: Accessory</span>
         </div>
       </li>
       <li>
-        <div class="collapsible-header"><i class="material-icons">restaurant</i>Third</div>
-        <div class="collapsible-body row" style="margin: 0px;">
+        <div class="collapsible-header white"><i class="material-icons">restaurant</i>Third</div>
+        <div class="collapsible-body row white" style="margin: 0px;">
           <span class="col s6">Date Added: </span>
           <span class="col s6">Category: Food</span>
         </div>
