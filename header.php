@@ -47,7 +47,7 @@
           {
             if ($priviledgeLevel == 1)
               echo "<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>";
-            echo "<li><a class='cart' href='cart.php'>Cart<span class='new badge' id='cart_badge'>0</span></a></li>";
+            echo "<li><a class='cart' href='cart.php'>Cart<span class='new badge unglow' id='cart_badge'>0</span></a></li>";
             echo "<li><a class='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else

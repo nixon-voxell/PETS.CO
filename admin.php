@@ -12,25 +12,10 @@ body
   background-attachment: fixed;
   background-size: 100% 100%;
 }
-
-.glow-text
-{
-  text-shadow: 0px 0px 5px cyan;
-  font-weight: bold;
-}
-
-.glow-title
-{
-  background-color: cyan;
-  color: white;
-  font-weight: bold;
-  pointer-events: none;
-  box-shadow: 2px 2px 20px cyan;
-}
 </style>
 
 <!-- Nav bar-->
-<nav>
+<nav class="blue">
   <div class="nav wrapper">
     <a href="admin.php" class="brand-logo center">Admin Panel</a>
     <a href="" data-target="slide-out" class="sidenav-trigger show-on-large" style="margin-top: 15px" data-activates="slide-out"><i class="material-icons">menu</i></a>
@@ -59,21 +44,18 @@ body
         <i class="material-icons blue-text">supervisor_account</i>Account Management
       </a>
     </li>
-    <div class="divider"></div>
 
     <li>
       <a class="white-text" href="admin_manage_users.php">
         <i class="material-icons blue-text">account_box</i>View/Manage Users
       </a>
     </li>
-    <div class="divider"></div>
 
     <li>
       <a class="glow-title">
         <i class="material-icons blue-text">view_carousel</i>Product/Orders
       </a>
     </li>
-    <div class="divider"></div>
 
     <li>
       <a class="white-text" href="">
@@ -90,19 +72,19 @@ body
 
 <div class="container">
 <div class="container center">
-<h3 class="white-text"> Home - Shortcuts</h3>
-  
+<!-- <h3 class="white-text"> Home - Shortcuts</h3> -->
+
 <div class="row">
 <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px">
     <div class="col s12 m12; z-depth-5">
-    <div class="card blue-grey">
+    <div class="card blue-grey darken-3">
         <div class="card-content white-text">
           <span class="card-title">Manage Products</span>
         <i class="material-icons blue-text" style="margin-right: 10px;">border_color</i>
         <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
-          <a href="#">Go To Manage Products Page</a>
+          <a class="glow-gradient" href="#">Go To Manage Products Page</a>
         </div>
       </div>
     </div>
@@ -111,14 +93,14 @@ body
   <div class="row">
   <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px";>
     <div class="col s12 m12; z-depth-5">
-    <div class="card blue-grey">
+    <div class="card blue-grey darken-3">
         <div class="card-content white-text">
           <span class="card-title">View Customer Cart/Orders </span>
           <i class="material-icons blue-text">supervisor_account</i>
           <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
-          <a href="admin_view_orders.php">Go To View Customer Cart/Orders Page</a>
+          <a class="glow-gradient" href="admin_view_orders.php">Go To View Customer Cart/Orders Page</a>
         </div>
       </div>
     </div>

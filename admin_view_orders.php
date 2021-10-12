@@ -90,17 +90,18 @@ body {
   </div>
 </div>
 
-<div class="row; z-depth-5">
-  <div class="card-panel #00acc1 cyan darken-1; z-depth-5 white-text" style="font-size: 20px">Select MemberID to View Cart/Ordered Items</div>      
+<div class="row z-depth-5" style="padding: 10px;">
+  <div class="card-panel #00acc1 cyan darken-1 z-depth-5 white-text" style="font-size: 20px">Select MemberID to View Cart/Ordered Items</div>      
     <form class="col s12" action="admin_view_orders.php" method="post">
     <div class="row">
       <div class="input-field col s8">
         <i class="material-icons prefix">account_circle</i>
         <input name="uid" type="text" class="validate" minlength="1" maxlength="3">
         <label for="uid">ID</label>
-        <span class="helper-text " style="color: azure" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
+        <span class="helper-text" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
       </div>
     </div>
+
     <input class="btn cyan btn-block; z-depth-5" type="submit" name="selectuser" value="Select ID">
     <div class="card-panel cyan darken-1; z-depth-5" style="font-size: 20px">
     </div>   
