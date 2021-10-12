@@ -58,6 +58,11 @@ if (isset($_POST["submituser"]))
   require_once "includes/utils/dbhandler.php";
   require_once "includes/utils/common_util.php";
 
+  if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
+  {
+    header("location: admin_manage_users.php?error=emptyinput");
+    exit();
+  }
   if (PwdNotMatch($pass, $repeatPass) !== false)
   {
     header("location: admin_manage_users.php?error=passwordsdontmatch");
@@ -71,11 +76,6 @@ if (isset($_POST["submituser"]))
   if (UIDExists($conn, $usrname, $emailadd ) !== false)
   {
     header("location: admin_manage_users.php?error=usrnametaken");
-    exit();
-  }
-  if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
-  {
-    header("location: admin_manage_users.php?error=emptyinput");
     exit();
   }
 
