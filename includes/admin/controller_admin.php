@@ -22,14 +22,14 @@ function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
 
 function DeleteUser($conn, $userid)
 {
-  $sql = "DELETE FROM Members WHERE MemberID='$userid';";
+  $sql = "DELETE FROM Members WHERE MemberID = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sql))
   {
     echo "<p>*UserID does not exists!</p>";
     exit();
   }
-
+  mysqli_stmt_bind_param($stmt, "i", $userid);
   mysqli_stmt_execute($stmt);
   mysqli_stmt_close($stmt);
 }

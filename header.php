@@ -1,7 +1,7 @@
 <?php 
 session_start(); 
-require "includes/utils/dbhandler.php";
-require "includes/utils/common_util.php";
+require_once "includes/utils/dbhandler.php";
+require_once "includes/utils/common_util.php";
 
 if (isset($_SESSION["MemberID"]))
 {
@@ -11,6 +11,16 @@ write_log('pass3-'.$id);
 $query = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($query);
 $email = $row["Email"];
+}
+
+define( "PRIVILEGE_LEVEL_ADMIN", "1" );
+
+function isAdmin() 
+{
+  if ( isset( $_SESSION["MemberID"] ) && $_SESSION["PrivilegeLevel"] == PRIVILEGE_LEVEL_ADMIN ) 
+    return true;
+  else 
+    return false;
 }
 ?>
 

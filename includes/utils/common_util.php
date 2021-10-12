@@ -48,16 +48,6 @@ function write_log($log_msg)
   file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
 }
 
-define( "PRIVILEGE_LEVEL_ADMIN", "1" );
-
-function isAdmin() 
-{
-  if ( isset( $_SESSION["MemberID"] ) && $_SESSION["PrivilegeLevel"] == PRIVILEGE_LEVEL_ADMIN ) 
-    return true;
-  else 
-    return false;
-}
-
 function EmptyInput($username, $pwd, $repeatPwd, $email)
 { return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)); }
 
