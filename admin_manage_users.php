@@ -48,7 +48,7 @@ body {
     </div>
   </div>
 
-  <div class="row">
+  <div class="row; z-depth-5" style="padding: 10px">
     <div class="card-panel orange lighten-2; white-text" style="font-size: 20px">Create Users</div>      
     <form class="col s12" action="admin_manage_users.php" method="post">
     <div class="row">
@@ -115,7 +115,7 @@ body {
     </form>
   </div>
 
-  <div class="row">
+  <div class="row; z-depth-5" style="margin: 50px 0 50px 0; padding: 10px">
     <div class="card-panel red lighten-2; white-text" style="font-size: 20px">Delete User</div>      
     <form class="col s12" action="admin_manage_users.php" method="post">
     <div class="row">

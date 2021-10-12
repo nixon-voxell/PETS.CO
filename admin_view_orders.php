@@ -57,7 +57,7 @@ body {
             $uid = $_POST["uid"];
 
             if (EmptyInputSelectUser($uid) !== false)
-              echo "Enter an ID to choose again!";
+              echo "Enter an ID to view again!";
 
             SelectedIDOrders($conn, $uid);
           }

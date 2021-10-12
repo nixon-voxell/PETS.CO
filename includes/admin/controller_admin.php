@@ -76,6 +76,7 @@ if (isset($_POST["submituser"]))
   if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
   {
     header("location: admin_manage_users.php?error=emptyinput");
+    exit();
   }
 
   AddUser($conn, $usrname, $pass, $emailadd, $privilegeLevel);
