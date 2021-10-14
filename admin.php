@@ -68,7 +68,7 @@ body {
   <div class="divider"></div>
 
   <li>
-      <a href=""><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
+      <a href="admin_manage_products.php"><i class="material-icons blue-text">border_color</i>View/Manage Products</a>
   </li>
   <li>
       <a href="admin_view_orders.php"><i class="material-icons blue-text">view_agenda</i>View Customer Cart/Orders </a>
