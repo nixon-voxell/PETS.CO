@@ -3,10 +3,30 @@
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
 
-html, body
+html
 {
   height: 100%;
   background-repeat: no-repeat;
+}
+
+body
+{
+  height: 100%;
+  animation-name: backgroundColorPalette;
+  background-blend-mode: multiply;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes backgroundColorPalette
+{
+  0% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
+  25% { background: #7fffb9 url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
+  50% { background: #7fc5ff url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
+  75% { background: #a872ff url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
+  100% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
 }
 
 nav
