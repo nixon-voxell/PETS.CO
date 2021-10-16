@@ -8,33 +8,33 @@
   <form class="col s12" action="includes/signup.inc.php" method="post">
     <div class="row">
       <div class="input-field col s6">
-        <i class="material-icons prefix">account_circle</i>
+        <i class="material-icons prefix white-text">account_circle</i>
         <input name="username" type="text" class="validate" minlength="5" maxlength="12">
-        <label for="username">Username</label>
-        <span class="helper-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
+        <label for="username" class="white-text">Username</label>
+        <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <i class="material-icons prefix"> password</i>
+        <i class="material-icons prefix white-text"> password</i>
         <input name="pwd" type="password" class="validate" minlength="8" maxlength="20">
-        <label for="password"> Password</label>
-        <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
+        <label for="password" class="white-text"> Password</label>
+        <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <i class="material-icons prefix"> password</i>
+        <i class="material-icons prefix white-text"> password</i>
         <input name="repeatPwd" type="password" class="validate" maxlength="20">
-        <label for="repeatPwd"> Repeat Password</label>
+        <label for="repeatPwd" class="white-text"> Repeat Password</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <i class="material-icons prefix">email</i>
+        <i class="material-icons prefix white-text">email</i>
         <input name="email" type="email" class="validate" maxlength="25">
-        <label for="email">Email</label>
-        <span class="helper-text" data-error="wrong" data-success="correct"></span>
+        <label for="email" class="white-text">Email</label>
+        <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
       </div>
     </div>
     <input class="btn btn-block" type="submit" name="submit" value="Register">

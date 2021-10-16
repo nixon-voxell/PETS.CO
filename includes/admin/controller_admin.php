@@ -1,7 +1,7 @@
 <?php 
 
-function EmptyInputCreateUser($username, $pwd, $repeatPwd, $email, $privilegeLevel)
-{ return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)) or (empty($privilegeLevel)); }
+function EmptyInputCreateUser($username, $pwd, $repeatPwd, $privilegeLevel, $email)
+{ return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($privilegeLevel)) or (empty($email)); }
 
 function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
 {
@@ -20,6 +20,26 @@ function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
   mysqli_stmt_close($stmt);
 }
 
+function SelectedIDOrders($conn, $uid)
+{
+  $sql = mysqli_query($conn, "SELECT memberid, cartflag from Orders WHERE memberid = '$uid' and cartflag = '1'")
+  or die ("Select statement FAILED!");
+  
+  while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
+  if ($usrid == $uid && $cartFlag == "1")
+    include "cart_items.php";
+
+  else if ($usrid == $uid && $cartFlag == "0")
+    include "cart_orders.php";
+
+  else if (($usrid == $uid && $cartFlag == "1") && ($usrid == $uid && $cartFlag == "0"))
+  { 
+    include "cart_items.php";
+    include "cart_orders.php";
+  }
+  else echo "ERROR!";
+}
+
 function DeleteUser($conn, $userid)
 {
   $sql = "DELETE FROM Members WHERE MemberID = ?;";
@@ -34,8 +54,32 @@ function DeleteUser($conn, $userid)
   mysqli_stmt_close($stmt);
 }
 
-function EmptyInputSelectUser($userid)
-  { return empty($userid); }
+function SearchOrders($conn, $searchmember)
+{
+  $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) WHERE Username LIKE '%$searchmember%' order by Username")or die ("*User does not exists!");
+
+  while (list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
+    echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
+}
+
+function SearchUser($conn, $searchmember)
+{
+  $result = mysqli_query($conn, "Select MemberID, Username, Email, Password, PrivilegeLevel from Members WHERE Username LIKE '%$searchmember%' order by Username")or die ("*User does not exists!");
+
+  while (list($memberID, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
+    echo "<tr><td>$memberID</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
+}
+
+function ChooseUser($conn, $privilegelevel)
+{
+  $result = mysqli_query($conn, "Select MemberID, Username, Email, Password, PrivilegeLevel from Members WHERE PrivilegeLevel = '$privilegelevel' order by Username")or die ("*Privilege Level does not exists!");
+
+  while (list($memberID, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
+    echo "<tr><td>$memberID</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
+}
+
+function EmptyInputSelectUser($value)
+  { return empty($value); }
 
 // View Customer Cart/Orders (Customer List)
 function ShowCustomerList($conn)
@@ -52,8 +96,8 @@ if (isset($_POST["submituser"]))
   $usrname = $_POST["username"];
   $pass = $_POST["pwd"];
   $repeatPass = $_POST["repeatPwd"];
-  $emailadd = $_POST["email"];
   $privilegeLevel = $_POST["level"];
+  $emailadd = $_POST["email"];
 
   require_once "includes/utils/dbhandler.php";
   require_once "includes/utils/common_util.php";

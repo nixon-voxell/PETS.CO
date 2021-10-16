@@ -1,7 +1,7 @@
 <?php
 
 require "utils/dbhandler.php";
-require "utils/common_util.php";
+require_once "utils/common_util.php";
 $errors = array();
 $submit_email = "";
 

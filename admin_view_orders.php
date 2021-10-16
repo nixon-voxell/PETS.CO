@@ -28,14 +28,44 @@ body {
       <div class="card grey darken-3">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
+          <form class="col s12" action="admin_view_orders.php" method="post">
+          <div class="row">
+            <div class="input-field col s2" style = "color:azure;">
+              <input name="searchuid" type="text" class="validate; white-text" maxlength="20">
+              <label for="searchuid">Search Member by Name</label>
+              <span class="helper-text" data-error="text only" data-success="correct"></span>
+              <div class="errormsg">
+              <?php
+                if (isset($_GET["error"]))
+                {
+                  if ($_GET["error"] == "emptysearch")
+                    echo "<p>Empty Input!</p>";
+                }
+              ?>
+              </div>
+            </div>
+          </div>
+          </form>
           <table class="responsive-table">
             <thead class="text-white" style="border-bottom: 2px solid red;">
               <tr><th>Username</th><th>Email</th><th>OrderID</th><th>MemberID</th><th>CartFlag</th></tr>
             </thead>
             <tbody style="border-bottom: 2px solid white;">
             <?php 
-              include_once "includes/utils/dbhandler.php";
-              ShowCustomerList($conn); 
+              if (isset($_POST["searchuid"]))
+              {
+                $searchuid = $_POST["searchuid"];
+
+                require_once "includes/utils/dbhandler.php";
+
+                if (EmptyInputSelectUser($searchuid) !== false)
+                  echo "<p>Please Enter A Value!<p>";
+
+                SearchOrders($conn, $searchuid);
+              }else
+              { include_once "includes/utils/dbhandler.php";
+                ShowCustomerList($conn); 
+              }
             ?>
             </tbody>
           </table>
@@ -47,7 +77,7 @@ body {
     <div class="col s12 m10; z-depth-5">
       <div class="card grey darken-3">
         <div class="card-content">
-          <span class="card-title center-align cyan-text" style="font-weight: bold">Selected MemberID <?php if ($cartflag = 1) echo "Cart"; else echo "Previous Order";?> Details</span>
+          <span class="card-title center-align cyan-text" style="font-weight: bold">Selected MemberID Cart/Orders Details</span>
           <table class="centered responsive-table">
           <tbody>
           <?php 
@@ -60,22 +90,8 @@ body {
               echo "<p>Enter an ID to view again!</p>";
 
             SelectedIDOrders($conn, $uid);
-          }
+          }?>
           
-          function SelectedIDOrders($conn, $uid)
-          {
-            $sql = mysqli_query($conn, "SELECT memberid, cartflag from Orders WHERE memberid = '$uid' and cartflag = '1'")
-            or die ("Select statement FAILED!");
-            
-            while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
-            if ($usrid == $uid && $cartFlag == "1")
-            {
-              include "cart_items.php" ?>
-
-          <?php } else if ($usrid == $uid && $cartFlag == "0")
-          { include "cart_orders.php" ?>
-          
-          <?php } else echo "ERROR!"; }?>
           </tbody>
           </table>
         </div>
@@ -88,10 +104,10 @@ body {
     <form class="col s12" action="admin_view_orders.php" method="post">
     <div class="row">
       <div class="input-field col s8">
-        <i class="material-icons prefix">account_circle</i>
+        <i class="material-icons prefix white-text" >account_circle</i>
         <input name="uid" type="text" class="validate" minlength="1" maxlength="3">
-        <label for="uid">ID</label>
-        <span class="helper-text" data-error="Max 3 Characters" data-success="correct">Max 3 Characters</span>
+        <label for="uid" class="white-text">ID</label>
+        <span class="helper-text white-text" data-error="Max 3 Characters" data-success="Max 3 Characters">Max 3 Characters</span>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 <?php
 ?>
-<h5 class="text-blue-grey">#1</h5>
+<h5 class="white-text">#1</h5>
 <div class="row">
   <div class="col s8">
     <ul class="collapsible popout" id="orders">

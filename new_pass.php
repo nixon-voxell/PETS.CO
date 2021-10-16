@@ -47,17 +47,17 @@
 
         <div class="row">
           <div class="input-field col s6">
-            <i class="material-icons prefix"> password</i>
-            <input name="password" type="password" class="validate" minlength="8" maxlength="20">
-            <label for="password">Create new password</label>
-            <span class="helper-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
+            <i class="material-icons prefix white-text"> password</i>
+            <input name="password" type="password" class="validate white-text" minlength="8" maxlength="20">
+            <label for="password" class="white-text">Create new password</label>
+            <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <i class="material-icons prefix"> password</i>
-            <input name="cpassword" type="password" class="validate" maxlength="20">
-            <label for="password">Confirm your password</label>
+            <i class="material-icons prefix white-text"> password</i>
+            <input name="cpassword" type="password" class="validate white-text" maxlength="20">
+            <label for="password" class="white-text">Confirm your password</label>
           </div>
         </div>
 

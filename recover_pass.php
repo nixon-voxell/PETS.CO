@@ -11,14 +11,14 @@
 <?php include "header.php"; ?>
 <div class="container">
   <h3 class="grey-text">Recover Your Password</h3>
-  <p> Please enter your email address so we can assist you in recovering your account. </p>
+  <span class="card-title center-align cyan-text" style="font-weight: bold">Please enter your email address so we can assist you in recovering your account.</span>
   <form class="col s12" action="recover_pass.php" method="post">
     <div class="row">
       <div class="input-field col s6">
-        <i class="material-icons prefix">email</i>
-        <input name="email" type="email" class="validate" maxlength="25">
-        <label for="email">Email</label>
-        <span class="helper-text" data-error="wrong" data-success="correct"></span>
+        <i class="material-icons prefix white-text">email</i>
+        <input name="email" type="email" class="validate white-text" maxlength="25">
+        <label for="email" class="white-text">Email</label>
+        <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
       </div>
     </div>
     <input class="btn btn-block" type="submit" name="submit_email" value="Recover my Password">
