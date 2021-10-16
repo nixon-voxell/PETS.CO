@@ -22,9 +22,9 @@ body
 
 @keyframes backgroundColorPalette
 {
-  0% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
-  50% { background: #7fc5ff url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
-  100% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed; }
+  0% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  50% { background: #7fc5ff url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  100% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 }
 
 nav
