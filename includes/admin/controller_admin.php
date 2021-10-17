@@ -128,7 +128,7 @@ if (isset($_POST["submituser"]))
   exit();
 }
 
-if (isset($_POST["deleteuser"]))
+if (isset($_POST["userid"]))
 {
   $userid = $_POST["userid"];
 

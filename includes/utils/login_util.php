@@ -34,24 +34,25 @@ function LoginUser($conn, $loginName, $pwd)
       $conn
     );
 
-    $res = mysqli_query($conn, "Select * from Members WHERE Username = '$username' and Password = '$pwd';");
+    $res = mysqli_query($conn, "Select count(*) as countUser, MemberID from Members WHERE Username = '$username' and Password = '$pwd';");
     $result = mysqli_fetch_array($res);
-
-    if ($result)
+    $memberid = $result["MemberID"];
+    
+    if ($result > 0)
     {
       $memberid = $result["MemberID"];
 
       if ( isset($_POST["rememberme"]) ) 
       {
         // Set cookie variables
-        $days = 30;
         $value = encryptCookie($memberid);
 
-        setcookie ( "rememberme", $value, time() + ($days * 24 * 60 * 60 * 1000) ); 
+        // 8 days cookies
+        setcookie ( "rememberme", $value, time() + (30 * 24 * 1000) ); 
       }
     }
+    $_SESSION["MemberID"] = $memberid;
     $_SESSION["Member"] = $member;
-    $_SESSION["MemberID"] = $memberid; 
     header("location: ../index.php");
     exit();
 

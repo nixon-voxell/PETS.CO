@@ -24,30 +24,45 @@ body {
 <!-- manage users start -->
 <div class="container">
   <h3 class="white-text"> Manage Users </h3>
-
+      <div class="row">
+      <form class="col s14" action="admin_manage_users.php" method="post" style="margin-left: 1000px">   
+        <div class="input-field col s8" style="color:azure">
+          <input name="userid" type="text" class="validate white-text" minlength="1" maxlength="3" style="margin-bottom: 0px">
+          <label for="userid" class="white-text">Delete User (ID)</label>
+          <div class="errormsg">
+            <?php
+              if (isset($_GET["error"]))
+              {
+                if ($_GET["error"] == "emptyid")
+                  echo "<p>Please Enter An ID!<p>";
+                else if ($_GET["error"] == "deleted")
+                  echo "<p>Deleted User.</p>";
+              }
+            ?>
+          </div>
+        </div>
+      </form>
+      </div>
   <div class="row">
     <div class="col s12 m10; z-depth-5">
       <div class="card #212121 grey darken-4">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Users List</span>
           <form class="col s12" action="admin_manage_users.php" method="post">
-          <div class="row">
-            <div class="input-field col s2" style = "color:azure; margin: 0 0 0 0">
-              <input name="searchmember" type="text" class="validate; white-text" maxlength="20">
-              <label for="searchmember">Search Member by Name</label>
-              <span class="helper-text" data-error="text only" data-success="correct"></span>
-              <div class="errormsg">
-              <?php
-                if (isset($_GET["error"]))
-                {
-                  if ($_GET["error"] == "emptysearch")
-                    echo "<p>Empty Input!</p>";
-                }
-              ?>
-              </div>
-            </div>
+        <div class="input-field col s2" style = "color:azure">
+          <input name="searchmember" type="text" class="validate white-text" maxlength="20">
+          <label for="searchmember">Search Member by Name</label>
+          <div class="errormsg">
+            <?php
+              if (isset($_GET["error"]))
+              {
+                if ($_GET["error"] == "emptysearch")
+                  echo "<p>Empty Input!</p>";
+              }
+            ?>
           </div>
-          </form>
+        </div>
+      </form>
           <table class="centered; responsive-table">
             <thead class="text-primary">
               <tr><th>ID</th><th>Username</th><th>Email</th><th>Password</th><th>Privilege Level</th></tr>
@@ -77,7 +92,7 @@ body {
               }else
               {
                 $result = mysqli_query($conn,"select memberid, username, email, password, PrivilegeLevel from members order by username")or die ("Select statement FAILED!");
-
+                
                 while (list($memberID, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
                   echo "<tr><td>$memberID</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
               }
@@ -177,32 +192,6 @@ body {
       </div>
     </div>
     <input class="btn orange btn-block z-depth-5" type="submit" name="submituser" value="Create User">
-    </form>
-  </div>
-
-  <div class="row; z-depth-5" style="margin: 50px 0 50px 0; padding: 10px">
-    <div class="card-panel red lighten-2; white-text" style="font-size: 20px">Delete User</div>      
-    <form class="col s12" action="admin_manage_users.php" method="post">
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">account_circle</i>
-        <input name="userid" type="text" class="validate white-text" minlength="1" maxlength="3">
-        <label for="userid" class="white-text">ID</label>
-        <span class="helper-text white-text" data-error="Max 3 Characters" data-success="Max 3 Characters">Max 3 Characters</span>
-        <div class="errormsg">
-        <?php
-          if (isset($_GET["error"]))
-          {
-            if ($_GET["error"] == "emptyid")
-              echo "<p>Please Enter An ID!<p>";
-            else if ($_GET["error"] == "deleted")
-              echo "<p>Deleted User.</p>";
-          }
-        ?>
-        </div>
-      </div>
-    </div>
-    <input class="btn red btn-block z-depth-5" type="submit" name="deleteuser" value="Delete User">
     </form>
   </div>
 </div>
