@@ -8362,7 +8362,7 @@ input[type=range]::-ms-thumb {
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   -webkit-perspective: 500px;
           perspective: 500px;
   -webkit-transform-style: preserve-3d;
@@ -8436,14 +8436,16 @@ input[type=range]::-ms-thumb {
   height: 8px;
   width: 8px;
   margin: 24px 4px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(55, 157, 175, 0.5);
   -webkit-transition: background-color .3s;
-  transition: background-color .3s;
+  transition: 1.0s;
   border-radius: 50%;
+  box-shadow: black 0px 0px 6px;
 }
 
 .carousel .indicators .indicator-item.active {
-  background-color: #fff;
+  background-color: rgb(79, 229, 255);
+  box-shadow: rgb(79, 229, 255) 0px 0px 6px;
 }
 
 .carousel.scrolling .carousel-item .materialboxed,

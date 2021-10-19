@@ -41,6 +41,14 @@ nav
   black 0px -4px 8px;
 }
 
+.carousel-magic
+{
+  color: white;
+  text-shadow: black 1px 1px 4px, black -1px -1px 4px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .rounded-card
 {
   border-radius: 50px;

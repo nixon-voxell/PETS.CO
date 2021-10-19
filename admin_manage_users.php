@@ -44,7 +44,7 @@ body {
       </form>
       </div>
   <div class="row">
-    <div class="col s12 m10; z-depth-5 rounded-card">
+    <div class="col s12 z-depth-5 rounded-card">
       <div class="card grey darken-4 rounded-card">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">User List</span>
