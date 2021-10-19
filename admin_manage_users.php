@@ -23,7 +23,7 @@ body {
 
 <!-- manage users start -->
 <div class="container">
-  <h3 class="white-text"> Manage Users </h3>
+  <h3 class="white-text page-title">Manage Users</h3>
       <div class="row">
       <form class="col s14" action="admin_manage_users.php" method="post" style="margin-left: 1000px">   
         <div class="input-field col s8" style="color:azure">
@@ -44,10 +44,10 @@ body {
       </form>
       </div>
   <div class="row">
-    <div class="col s12 m10; z-depth-5">
-      <div class="card #212121 grey darken-4">
+    <div class="col s12 m10; z-depth-5 rounded-card">
+      <div class="card grey darken-4 rounded-card">
         <div class="card-content white-text">
-          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Users List</span>
+          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">User List</span>
           <form class="col s12" action="admin_manage_users.php" method="post">
         <div class="input-field col s2" style = "color:azure">
           <input name="searchmember" type="text" class="validate white-text" maxlength="20">

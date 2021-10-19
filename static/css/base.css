@@ -33,6 +33,25 @@ nav
   line-height: 100px;
 }
 
+.page-title
+{
+  text-shadow: black 4px 0px 8px,
+  black -4px 0px 8px,
+  black 0px 4px 8px,
+  black 0px -4px 8px;
+}
+
+.rounded-card
+{
+  border-radius: 50px;
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.rounded-card:hover
+{
+  border-radius: 20px;
+}
+
 .errormsg
 {
   color: red;

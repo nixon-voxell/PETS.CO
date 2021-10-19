@@ -4,7 +4,7 @@
 <?php include "header.php"; ?>
 
 <div class="container">
-  <h3 class="grey-text">Manage Personal Profile</h3>
+  <h3 class="white-text page-title">Manage Personal Profile</h3>
   <button id="edit" class="btn orange" onclick="edit_profile(this)">Edit</button>
 
   <div class="card white" style="box-shadow: black 2px 10px 20px 10px;">
