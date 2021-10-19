@@ -39,8 +39,8 @@
 
 <body>
   <nav style="height: 100px";>
-    <div class="nav-wrapper grey darken-3">
-      <a href="index.php"><img src = "logo.svg" alt="logo" class="brand-logo" height="100"/></a>
+    <div class="nav-wrapper black">
+      <a href="index.php"><img src = "logo.svg" alt="logo" id="logo" class="brand-logo" height="100"/></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <?php
           if (isset($_SESSION["Member"]))

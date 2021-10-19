@@ -1,4 +1,13 @@
 <?php
+  /** @var Order $cart */
+  $orderItems = $cart->GetORderItems();
+
+  $orderItemNum = count($orderItems);
+  for ($i=0; $i < $orderItemNum; $i++)
+  {
+    echo 10;
+  }
+
 ?>
 
 <div class="row">

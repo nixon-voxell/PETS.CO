@@ -48,4 +48,7 @@ class OrderItem
     mysqli_stmt_close($stmt);
     return $success;
   }
+
+  //// get data
+  public function GetPrice() { return $this->price; }
 }

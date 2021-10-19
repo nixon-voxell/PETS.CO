@@ -13,18 +13,24 @@ body
 {
   height: 100%;
   animation-name: backgroundColorPalette;
-  background-blend-mode: multiply;
+  background-blend-mode: luminosity;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-timing-function: linear;
 }
 
+body::before
+{
+  background: url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;
+  filter: grayscale();
+}
+
 @keyframes backgroundColorPalette
 {
-  0% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
-  50% { background: #7fc5ff url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
-  100% { background: #ff9891 url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  0% { background: #f700ff5d url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  50% { background: #a6ff006b url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  100% { background: #00ccff6e url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 }
 
 nav
@@ -53,6 +59,7 @@ nav
 {
   border-radius: 50px;
   transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: black 4px 4px 8px 2px;
 }
 
 .rounded-card:hover
@@ -75,6 +82,25 @@ nav
   padding-top: 20px;
   padding-left: 100px;
   padding-right: 100px;
+}
+
+.unused-image
+{
+  opacity: 70%;
+}
+
+.glow-image
+{
+  animation: imageGlowColor 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes imageGlowColor
+{
+  0% { -webkit-filter: drop-shadow(0px 0px 2px rgb(255, 81, 28)); opacity: 60%; }
+  100% { -webkit-filter: drop-shadow(0px 0px 8px rgb(255, 154, 38)); opacity: 100%; }
 }
 
 .glow-text

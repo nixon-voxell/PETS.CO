@@ -91,7 +91,7 @@ class Member
     return false;
   }
 
-  // get data
+  //// get data
   public function GetMemberID() { return $this->memberID; }
   public function GetUsername() { return $this->username; }
   public function GetEmail() { return $this->email; }
@@ -100,7 +100,7 @@ class Member
   public function GetCart() { return $this->cart; }
   public function GetOrders() { return $this->orders; }
 
-  // set data
+  //// set data
   public function SetUsername($username) { $this->username = $username; }
   public function SetEmail($email) { $this->email = $email; }
 }

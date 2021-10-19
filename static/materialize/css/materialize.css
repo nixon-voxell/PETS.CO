@@ -8437,15 +8437,15 @@ input[type=range]::-ms-thumb {
   width: 8px;
   margin: 24px 4px;
   background-color: rgba(55, 157, 175, 0.5);
-  -webkit-transition: background-color .3s;
-  transition: 1.0s;
+  -webkit-transition: 1.0s ease-in-out;
+  transition: 1.0s ease-in-out;
   border-radius: 50%;
-  box-shadow: black 0px 0px 6px;
+  box-shadow: rgb(0, 24, 54) 0px 0px 8px 3px;
 }
 
 .carousel .indicators .indicator-item.active {
   background-color: rgb(79, 229, 255);
-  box-shadow: rgb(79, 229, 255) 0px 0px 6px;
+  box-shadow: rgb(46, 125, 139) 0px 0px 8px 3px;
 }
 
 .carousel.scrolling .carousel-item .materialboxed,
