@@ -2,12 +2,18 @@
 
 class Member
 {
+  /** @var int $memberID */
   private $memberID;
+  /** @var string $username */
   private $username;
+  /** @var string $email */
   private $email;
+  /** @var int $priviledgeLevel */
   private $priviledgeLevel;
-
+  
+  /** @var Order $cart */
   private $cart;
+  /** @var Order[] $orders */
   private $orders;
 
   function __construct($memberID, $username, $email, $priviledgeLevel, $conn)
@@ -96,7 +102,6 @@ class Member
   public function GetUsername() { return $this->username; }
   public function GetEmail() { return $this->email; }
   public function GetPriviledgeLevel() { return $this->priviledgeLevel; }
-  
   public function GetCart() { return $this->cart; }
   public function GetOrders() { return $this->orders; }
 

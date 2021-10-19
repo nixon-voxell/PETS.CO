@@ -55,7 +55,7 @@ function CreateNeededTables($conn)
       Brand VARCHAR(64) NOT NULL,
       Description VARCHAR(512) NOT NULL,
       Category INT NOT NULL,
-      SellingPrice VARCHAR(64) NOT NULL,
+      SellingPrice FLOAT NOT NULL,
       QuantityInStock INT NOT NULL
     )"
   );
@@ -68,7 +68,7 @@ function CreateNeededTables($conn)
       ItemID INT NOT NULL,
       FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
       FOREIGN KEY (ItemID) REFERENCES Items(ItemID),
-      Price VARCHAR(64) NOT NULL,
+      Price FLOAT NOT NULL,
       Quantity INT NOT NULL,
       AddedDatetime DATETIME NOT NULL,
       Feedback VARCHAR(512),

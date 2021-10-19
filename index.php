@@ -19,8 +19,8 @@
   </a>
   <a class="carousel-item carousel-magic" href="#"
   style="background-image: url('./static/images/dog_toy.jpg'); background-position-y: 20%;">
-    <h2>TOYS</h2>
-    <p class="white-text">Have fun with your dog with our toys!</p>
+    <h2>ACCESSORIES</h2>
+    <p class="white-text">Give your dog the most comfortable life with our accessories!</p>
   </a>
 </div>
 

@@ -2,10 +2,15 @@
 
 class OrderItem
 {
+  /** @var int $orderItemID */
   private $orderItemID;
+  /** @var int $itemID */
   private $itemID;
+  /** @var int $price */
   private $price;
+  /** @var int $quantity */
   private $quantity;
+  /** @var string $addedDateTime */
   private $addedDateTime;
 
   function __construct($orderItemID, $conn)
@@ -50,5 +55,9 @@ class OrderItem
   }
 
   //// get data
+  public function GetOrderItemID() { return $this->orderItemID; }
+  public function ItemID() { return $this->itemID; }
   public function GetPrice() { return $this->price; }
+  public function GetQuantity() { return $this->quantity; }
+  public function GetAddedDateTime() { return $this->addedDateTime; }
 }

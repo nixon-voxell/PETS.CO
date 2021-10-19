@@ -2,15 +2,17 @@
 
 class Order
 {
+  /** @var int $orderID */
   private $orderID;
+  /** @var OrderItem[] $orderItems */
   private $orderItems;
-
+  
   function __construct($orderID, $conn)
   {
     $this->orderID = $orderID;
     $this->UpdateOrderItems($conn);
   }
-
+  
   
   // update order items related to this order
   public function UpdateOrderItems($conn)

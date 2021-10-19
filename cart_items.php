@@ -1,12 +1,10 @@
 <?php
   /** @var Order $cart */
-  $orderItems = $cart->GetORderItems();
+  /** @var Order[] $orders */
+  $cartItems = $cart->GetORderItems();
+  $cartItemCount = count($cartItems);
 
-  $orderItemNum = count($orderItems);
-  for ($i=0; $i < $orderItemNum; $i++)
-  {
-    echo 10;
-  }
+  $orderCount = count($orders);
 
 ?>
 
