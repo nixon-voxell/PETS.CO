@@ -40,56 +40,28 @@ function SelectedIDOrders($conn, $uid)
   else echo "ERROR!";
 }
 
-function DeleteUser($conn, $userid)
-{
-  $sql = "DELETE FROM Members WHERE MemberID = ?;";
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*UserID does not exists!</p>";
-    exit();
-  }
-  mysqli_stmt_bind_param($stmt, "i", $userid);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-}
-
 function SearchOrders($conn, $searchmember)
 {
-  $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) WHERE Username LIKE '%$searchmember%' order by Username")or die ("*User does not exists!");
-
-  while (list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
-    echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
+  $result = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) WHERE Username LIKE '%$searchmember%' order by Username")or die ("Select statement FAILED!");
+  while ($row = mysqli_fetch_assoc($result) ) 
+  { 
+    $id = $row["MemberID"]; 
+    echo "<tr><td>" . $row['Username'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['OrderID'] . "</td><td>" . $row['MemberID'] . "</td><td>" . $row['CartFlag'] . "</td><td><button name='inspect' value='$id' class='btn'><i class='material-icons'>search</i></button></td></tr>";
+  }
 }
 
 function SearchUser($conn, $searchmember)
 {
-  $result = mysqli_query($conn, "Select MemberID, Username, Email, Password, PrivilegeLevel from Members WHERE Username LIKE '%$searchmember%' order by Username")or die ("*User does not exists!");
-
-  while (list($memberID, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
-    echo "<tr><td>$memberID</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
-}
-
-function ChooseUser($conn, $privilegelevel)
-{
-  $result = mysqli_query($conn, "Select MemberID, Username, Email, Password, PrivilegeLevel from Members WHERE PrivilegeLevel = '$privilegelevel' order by Username")or die ("*Privilege Level does not exists!");
-
-  while (list($memberID, $username, $email, $password, $priviledge_level) = mysqli_fetch_array($result))
-    echo "<tr><td>$memberID</td><td>$username</td><td>$email</td><td>$password</td><td>$priviledge_level</td></tr>";
+  $result = mysqli_query($conn, "Select Username, PrivilegeLevel from Members WHERE Username LIKE '%$searchmember%' order by Username")or die ("User does not exists!");
+  while ($row = mysqli_fetch_assoc($result) ) 
+  { 
+  $id = $row["Username"]; 
+  echo "<tr><td>" . $row['Username'] . "</td><td>" . $row['PrivilegeLevel'] . "</td><td><button name='inspect' value='$id' class='btn'><i class='material-icons'>search</i></button></td></tr>";
+  }
 }
 
 function EmptyInputSelectUser($value)
   { return empty($value); }
-
-// View Customer Cart/Orders (Customer List)
-function ShowCustomerList($conn)
-{
-  $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by username")
-  or die ("Select statement FAILED!");
-
-  while (list($username, $email, $orderid, $memberid, $cartflag) = mysqli_fetch_array($sql))
-    echo "<tr><td>$username</td><td>$email</td><td>$orderid</td><td>$memberid</td><td>$cartflag</tr>";
-}
 
 if (isset($_POST["submituser"]))
 {
@@ -125,22 +97,4 @@ if (isset($_POST["submituser"]))
 
   AddUser($conn, $usrname, $pass, $emailadd, $privilegeLevel);
   header ("location: admin_manage_users.php?error=none");
-  exit();
-}
-
-if (isset($_POST["userid"]))
-{
-  $userid = $_POST["userid"];
-
-  require_once "includes/utils/dbhandler.php";
-
-  if (EmptyInputSelectUser($userid) !== false)
-  {
-    header ("location: admin_manage_users.php?error=emptyid");
-    exit();
-  }
-
-  DeleteUser($conn, $userid);
-  header ("location: admin_manage_users.php?error=deleted");
-  exit();
 }
