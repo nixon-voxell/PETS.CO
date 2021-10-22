@@ -12,7 +12,7 @@
 <div class="container">
   <h3 class="grey-text">Recover Your Password</h3>
   <span class="card-title center-align cyan-text" style="font-weight: bold">Please enter your email address so we can assist you in recovering your account.</span>
-  <form class="col s12" action="recover_pass.php" method="post">
+  <form class="col s12" action="recover_pass.php" method="POST">
     <div class="row">
       <div class="input-field col s6">
         <i class="material-icons prefix white-text">email</i>
@@ -28,11 +28,11 @@
         {
           if ($_GET["reset"] == "success")
             echo "<p>*Check your e-mail spam folder!<p></br>";
-          else if ($_GET["reset"] == "emptyinput")
+          else if ($_GET["reset"] == "EmptyInput")
             echo "<p>*Fill in all fields!</p>";
           else if ($_GET["reset"] == "otperror")
             echo "<p>*Failed while sending code!</p>";
-          else if ($_GET["reset"] == "error")
+          else if ($_GET["reset"] == "Error")
             echo "<p>*Something went wrong! Please try again later.</p>";
           else if ($_GET["reset"] == "emailinvalid")
             echo "<p>*This email address does not exist!</p>";

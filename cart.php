@@ -10,7 +10,7 @@
 
   <h4 class="white-text page-title">Previous Orders</h4>
   
-  <?php include "cart_orders.php" ?>
+  <?php include "order_items.php" ?>
 </div>
 
 <?php include "footer.php"; ?>

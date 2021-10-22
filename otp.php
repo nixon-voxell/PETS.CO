@@ -16,7 +16,7 @@ if ($submit_email !== false)
 {
   ?>
   <div class="container">
-    <form class="col s12" action="otp.php" method="post">
+    <form class="col s12" action="otp.php" method="POST">
       <h3 class="grey-text">Code Verification</h3>
       <!-- error message -->
       <?php 

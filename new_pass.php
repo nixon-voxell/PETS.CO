@@ -15,7 +15,7 @@
   {
     ?>
     <div class="container">
-      <form class="col s12" action="new_pass.php" method="post">
+      <form class="col s12" action="new_pass.php" method="POST">
         <h3 class="grey-text">Create New Password</h3>
         <!-- error message -->
         <?php 
@@ -66,9 +66,9 @@
 
       <div class="errormsg">
         <?php
-          if (isset($_GET["error"]))
+          if (isset($_GET["Error"]))
           {
-            if ($_GET["error"] == "emptyinput")
+            if ($_GET["Error"] == "EmptyInput")
               echo "<p>*Fill in all fields!<p>";
           }
         ?>

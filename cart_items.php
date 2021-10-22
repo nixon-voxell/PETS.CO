@@ -1,11 +1,10 @@
 <?php
   /** @var Order $cart */
   /** @var Order[] $orders */
-  $cartItems = $cart->GetORderItems();
+  $cartItems = $cart->GetOrderItems();
   $cartItemCount = count($cartItems);
 
   $orderCount = count($orders);
-
 ?>
 
 <div class="row">

@@ -55,21 +55,36 @@ nav
   background-size: cover;
 }
 
+.rounded-card-parent
+{
+  box-shadow: black 4px 4px 8px 2px;
+  border-radius: 50px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+.rounded-card-parent:hover
+{
+  border-radius: 20px;
+}
+
 .rounded-card
 {
-  border-radius: 50px;
-  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: black 4px 4px 8px 2px;
+  padding: 40px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+  clip-path: inset(0px 0px round 50px 50px);
+  background-color: rgba(56, 56, 56, 0.7);
+  backdrop-filter: blur(10px);
 }
 
 .rounded-card:hover
 {
-  border-radius: 20px;
+  clip-path: inset(0px 0px round 20px 20px);
 }
 
 .errormsg
 {
   color: red;
+  font-weight: bold;
 }
 
 .content

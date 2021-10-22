@@ -12,6 +12,21 @@
   <div class = "card transparent z-depth-5">
   </div>
 </div> -->
+<div class="row">
+  <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px">
+    <div class="col s12 m12; z-depth-5">
+      <div class="card blue-grey darken-3">
+        <div class="card-content white-text">
+          <span class="card-title">Manage Users</span>
+          <i class="material-icons blue-text">supervisor_account</i>
+        </div>
+        <div class="card-action">
+          <a class="glow-gradient" href="admin_manage_users.php">Go to Manage Users Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px">

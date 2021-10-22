@@ -6,15 +6,24 @@
     <ul class="collapsible popout" id="orders">
       <li>
         <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-        <div class="collapsible-body"><span>Date Added: </span></div>
+        <div class="collapsible-body row white" style="margin: 0px;">
+          <span class="col s6">Date Added: </span>
+          <span class="col s6">Category: Pet</span>
+        </div>
       </li>
       <li>
         <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-        <div class="collapsible-body"><span>Date Added: </span></div>
+        <div class="collapsible-body row white" style="margin: 0px;">
+          <span class="col s6">Date Added: </span>
+          <span class="col s6">Category: Pet</span>
+        </div>
       </li>
       <li>
         <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-        <div class="collapsible-body"><span>Date Added: </span></div>
+        <div class="collapsible-body row white" style="margin: 0px;">
+          <span class="col s6">Date Added: </span>
+          <span class="col s6">Category: Pet</span>
+        </div>
       </li>
     </ul>
   </div>
