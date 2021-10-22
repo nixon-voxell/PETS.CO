@@ -94,8 +94,8 @@ body {
   </div>
 
   <div class="row">
-    <div class="col s12 m10; z-depth-5">
-      <div class="card #212121 grey darken-4">
+    <div class="rounded-card-parent">
+      <div class="card rounded-card">
         <div class="card-content white-text">
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Selected Member Details</span>
           <table class="responsive-table centered">
@@ -132,73 +132,74 @@ body {
     </div>
   </div>
 
-  <div class="row; z-depth-5" style="padding: 10px">
-    <div class="card-panel orange lighten-2; white-text" style="font-size: 20px">Create Users</div>      
-    <form class="col s12" action="admin_manage_users.php" method="POST">
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">account_circle</i>
-        <input name="username" type="text" class="validate white-text" minlength="5" maxlength="12">
-        <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
-        <label for="username" class="white-text"> Username</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix"> password</i>
-        <input name="pwd" type="password" class="validate white-text" minlength="6" maxlength="20">
-        <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
-        <label for="pwd" class="white-text"> Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix"> password</i>
-        <input name="repeatPwd" type="password" class="validate white-text" maxlength="14">
-        <label for="repeatPwd" class="white-text"> Repeat Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">assignment_ind</i>
-        <input name="level" type="text" class="validate white-text" minlength="1" maxlength="1">
-        <label for="text" class="white-text">Privilege Level (0-User, 1-Admin)</label>
-        <span class="helper-text" data-error="wrong" data-success="correct"></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">email</i>
-        <input name="email" type="email" class="validate white-text" maxlength="25">
-        <label for="email" class="white-text">Email</label>
-        <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
-        <div class="errormsg">
-        <?php
-          if (isset($_GET["Error"]))
-          {
-            if ($_GET["Error"] == "EmptyInput")
-              echo "<p>*Fill in all fields!<p>";
-
-            else if ($_GET["Error"] == "Invaliduid")
-              echo "<p>*Choose a proper username!</p>";
-
-            else if ($_GET["Error"] == "PasswordsDontMatch")
-              echo "<p>*Passwords doesn't match!</p>";
-
-            else if ($_GET["Error"] == "UsernameTaken")
-              echo "<p>*Username/Email already taken!</p>";
-
-            else if ($_GET["Error"] == "None")
-              echo "<p>Added User.</p>";
-          }
-        ?>
+  <div class="rounded-card-parent">    
+    <div class="card rounded-card">
+    <span class="card-title orange-text" style="font-weight: bold">Create User</span>
+      <form class="col s12" action="admin_manage_users.php" method="POST">
+        <div class="row">
+          <div class="input-field col s8" style = "color:azure">
+            <i class="material-icons prefix">account_circle</i>
+            <input name="username" type="text" class="validate white-text" minlength="5" maxlength="12">
+            <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
+            <label for="username" class="white-text"> Username</label>
+          </div>
         </div>
-      </div>
-    </div>
-    <input class="btn orange btn-block z-depth-5" type="submit" name="submituser" value="Create User">
-    </form>
+        <div class="row">
+          <div class="input-field col s8" style = "color:azure">
+            <i class="material-icons prefix"> password</i>
+            <input name="pwd" type="password" class="validate white-text" minlength="6" maxlength="20">
+            <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
+            <label for="pwd" class="white-text"> Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8" style = "color:azure">
+            <i class="material-icons prefix"> password</i>
+            <input name="repeatPwd" type="password" class="validate white-text" maxlength="14">
+            <label for="repeatPwd" class="white-text"> Repeat Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8" style = "color:azure">
+            <i class="material-icons prefix">assignment_ind</i>
+            <input name="level" type="text" class="validate white-text" minlength="1" maxlength="1">
+            <label for="text" class="white-text">Privilege Level (0-User, 1-Admin)</label>
+            <span class="helper-text" data-error="wrong" data-success="correct"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8" style = "color:azure">
+            <i class="material-icons prefix">email</i>
+            <input name="email" type="email" class="validate white-text" maxlength="25">
+            <label for="email" class="white-text">Email</label>
+            <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
+            <div class="errormsg">
+              <?php
+                if (isset($_GET["Error"]))
+                {
+                  if ($_GET["Error"] == "EmptyInput")
+                    echo "<p>*Fill in all fields!<p>";
+
+                  else if ($_GET["Error"] == "Invaliduid")
+                    echo "<p>*Choose a proper username!</p>";
+
+                  else if ($_GET["Error"] == "PasswordsDontMatch")
+                    echo "<p>*Passwords doesn't match!</p>";
+
+                  else if ($_GET["Error"] == "UsernameTaken")
+                    echo "<p>*Username/Email already taken!</p>";
+
+                  else if ($_GET["Error"] == "None")
+                    echo "<p>Added User.</p>";
+                }
+              ?>
+            </div>
+          </div>
+        </div>
+        <input class="btn orange btn-block z-depth-5" type="submit" name="submituser" value="Create User">
+      </form>
+    </div> 
   </div>
-</div>
 
 <script>
   $(document).ready(function () 

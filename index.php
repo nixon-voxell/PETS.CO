@@ -10,12 +10,12 @@
   <a class="carousel-item carousel-magic" href="#"
   style="background-image: url('./static/images/solo_dog.jpg'); background-position-y: 50%;">
     <h2>DOGS</h2>
-    <p class="white-text fixed center">We offer the best quality dogs.</p>
+    <p class="white-text fixed center">Find your fur-ever family member. <br> We offer the best quality dogs at the best price. </p>
   </a>
   <a class="carousel-item carousel-magic" href="#"
   style="background-image: url('./static/images/dog_food.jpg'); background-position-y: 60%;">
     <h2>FOOD</h2>
-    <p class="white-text">Your dog will definitely love our delicious dog food!</p>
+    <p class="white-text">At Pets.co, we strive to provide the best for your dogs by sourcing only the best wholesome products. <br> We are dog lovers too! Your dog will definitely love our delicious dog food!</p>
   </a>
   <a class="carousel-item carousel-magic" href="#"
   style="background-image: url('./static/images/dog_toy.jpg'); background-position-y: 20%;">
