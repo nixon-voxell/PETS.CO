@@ -100,7 +100,7 @@ body {
     <div class="card rounded-card">
       <div class="card-content white-text">
         <span class="card-title orange-text bold">Selected Member Details</span>
-        <table class="responsive-table centered">
+        <table class="responsive-table">
           <form action="admin_manage_users.php" method="GET">
             <thead class="text-primary">
               <tr><th>MemberID</th><th>Username</th><th>Email</th><th>Privilege Level</th></tr>
@@ -126,7 +126,8 @@ body {
                         <td>$email</td>
                         <td>$privilegeLevel</td>
                         <td><a>
-                          <button class='btn red darken-4' name='delete' value='$deleteid'>Delete User</button>
+                          <button class='btn red darken-4' name='delete' value='$deleteid'
+                            onclick=\"return confirm('Are you sure you want delete \'$username\'?');\">Delete User</button>
                         </a></td>
                       </tr>"
                     );
@@ -138,7 +139,7 @@ body {
                 {
                   $id = $_GET["delete"];
                   $sql =  "DELETE FROM Members WHERE MemberID = $id";
-                  $conn->query($sql) or die ("Delete statement FAILED!");
+                  $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
                 }
               ?>
             </tbody>
