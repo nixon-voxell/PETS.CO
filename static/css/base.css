@@ -1,4 +1,5 @@
 @import url(../materialize/css/materialize.css);
+@import url(./font_styles.css);
 
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }

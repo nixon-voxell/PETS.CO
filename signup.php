@@ -13,7 +13,7 @@
             <i class="material-icons prefix white-text">account_circle</i>
             <input name="username" type="text" class="validate white-text" minlength="5" maxlength="12">
             <label for="username" class="white-text">Username</label>
-            <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
+            <span class="helper-text grey-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
           </div>
         </div>
         <div class="row">
@@ -21,14 +21,14 @@
             <i class="material-icons prefix white-text"> password</i>
             <input name="pwd" type="password" class="validate white-text" minlength="8" maxlength="20">
             <label for="password" class="white-text"> Password</label>
-            <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
+            <span class="helper-text grey-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
             <i class="material-icons prefix white-text"> password</i>
-            <input name="repeatPwd" type="password" class="validate white-text" maxlength="20">
-            <label for="repeatPwd" class="white-text"> Repeat Password</label>
+            <input name="repeat_pwd" type="password" class="validate white-text" maxlength="20">
+            <label for="repeat_pwd" class="white-text"> Repeat Password</label>
           </div>
         </div>
         <div class="row">

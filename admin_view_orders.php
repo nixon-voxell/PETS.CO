@@ -23,7 +23,7 @@ body {
 
 <!-- manage users start -->
 <div class="container">
-  <h3 class="grey-text">Customers Cart/Orders </h3>
+  <h3 class="page-title white-text">Customers Cart/Orders </h3>
   <div class="row" style="padding-bottom: 10px;">
     <div class="col s12 m10; z-depth-5">
       <div class="card grey darken-3">
@@ -31,7 +31,7 @@ body {
           <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
           <form class="col s12" action="admin_view_orders.php" method="POST">
           <div class="row">
-            <div class="input-field col s2" style = "color:azure;">
+            <div class="input-field col s2 white-text">
               <input name="searchuid" type="text" class="validate; white-text" maxlength="20">
               <label for="searchuid">Search Member by Name</label>
               <span class="helper-text" data-error="text only" data-success="correct"></span>

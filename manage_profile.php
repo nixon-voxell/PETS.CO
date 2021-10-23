@@ -19,7 +19,7 @@
               echo"<input class='white-text' name='username' type='text' value='$username'/>";
               ?>
               <label class='cyan-text' for="username">Enter New Username</label>
-              <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
+              <span class="helper-text grey-text" data-error="Min 5, Max 12 characters" data-success="correct">Min 5, Max 12 characters</span>
             </div>
           </div>
           <div class="row">
@@ -37,14 +37,14 @@
               <i class="material-icons prefix"> password</i>
               <input class='white-text' name="pwd" type="password" class="validate" minlength="6" maxlength="20">
               <label class='cyan-text' for="password">Enter New Password</label>
-              <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
+              <span class="helper-text grey-text" data-error="Min 8, Max 20 characters" data-success="correct">Min 8, Max 20 characters</span>
             </div>
           </div>
           <div class="row" id="enter_repeat_pwd">
             <div class="input-field col s6">
               <i class="material-icons prefix"> password</i>
-              <input class='white-text' name="repeatPwd" type="password" class="validate" maxlength="14">
-              <label class='cyan-text' for="repeatPwd"> Repeat New Password</label>
+              <input class='white-text' name="repeat_pwd" type="password" class="validate" maxlength="14">
+              <label class='cyan-text' for="repeat_pwd"> Repeat New Password</label>
             </div>
           </div>
           <br>

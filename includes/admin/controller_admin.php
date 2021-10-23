@@ -1,24 +1,7 @@
 <?php 
 
 function EmptyInputCreateUser($username, $pwd, $repeatPwd, $privilegeLevel, $email)
-{ return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($privilegeLevel)) or (empty($email)); }
-
-function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
-{
-  $sql = "INSERT INTO Members (Username, Password, Email, PrivilegeLevel) VALUES (?, ?, ?, ?);";
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*Something went wrong, please try again!</p>";
-    exit();
-  }
-
-  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-  mysqli_stmt_bind_param($stmt, "ssss", $username, $hashedPwd, $email, $privilegeLevel);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-}
+{ return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or ($privilegeLevel === "") or (empty($email)); }
 
 function SelectedIDOrders($conn, $uid)
 {
@@ -42,8 +25,8 @@ function SelectedIDOrders($conn, $uid)
 
 function SearchOrders($conn, $searchMember)
 {
-  $sql = "SELECT M.username, M.email, o.* FROM Members M
-    INNER JOIN Orders O using (memberid) WHERE Username LIKE '%$searchMember%'
+  $sql = "SELECT M.Username, M.Email, O.* FROM Members M
+    INNER JOIN Orders O using (MemberID) WHERE Username LIKE '%$searchMember%'
     ORDER BY Username";
   $result = mysqli_query($conn, $sql)or die ("SELECT statement FAILED!");
   while ($row = mysqli_fetch_assoc($result) ) 
@@ -82,41 +65,41 @@ function SearchUser($conn, $searchMember)
   }
 }
 
-function EmptyInputSelectUser($value)
-  { return empty($value); }
+function EmptyInputSelectUser($value) { return empty($value); }
 
-if (isset($_POST["submituser"]))
+if (isset($_POST["submit_user"]))
 {
-  $usrname = $_POST["username"];
+  $username = $_POST["username"];
   $pass = $_POST["pwd"];
-  $repeatPass = $_POST["repeatPwd"];
-  $privilegeLevel = $_POST["level"];
+  $repeatPass = $_POST["repeat_pwd"];
   $emailadd = $_POST["email"];
+  $privilegeLevel = $_POST["level"];
 
   require_once "includes/utils/dbhandler.php";
   require_once "includes/utils/common_util.php";
+  
+  if (EmptyInputCreateUser($username, $pass, $repeatPass, $emailadd, $privilegeLevel))
+  {
+    header("location: admin_manage_users.php?error=EmptyInput");
+    exit();
+  }
+  if (PwdNotMatch($pass, $repeatPass))
+  {
+    header("location: admin_manage_users.php?error=PasswordsDontMatch");
+    exit();
+  }
+  if (InvalidUid($username))
+  {
+    header("location: admin_manage_users.php?error=Invaliduid");
+    exit();
+  }
+  if (UIDExists($conn, $username, $emailadd ))
+  {
+    header("location: admin_manage_users.php?error=UsernameTaken");
+    exit();
+  }
 
-  if (EmptyInputCreateUser($usrname, $pass, $repeatPass, $emailadd, $privilegeLevel) !== false)
-  {
-    header("location: admin_manage_users.php?error=emptyinput");
-    exit();
-  }
-  if (PwdNotMatch($pass, $repeatPass) !== false)
-  {
-    header("location: admin_manage_users.php?error=passwordsdontmatch");
-    exit();
-  }
-  if (InvalidUid($usrname) !== false)
-  {
-    header("location: admin_manage_users.php?error=invaliduid");
-    exit();
-  }
-  if (UIDExists($conn, $usrname, $emailadd ) !== false)
-  {
-    header("location: admin_manage_users.php?error=usrnametaken");
-    exit();
-  }
-
-  AddUser($conn, $usrname, $pass, $emailadd, $privilegeLevel);
-  header ("location: admin_manage_users.php?error=none");
+  $privilegeLevel -= 1;
+  CreateUser($conn, $username, $pass, $email, $privilegeLevel);
+  header ("location: admin_manage_users.php?error=None");
 }

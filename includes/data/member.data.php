@@ -8,20 +8,20 @@ class Member
   private $username;
   /** @var string $email */
   private $email;
-  /** @var int $priviledgeLevel */
-  private $priviledgeLevel;
+  /** @var int $privilegeLevel */
+  private $privilegeLevel;
   
   /** @var Order $cart */
   private $cart;
   /** @var Order[] $orders */
   private $orders;
 
-  function __construct($memberID, $username, $email, $priviledgeLevel, $conn)
+  function __construct($memberID, $username, $email, $privilegeLevel, $conn)
   {
     $this->memberID = $memberID;
     $this->username = $username;
     $this->email = $email;
-    $this->priviledgeLevel = $priviledgeLevel;
+    $this->privilegeLevel = $privilegeLevel;
     $this->UpdateCart($conn);
     $this->UpdatePreviousOrder($conn);
   }
@@ -47,7 +47,7 @@ class Member
       $row = $result->fetch_array(MYSQLI_ASSOC);
       $this->memberID = $row["MemberID"];
       $this->email = $row["Email"];
-      $this->priviledgeLevel = $row["PriviledgeLevel"];
+      $this->privilegeLevel = $row["PriviledgeLevel"];
     }
 
     mysqli_stmt_close($stmt);
@@ -107,7 +107,7 @@ class Member
   public function GetMemberID() { return $this->memberID; }
   public function GetUsername() { return $this->username; }
   public function GetEmail() { return $this->email; }
-  public function GetPriviledgeLevel() { return $this->priviledgeLevel; }
+  public function GetPriviledgeLevel() { return $this->privilegeLevel; }
   public function GetCart() { return $this->cart; }
   public function GetOrders() { return $this->orders; }
 

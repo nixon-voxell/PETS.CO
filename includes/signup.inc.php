@@ -4,7 +4,7 @@ if (isset($_POST["submit"]))
 {
   $username = $_POST["username"];
   $pwd = $_POST["pwd"];
-  $repeatPwd = $_POST["repeatPwd"];
+  $repeatPwd = $_POST["repeat_pwd"];
   $email = $_POST["email"];
 
   require_once "./utils/dbhandler.php";

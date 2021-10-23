@@ -21,13 +21,14 @@ body {
 
 <?php include "side_nav.html"; ?>
 
-<!-- manage users start -->
 <div class="container">
   <h3 class="white-text page-title">Manage Users</h3>
+
+  <!-- users list start -->
   <div class="rounded-card-parent">
     <div class="card rounded-card">
       <div class="card-content white-text">
-        <span class="card-title orange-text" style="font-weight: bold">Users List</span>
+        <span class="card-title orange-text bold">Users List</span>
 
         <!-- search member input field start -->
         <form action="admin_manage_users.php" method="POST">
@@ -50,7 +51,7 @@ body {
         <!-- search member input field end -->
 
         <!-- serach member result list start -->
-        <form class="col s14" action="admin_manage_users.php" method="GET">
+        <form action="admin_manage_users.php" method="GET">
           <table class="responsive-table">
             <thead class="text-primary">
               <tr><th>Username</th><th></th></tr>
@@ -69,18 +70,18 @@ body {
                   SearchUser($conn, $searchMember);
                 }else
                 {
-                  $sql = "SELECT Username, PrivilegeLevel FROM members ORDER BY username";
-                  $result = mysqli_query($conn, $sql) or die ("SELECT statement FAILED!");
+                  $sql = "SELECT Username, PrivilegeLevel FROM Members ORDER BY Username";
+                  $result = $conn->query($sql) or die ("SELECT statement FAILED!");
                   while ($row = mysqli_fetch_assoc($result) ) 
                   { 
                     $username = $row["Username"]; 
                     echo(
                       "<tr>
-                      <td>$username</td>
-                      <td class='left-align'>
+                        <td>$username</td>
+                        <td class='left-align'>
                           <button name='inspect' value='$username' class='btn'><i class='material-icons'>search</i></button>
-                          </td> 
-                          </tr>"
+                        </td> 
+                      </tr>"
                     );
                   }
                 }
@@ -92,19 +93,21 @@ body {
       </div>
     </div>
   </div>
+  <!-- users list end -->
 
-  <div class="row">
-    <div class="col s12 m10; z-depth-5">
-      <div class="card #212121 grey darken-4">
-        <div class="card-content white-text">
-          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Selected Member Details</span>
-          <table class="responsive-table centered">
-          <form class="col s14" action="admin_manage_users.php" method="GET">
+  <!-- selected member details start -->
+  <div class="rounded-card-parent">
+    <div class="card rounded-card">
+      <div class="card-content white-text">
+        <span class="card-title orange-text bold">Selected Member Details</span>
+        <table class="responsive-table centered">
+          <form action="admin_manage_users.php" method="GET">
             <thead class="text-primary">
               <tr><th>MemberID</th><th>Username</th><th>Email</th><th>Privilege Level</th></tr>
             </thead>
             <tbody>
               <?php
+                // inspect user
                 if (isset($_GET["inspect"]))
                 {
                   $uid = $_GET["inspect"];
@@ -115,108 +118,124 @@ body {
                     $deleteid = $row["MemberID"];
                     $username = $row["Username"];
                     $email = $row["Email"];
-                    $priviledgeLevel = $row["PrivilegeLevel"];
-                    echo (
+                    $privilegeLevel = $row["PrivilegeLevel"];
+                    echo(
                       "<tr>
                         <td>$deleteid</td>
                         <td>$username</td>
                         <td>$email</td>
-                        <td>$priviledgeLevel</td>
+                        <td>$privilegeLevel</td>
                         <td><a>
                           <button class='btn red darken-4' name='delete' value='$deleteid'>Delete User</button>
                         </a></td>
                       </tr>"
                     );
-
-                    if (isset($_GET["delete"]))
-                    {
-                      $id = $_GET["delete"];
-                      $sql =  "DELETE from Members WHERE MemberID = '$id'";
-                      mysqli_query($conn, $sql) or die ("Delete statement FAILED!");
-                    }
                   }
+                }
+
+                // delete user
+                if (isset($_GET["delete"]))
+                {
+                  $id = $_GET["delete"];
+                  $sql =  "DELETE FROM Members WHERE MemberID = $id";
+                  $conn->query($sql) or die ("Delete statement FAILED!");
                 }
               ?>
             </tbody>
           </form>
-          </table>
-        </div>
+        </table>
       </div>
     </div>
   </div>
+  <!-- selected member details end -->
 
-  <div class="row; z-depth-5" style="padding: 10px">
-    <div class="card-panel orange lighten-2; white-text" style="font-size: 20px">Create Users</div>      
-    <form class="col s12" action="admin_manage_users.php" method="POST">
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">account_circle</i>
-        <input name="username" type="text" class="validate white-text" minlength="5" maxlength="12">
-        <span class="helper-text white-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
-        <label for="username" class="white-text"> Username</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix"> password</i>
-        <input name="pwd" type="password" class="validate white-text" minlength="6" maxlength="20">
-        <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
-        <label for="pwd" class="white-text"> Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix"> password</i>
-        <input name="repeatPwd" type="password" class="validate white-text" maxlength="14">
-        <label for="repeatPwd" class="white-text"> Repeat Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">assignment_ind</i>
-        <input name="level" type="text" class="validate white-text" minlength="1" maxlength="1">
-        <label for="text" class="white-text">Privilege Level (0-User, 1-Admin)</label>
-        <span class="helper-text" data-error="wrong" data-success="correct"></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s8" style = "color:azure">
-        <i class="material-icons prefix">email</i>
-        <input name="email" type="email" class="validate white-text" maxlength="25">
-        <label for="email" class="white-text">Email</label>
-        <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
-        <div class="errormsg">
-        <?php
-          if (isset($_GET["error"]))
-          {
-            if ($_GET["error"] == "EmptyInput")
-              echo "<p>*Fill in all fields!<p>";
-
-            else if ($_GET["error"] == "Invaliduid")
-              echo "<p>*Choose a proper username!</p>";
-
-            else if ($_GET["error"] == "PasswordsDontMatch")
-              echo "<p>*Passwords doesn't match!</p>";
-
-            else if ($_GET["error"] == "UsernameTaken")
-              echo "<p>*Username/Email already taken!</p>";
-
-            else if ($_GET["error"] == "None")
-              echo "<p>Added User.</p>";
-          }
-        ?>
+  <div class="rounded-card-parent">
+    <div class="card rounded-card">
+      <span class="card-title orange-text bold" style="padding-left: 20px;">Create User</span>
+      <form action="admin_manage_users.php" method="POST" style="padding-left: 10px;">
+        <div class="row">
+          <div class="input-field col s8 white-text">
+            <i class="material-icons prefix">account_circle</i>
+            <input name="username" type="text" class="validate white-text" minlength="5" maxlength="12">
+            <span class="helper-text grey-text" data-error="Min 5, Max 12 characters" data-success="Min 5, Max 12 characters">Min 5, Max 12 characters</span>
+            <label for="username" class="white-text"> Username</label>
+          </div>
         </div>
-      </div>
-    </div>
-    <input class="btn orange btn-block z-depth-5" type="submit" name="submituser" value="Create User">
-    </form>
+        <div class="row">
+          <div class="input-field col s8 white-text">
+            <i class="material-icons prefix"> password</i>
+            <input name="pwd" type="password" class="validate white-text" minlength="6" maxlength="20">
+            <span class="helper-text grey-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
+            <label for="pwd" class="white-text"> Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8 white-text">
+            <i class="material-icons prefix"> password</i>
+            <input name="repeat_pwd" type="password" class="validate white-text" maxlength="14">
+            <label for="repeat_pwd" class="white-text"> Repeat Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8 white-text">
+            <i class="material-icons prefix white-text">assignment_ind</i>
+            <select name="level">
+              <option value="" disabled selected>Choose your option</option>
+              <option value=1>Member</option>
+              <option value=2>Admin</option>
+            </select>
+            <label class="white-text">Privilege Level</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s8 white-text">
+            <i class="material-icons prefix">email</i>
+            <input name="email" type="email" class="validate white-text" maxlength="25">
+            <label for="email" class="white-text">Email</label>
+            <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
+            <div class="errormsg">
+              <?php
+                if (isset($_GET["error"]))
+                {
+                  if ($_GET["error"] == "EmptyInput")
+                    echo "<p>*Fill in all fields!<p>";
+
+                  else if ($_GET["error"] == "PasswordsDontMatch")
+                    echo "<p>*Passwords doesn't match!</p>";
+
+                  else if ($_GET["error"] == "Invaliduid")
+                    echo "<p>*Choose a proper username!</p>";
+
+                  else if ($_GET["error"] == "UsernameTaken")
+                    echo "<p>*Username/Email already taken!</p>";
+
+                  else if ($_GET["error"] == "None")
+                    echo "<p class='green-text'>Added User.</p>";
+                }
+              ?>
+            </div>
+          </div>
+        </div>
+        <input class="btn orange btn-block z-depth-5" type="submit" name="submit_user" value="Create User">
+      </form>
+    </div> 
   </div>
-</div>
 
 <script>
   $(document).ready(function () 
   {
     $(".sidenav").sidenav();
+  });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('select').formSelect();
   });
 </script>
 

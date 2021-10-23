@@ -1,43 +1,29 @@
 <?php
 
-function CreateUser($conn, $username, $pwd, $email)
+/**
+ * @param mysqli $conn
+ * @param string $username
+ * @param string $pwd
+ * @param string $email
+*/
+function CreateUser($conn, $username, $pwd, $email, $privilegeLevel=0)
 {
-  $stmt = mysqli_stmt_init($conn);
   // create member
   $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-  $sql = "INSERT INTO Members(Username, Password, Email) VALUES ('$username', '$hashedPwd', '$email');";
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*User creation error, please try again!</p>";
-    exit();
-  }
-
-  // mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
-  mysqli_stmt_execute($stmt);
+  $sql = "INSERT INTO Members(Username, Password, Email, PrivilegeLevel)
+    VALUES ('$username', '$hashedPwd', '$email', $privilegeLevel);";
+  $conn->query($sql) or die("<p>*User creation error, please try again!</p>");
 
   // get member id
   $sql = "SELECT MemberID FROM Members where Username = '$username';";
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*MemberID error, please try again!</p>";
-    exit();
-  }
+  $result = $conn->query($sql) or die("<p>*MemberID error, please try again!</p>");
 
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
-  $row = mysqli_fetch_assoc($result);
+  $row = $result->fetch_assoc();
   $memberID = $row["MemberID"];
 
   // create cart
   $sql = "INSERT INTO Orders(MemberID) VALUES ($memberID);";
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*Cart creation error, please try again!</p>";
-    exit();
-  }
-
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
+  $result = $conn->query($sql) or die("<p>*Cart creation error, please try again!</p>");
 }
 
 function UIDExists($conn, $loginName)

@@ -22,7 +22,7 @@
   // $email = NULL;
   // $cart = NULL;
   // $orders = NULL;
-  $priviledgeLevel = 0;
+  $privilegeLevel = 0;
   if (isset($_SESSION["Member"]))
   {
     /** @var Member $member */
@@ -31,7 +31,7 @@
     $memberID = $member->GetMemberID();
     $username = $member->GetUsername();
     $email = $member->GetEmail();
-    $priviledgeLevel = $member->GetPriviledgeLevel();
+    $privilegeLevel = $member->GetPriviledgeLevel();
     $cart = $member->GetCart();
     $orders = $member->GetOrders();
 
@@ -52,7 +52,7 @@
         <?php
           if (isset($_SESSION["Member"]))
           {
-            if ($priviledgeLevel == 1)
+            if ($privilegeLevel == 1)
               echo "<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>";
             echo "<li><a class='cart' href='cart.php'>Cart<span class='new badge unglow' id='cart_badge'>0</span></a></li>";
             echo "<li><a class='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";

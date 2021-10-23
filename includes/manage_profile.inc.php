@@ -6,7 +6,7 @@ if (isset($_POST["update"]))
 {
   $username = $_POST["username"];
   $pwd = $_POST["pwd"];
-  $repeatPwd = $_POST["repeatPwd"];
+  $repeatPwd = $_POST["repeat_pwd"];
   $email = $_POST["email"];
   $memberID = $_POST["id"];
 
