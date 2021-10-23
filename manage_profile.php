@@ -6,8 +6,8 @@
 <div class="container">
   <h3 class="white-text page-title">Manage Personal Profile</h3>
 
-  <div class="rounded-card-parent">
-    <div class="card rounded-card">
+  <div id="id_card_parent" class="rounded-card-parent">
+    <div id="id_card" class="card rounded-card" style="height: 350px;">
       <button id="edit" class="btn orange" onclick="edit_profile(this)">Edit</button>
       <div class="card-content white-text">
         <form class="col s12" action="includes/manage_profile.inc.php" method="POST">
@@ -48,7 +48,7 @@
             </div>
           </div>
           <br>
-          <button type="submit" name="update" class="btn">Update Account</button>
+          <button id="update_account" type="submit" name="update" class="btn">Update Account</button>
         </form>
 
         <div class="errormsg">
