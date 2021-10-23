@@ -25,25 +25,16 @@ body {
 <div class="container">
   <h3 class="page-title white-text">Customers Cart/Orders </h3>
   <div class="row" style="padding-bottom: 10px;">
-    <div class="col s12 m10; z-depth-5">
-      <div class="card grey darken-3">
+    <div class="rounded-card-parent">
+      <div class="card rounded-card">
         <div class="card-content white-text">
-          <span class="card-title" style="color: orange; font-weight: bold; text-align: center">Customers List</span>
+          <span class="card-title orange-text bold">Customers List</span>
           <form class="col s12" action="admin_view_orders.php" method="POST">
           <div class="row">
             <div class="input-field col s2 white-text">
               <input name="searchuid" type="text" class="validate; white-text" maxlength="20">
               <label for="searchuid">Search Member by Name</label>
               <span class="helper-text" data-error="text only" data-success="correct"></span>
-              <div class="errormsg">
-              <?php
-                if (isset($_GET["error"]))
-                {
-                  if ($_GET["error"] == "emptysearch")
-                    echo "<p>Empty Input!</p>";
-                }
-              ?>
-              </div>
             </div>
           </div>
           </form>
@@ -83,10 +74,10 @@ body {
     </div>
   </div>
   <div class="row">
-    <div class="col s12 m10; z-depth-5">
-      <div class="card grey darken-3">
+    <div class="rounded-card-parent">
+      <div class="card rounded-card">
         <div class="card-content">
-          <span class="card-title center-align cyan-text" style="font-weight: bold">Cart/Orders Details</span>
+          <span class="card-title cyan-text bold">MemberID <?php if (isset($_GET["vieworder"])) echo $_GET["vieworder"];?> Cart/Orders Details</span>
           <table class="centered responsive-table">
           <tbody>
           <?php

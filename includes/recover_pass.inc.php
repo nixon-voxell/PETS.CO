@@ -12,7 +12,7 @@ if (isset($_POST["submit_email"]))
 
   if (empty($submit_email))
   {
-    header("location: recover_pass.php?reset=emptyinput");
+    header("location: recover_pass.php?reset=EmptyInput");
     exit();
 
   } else
@@ -46,11 +46,11 @@ if (isset($_POST["submit_email"]))
           $info = "Please check your email for otp code - $submit_email";
           $_SESSION["Info"] = $info;
           $_SESSION["Email"] = $submit_email;
-          header("location: recover_pass.php?reset=success");
+          header("location: recover_pass.php?reset=Success");
           exit();
-        } else header("location: recover_pass.php?reset=otperror");
-      } else header("location: recover_pass.php?reset=error");
-    } else header("location: recover_pass.php?reset=emailinvalid");
+        } else header("location: recover_pass.php?reset=OtpError");
+      } else header("location: recover_pass.php?reset=Error");
+    } else header("location: recover_pass.php?reset=EmailInvalid");
   }
 }
 
@@ -91,7 +91,7 @@ if (isset($_POST["change_pass"]))
 
   if (empty($pwd) || empty($repeatPwd))
   {
-    header("location: ../new_pass.php?error=emptyinput");
+    header("location: ../new_pass.php?error=EmptyInput");
     exit();
   } else
   {

@@ -26,15 +26,15 @@
       <?php
         if (isset($_GET["reset"]))
         {
-          if ($_GET["reset"] == "success")
+          if ($_GET["reset"] == "Success")
             echo "<p>*Check your e-mail spam folder!<p></br>";
           else if ($_GET["reset"] == "EmptyInput")
             echo "<p>*Fill in all fields!</p>";
-          else if ($_GET["reset"] == "otperror")
+          else if ($_GET["reset"] == "OtpError")
             echo "<p>*Failed while sending code!</p>";
-          else if ($_GET["reset"] == "error")
+          else if ($_GET["reset"] == "Error")
             echo "<p>*Something went wrong! Please try again later.</p>";
-          else if ($_GET["reset"] == "emailinvalid")
+          else if ($_GET["reset"] == "EmailInvalid")
             echo "<p>*This email address does not exist!</p>";
         }
       ?>
