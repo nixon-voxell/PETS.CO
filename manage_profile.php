@@ -53,27 +53,27 @@
 
         <div class="errormsg">
         <?php
-          if (isset($_GET["Error"]))
+          if (isset($_GET["error"]))
           {
-            if ($_GET["Error"] == "EmptyInput")
+            if ($_GET["error"] == "EmptyInput")
               echo "<p>*Fill in all fields!<p>";
 
-            else if ($_GET["Error"] == "Invaliduid")
+            else if ($_GET["error"] == "Invaliduid")
               echo "<p>*Choose a proper username!</p>";
 
-            else if ($_GET["Error"] == "invalidemail")
+            else if ($_GET["error"] == "invalidemail")
               echo "<p>*Choose a proper email!</p>";
 
-            else if ($_GET["Error"] == "PasswordsDontMatch")
+            else if ($_GET["error"] == "PasswordsDontMatch")
               echo "<p>*Passwords doesn't match!</p>";
 
-            else if ($_GET["Error"] == "stmtfailed")
+            else if ($_GET["error"] == "stmtfailed")
               echo "<p>*Something went wrong, please try again!</p>";
 
-            else if ($_GET["Error"] == "UsernameTaken")
+            else if ($_GET["error"] == "UsernameTaken")
               echo "<p>*Username already taken!</p>";
 
-            else if ($_GET["Error"] == "None")
+            else if ($_GET["error"] == "None")
             {
               echo "<p>Successfully changed your profile.</p>";
               exit();

@@ -32,7 +32,7 @@
             echo "<p>*Fill in all fields!</p>";
           else if ($_GET["reset"] == "otperror")
             echo "<p>*Failed while sending code!</p>";
-          else if ($_GET["reset"] == "Error")
+          else if ($_GET["reset"] == "error")
             echo "<p>*Something went wrong! Please try again later.</p>";
           else if ($_GET["reset"] == "emailinvalid")
             echo "<p>*This email address does not exist!</p>";

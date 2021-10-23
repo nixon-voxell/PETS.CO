@@ -26,6 +26,12 @@ class Member
     $this->UpdatePreviousOrder($conn);
   }
 
+  /** @return Member */
+  public static function CreateMember($memberID)
+  {
+    // 
+  }
+
   // copy databse data to object data
   public function InitData($conn)
   {

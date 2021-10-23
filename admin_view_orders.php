@@ -37,9 +37,9 @@ body {
               <span class="helper-text" data-error="text only" data-success="correct"></span>
               <div class="errormsg">
               <?php
-                if (isset($_GET["Error"]))
+                if (isset($_GET["error"]))
                 {
-                  if ($_GET["Error"] == "emptysearch")
+                  if ($_GET["error"] == "emptysearch")
                     echo "<p>Empty Input!</p>";
                 }
               ?>
@@ -65,7 +65,7 @@ body {
                 }
                 else
                 {
-                  $result = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by Username") or die ("Select statement FAILED!");
+                  $result = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by Username") or die ("SELECT statement FAILED!");
                   while ($row = mysqli_fetch_assoc($result) ) 
                   { 
                     $id = $row["MemberID"]; 

@@ -66,9 +66,9 @@
 
       <div class="errormsg">
         <?php
-          if (isset($_GET["Error"]))
+          if (isset($_GET["error"]))
           {
-            if ($_GET["Error"] == "EmptyInput")
+            if ($_GET["error"] == "EmptyInput")
               echo "<p>*Fill in all fields!<p>";
           }
         ?>

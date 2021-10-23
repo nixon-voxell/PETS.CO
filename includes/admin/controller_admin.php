@@ -23,7 +23,7 @@ function AddUser($conn, $username, $pwd, $email, $privilegeLevel)
 function SelectedIDOrders($conn, $uid)
 {
   $sql = mysqli_query($conn, "SELECT memberid, cartflag FROM Orders WHERE memberid = '$uid' AND cartflag = 1")
-  or die ("Select statement FAILED!");
+  or die ("SELECT statement FAILED!");
   
   while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
   if ($usrid == $uid && $cartFlag == "1")
@@ -45,7 +45,7 @@ function SearchOrders($conn, $searchMember)
   $sql = "SELECT M.username, M.email, o.* FROM Members M
     INNER JOIN Orders O using (memberid) WHERE Username LIKE '%$searchMember%'
     ORDER BY Username";
-  $result = mysqli_query($conn, $sql)or die ("Select statement FAILED!");
+  $result = mysqli_query($conn, $sql)or die ("SELECT statement FAILED!");
   while ($row = mysqli_fetch_assoc($result) ) 
   { 
     $memberID = $row["MemberID"]; 
@@ -69,7 +69,7 @@ function SearchOrders($conn, $searchMember)
 
 function SearchUser($conn, $searchMember)
 {
-  $result = mysqli_query($conn, "Select Username, PrivilegeLevel FROM Members WHERE Username LIKE '%$searchMember%' ORDER BY Username") or die ("User does not exists!");
+  $result = mysqli_query($conn, "SELECT Username, PrivilegeLevel FROM Members WHERE Username LIKE '%$searchMember%' ORDER BY Username") or die ("User does not exists!");
   while ($row = mysqli_fetch_assoc($result) ) 
   { 
   $username = $row["Username"]; 

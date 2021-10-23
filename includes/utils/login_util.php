@@ -10,7 +10,7 @@ function LoginUser($conn, $loginName, $pwd)
 
   if ($memberDetail === false)
   {
-    header("location: ../login.php?error=wronglogin");
+    header("location: ../login.php?error=WrongLogin");
     exit();
   }
 
@@ -19,7 +19,7 @@ function LoginUser($conn, $loginName, $pwd)
 
   if ($checkPwd === false)
   {
-    header("location: ../login.php?error=wronglogin");
+    header("location: ../login.php?error=WrongLogin");
     exit();
   } 
   if ($checkPwd === true)
@@ -34,7 +34,7 @@ function LoginUser($conn, $loginName, $pwd)
       $conn
     );
 
-    $res = mysqli_query($conn, "Select count(*) as countUser, MemberID from Members WHERE Username = '$username' and Password = '$pwd';");
+    $res = mysqli_query($conn, "SELECT count(*) as countUser, MemberID from Members WHERE Username = '$username' and Password = '$pwd';");
     $result = mysqli_fetch_array($res);
     $memberid = $result["MemberID"];
     
@@ -42,16 +42,15 @@ function LoginUser($conn, $loginName, $pwd)
     {
       $memberid = $result["MemberID"];
 
-      if ( isset($_POST["rememberme"]) ) 
+      if ( isset($_POST["remember_me"]) ) 
       {
         // Set cookie variables
         $value = encryptCookie($memberid);
 
         // 8 days cookies
-        setcookie ( "rememberme", $value, time() + (30 * 24 * 1000) ); 
+        setcookie ( "remember_me", $value, time() + (30 * 24 * 1000) ); 
       }
     }
-    $_SESSION["MemberID"] = $memberid;
     $_SESSION["Member"] = $member;
     header("location: ../index.php");
     exit();

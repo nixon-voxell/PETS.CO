@@ -24,7 +24,7 @@
         </div>
         <div class="row">
           <label style="margin-left: 15px">
-            <input type="checkbox" name="rememberme" class="filled-in" checked="checked"/>
+            <input type="checkbox" name="remember_me" class="filled-in" checked="checked"/>
             <span>Remember Me</span>
           </label>
           <button type="submit" name="submit" class="btn" style="margin-left: 50px">Login</button>
@@ -35,13 +35,13 @@
           <a href="signup.php">Sign Up!</a>
           <div class="errormsg">
             <?php
-              if (isset($_GET["Error"]))
+              if (isset($_GET["error"]))
               {
-                if ($_GET["Error"] == "EmptyInput")
+                if ($_GET["error"] == "EmptyInput")
                   echo "<p>*Fill in all fields!</p>";
-                else if ($_GET["Error"] == "wronglogin")
+                else if ($_GET["error"] == "WrongLogin")
                   echo "<p>*Incorrect credentials!</p>";
-                else if ($_GET["Error"] == "Statementfailed")
+                else if ($_GET["error"] == "Statementfailed")
                   echo "<p>*SQL ERROR! Try Again Later.</p>";
               }
             ?>

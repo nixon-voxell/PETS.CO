@@ -37,9 +37,9 @@ body {
               <label for="SearchMember">Search member by name</label>
               <div class="errormsg">
                 <?php
-                  if (isset($_GET["Error"]))
+                  if (isset($_GET["error"]))
                   {
-                    if ($_GET["Error"] == "emptysearch")
+                    if ($_GET["error"] == "emptysearch")
                     echo "<p>Empty Input!</p>";
                   }
                   ?>
@@ -64,13 +64,13 @@ body {
                   require_once "includes/utils/dbhandler.php";
                   
                   if (EmptyInputSelectUser($searchMember) !== false)
-                  echo "<p class='yellow-text' style='font-style: italic;'>Please enter a value<p>";
+                  echo "<p class='yellow-text' style='font-style: italic;'>Please enter a value</p>";
                   
                   SearchUser($conn, $searchMember);
                 }else
                 {
                   $sql = "SELECT Username, PrivilegeLevel FROM members ORDER BY username";
-                  $result = mysqli_query($conn,$sql) or die ("Select statement FAILED!");
+                  $result = mysqli_query($conn, $sql) or die ("SELECT statement FAILED!");
                   while ($row = mysqli_fetch_assoc($result) ) 
                   { 
                     $username = $row["Username"]; 
@@ -108,12 +108,25 @@ body {
                 if (isset($_GET["inspect"]))
                 {
                   $uid = $_GET["inspect"];
-                  $result = mysqli_query($conn, "Select MemberID, Username, Email, PrivilegeLevel from Members WHERE Username = '$uid' order by Username")or die ("Select statement FAILED!");
+                  $sql = "SELECT MemberID, Username, Email, PrivilegeLevel FROM Members WHERE Username = '$uid' ORDER BY Username";
+                  $result = mysqli_query($conn, $sql) or die ("Select statement FAILED!");
                   while ($row = mysqli_fetch_array($result))
                   {
-                    $deleteid = $row["MemberID"];                                                                                                                                                                                                                  
-                    echo "<tr><td>" . $row['MemberID'] . "</td><td>" . $row['Username'] . "</td><td>" . $row['Email'] . "</td><td>" . $row['PrivilegeLevel'] .
-                    "</td><td><a><button class='btn red darken-4' name='delete' value='$deleteid'>Delete User</button></a></td></tr>";
+                    $deleteid = $row["MemberID"];
+                    $username = $row["Username"];
+                    $email = $row["Email"];
+                    $priviledgeLevel = $row["PrivilegeLevel"];
+                    echo (
+                      "<tr>
+                        <td>$deleteid</td>
+                        <td>$username</td>
+                        <td>$email</td>
+                        <td>$priviledgeLevel</td>
+                        <td><a>
+                          <button class='btn red darken-4' name='delete' value='$deleteid'>Delete User</button>
+                        </a></td>
+                      </tr>"
+                    );
 
                     if (isset($_GET["delete"]))
                     {
@@ -174,21 +187,21 @@ body {
         <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
         <div class="errormsg">
         <?php
-          if (isset($_GET["Error"]))
+          if (isset($_GET["error"]))
           {
-            if ($_GET["Error"] == "EmptyInput")
+            if ($_GET["error"] == "EmptyInput")
               echo "<p>*Fill in all fields!<p>";
 
-            else if ($_GET["Error"] == "Invaliduid")
+            else if ($_GET["error"] == "Invaliduid")
               echo "<p>*Choose a proper username!</p>";
 
-            else if ($_GET["Error"] == "PasswordsDontMatch")
+            else if ($_GET["error"] == "PasswordsDontMatch")
               echo "<p>*Passwords doesn't match!</p>";
 
-            else if ($_GET["Error"] == "UsernameTaken")
+            else if ($_GET["error"] == "UsernameTaken")
               echo "<p>*Username/Email already taken!</p>";
 
-            else if ($_GET["Error"] == "None")
+            else if ($_GET["error"] == "None")
               echo "<p>Added User.</p>";
           }
         ?>
