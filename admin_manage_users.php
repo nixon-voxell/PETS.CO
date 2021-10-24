@@ -34,8 +34,8 @@ body {
         <form action="admin_manage_users.php" method="POST">
           <div class="row" style="margin: 0px;">
             <div class="input-field col s3" style = "color:azure">
-              <input name="SearchMember" type="text" class="validate white-text" maxlength="20">
-              <label for="SearchMember">Search member by name</label>
+              <input name="search_member" type="text" class="validate white-text" maxlength="20">
+              <label for="search_member">Search member by name</label>
               <div class="errormsg">
                 <?php
                   if (isset($_GET["error"]))
@@ -58,19 +58,38 @@ body {
             </thead>
             <tbody>
               <?php
-                if (isset($_POST["SearchMember"]))
+                if (isset($_POST["search_member"]))
                 {
-                  $searchMember = $_POST["SearchMember"];
-                  
+                  $searchMember = $_POST["search_member"];
                   require_once "includes/utils/dbhandler.php";
-                  
-                  if (EmptyInputSelectUser($searchMember) !== false)
-                  echo "<p class='yellow-text' style='font-style: italic;'>Please enter a value</p>";
-                  
-                  SearchUser($conn, $searchMember);
-                }else
+
+                  if (EmptyInputSelectUser($searchMember))
+                    echo "<p class='prompt-warning'>Please enter a value</p>";
+                  else
+                  {
+                    $sql = "SELECT Username, PrivilegeLevel FROM Members WHERE Username LIKE '%$searchMember%' ORDER BY Username";
+                    $result = $conn->query($sql) or die ("User does not exists!");
+                    while ($row = mysqli_fetch_assoc($result) ) 
+                    { 
+                      $username = $row["Username"]; 
+                      echo(
+                        "<tr>
+                          <td>$username</td>
+                          <td>
+                            <button name='inspect' value='$username' class='btn'>
+                              <i class='material-icons'>search</i>
+                            </button>
+                          </td>
+                        </tr>"
+                      );
+                    }
+                  }
+                }
+
+                if (!isset($searchMember) || EmptyInputSelectUser($searchMember))
                 {
-                  $sql = "SELECT Username, PrivilegeLevel FROM Members ORDER BY Username";
+                  // limited search to prevent page overflow
+                  $sql = "SELECT Username, PrivilegeLevel FROM Members ORDER BY Username LIMIT 20";
                   $result = $conn->query($sql) or die ("SELECT statement FAILED!");
                   while ($row = mysqli_fetch_assoc($result) ) 
                   { 
@@ -79,7 +98,9 @@ body {
                       "<tr>
                         <td>$username</td>
                         <td class='left-align'>
-                          <button name='inspect' value='$username' class='btn'><i class='material-icons'>search</i></button>
+                          <button name='inspect' value='$username' class='btn'>
+                            <i class='material-icons'>search</i>
+                          </button>
                         </td> 
                       </tr>"
                     );

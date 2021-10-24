@@ -1,9 +1,7 @@
-.bold
-{
-  font-weight: bold;
-}
+.bold { font-weight: bold; }
 
-.italic
-{
-  font-style: italic;
-}
+.italic { font-style: italic; }
+
+.prompt-warning { color: yellow; font-style: italic; }
+
+.errormsg { color: red; font-weight: bold; }

@@ -23,48 +23,6 @@ function SelectedIDOrders($conn, $uid)
   else echo "ERROR!";
 }
 
-function SearchOrders($conn, $searchMember)
-{
-  $sql = "SELECT M.Username, M.Email, O.* FROM Members M
-    INNER JOIN Orders O using (MemberID) WHERE Username LIKE '%$searchMember%'
-    ORDER BY Username";
-  $result = mysqli_query($conn, $sql)or die ("SELECT statement FAILED!");
-  while ($row = mysqli_fetch_assoc($result) ) 
-  { 
-    $memberID = $row["MemberID"]; 
-    $username = $row["Username"]; 
-    $email = $row["Email"]; 
-    $orderID = $row["OrderID"]; 
-    $cartFlag = $row["CartFlag"]; 
-
-    echo(
-      "<tr>
-        <td>$username</td>
-        <td>$email</td>
-        <td>$orderID</td>
-        <td>$memberID</td>
-        <td>$cartFlag</td>
-        <td><button name='inspect' value='$memberID' class='btn'><i class='material-icons'>search</i></button></td>
-      </tr>"
-    );
-  }
-}
-
-function SearchUser($conn, $searchMember)
-{
-  $result = mysqli_query($conn, "SELECT Username, PrivilegeLevel FROM Members WHERE Username LIKE '%$searchMember%' ORDER BY Username") or die ("User does not exists!");
-  while ($row = mysqli_fetch_assoc($result) ) 
-  { 
-  $username = $row["Username"]; 
-  echo(
-    "<tr>
-      <td>$username</td>
-      <td><button name='inspect' value='$username' class='btn'><i class='material-icons'>search</i></button></td>
-    </tr>"
-  );
-  }
-}
-
 function EmptyInputSelectUser($value) { return empty($value); }
 
 if (isset($_POST["submit_user"]))

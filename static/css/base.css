@@ -4,11 +4,7 @@
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
 
-html
-{
-  height: 100%;
-  background-repeat: no-repeat;
-}
+html { height: 100%; background-repeat: no-repeat; }
 
 body
 {
@@ -34,11 +30,9 @@ body::before
   100% { background: #00ccff6e url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
 }
 
-nav
-{
-  height: 100px;
-  line-height: 100px;
-}
+nav { height: 100px; line-height: 100px; }
+
+thead { border-bottom: 1.5px solid cyan; }
 
 .page-title
 {
@@ -63,10 +57,7 @@ nav
   transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
 }
 
-.rounded-card-parent:hover
-{
-  border-radius: 20px;
-}
+.rounded-card-parent:hover { border-radius: 20px; }
 
 .rounded-card
 {
@@ -77,21 +68,9 @@ nav
   backdrop-filter: blur(10px);
 }
 
-.rounded-card:hover
-{
-  clip-path: inset(0px 0px round 20px 20px);
-}
+.rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
 
-.errormsg
-{
-  color: red;
-  font-weight: bold;
-}
-
-.content
-{
-  min-height: 100%;
-}
+.content { min-height: 100%; }
 
 .wide-container
 {
@@ -100,10 +79,7 @@ nav
   padding-right: 100px;
 }
 
-.unused-image
-{
-  opacity: 70%;
-}
+.unused-image { opacity: 70%; }
 
 .glow-image
 {
@@ -119,11 +95,7 @@ nav
   100% { -webkit-filter: drop-shadow(0px 0px 8px rgb(255, 154, 38)); opacity: 100%; }
 }
 
-.glow-text
-{
-  text-shadow: 0px 0px 5px cyan;
-  font-weight: bold;
-}
+.glow-text { text-shadow: 0px 0px 5px cyan; font-weight: bold; }
 
 .glow-title
 {
@@ -134,10 +106,7 @@ nav
   box-shadow: 2px 2px 20px cyan;
 }
 
-.unglow
-{
-  -webkit-text-fill-color: white;
-}
+.unglow { -webkit-text-fill-color: white; }
 
 .glow-gradient
 {
@@ -160,11 +129,8 @@ nav
   box-shadow: 0px 2px 5px orange;
 }
 
-@-webkit-keyframes hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: hue-rotate(360deg);
-  }
+@-webkit-keyframes hue
+{
+  from { -webkit-filter: hue-rotate(0deg); }
+  to { -webkit-filter: hue-rotate(360deg); }
 }
