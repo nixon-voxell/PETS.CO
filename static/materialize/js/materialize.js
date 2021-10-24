@@ -11815,7 +11815,7 @@ $jscomp.polyfill = function (e, r, p, m) {
 
         // Add input dropdown
         this.input = document.createElement('input');
-        $(this.input).addClass('select-dropdown dropdown-trigger');
+        $(this.input).addClass('select-dropdown dropdown-trigger white-text');
         this.input.setAttribute('type', 'text');
         this.input.setAttribute('readonly', 'true');
         this.input.setAttribute('data-target', this.dropdownOptions.id);
@@ -11827,7 +11827,10 @@ $jscomp.polyfill = function (e, r, p, m) {
         this._setValueToInput();
 
         // Add caret
-        var dropdownIcon = $('<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        var dropdownIcon = $(
+          '<svg class="caret" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'
+          );
+        console.log(dropdownIcon);
         this.$el.before(dropdownIcon[0]);
 
         // Initialize dropdown

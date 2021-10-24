@@ -8,12 +8,12 @@ if (isset($_POST["submit"]))
 
   require_once "utils/login_util.php";
 
-  if(EmptyInputLogin($username, $pwd) !== false)
+  if (EmptyInputLogin($username, $pwd) !== false)
   {
     header("location: ../login.php?error=emptyinput");
     exit();
   }
-
+  
   LoginUser($conn, $username, $pwd);
 } else
 {

@@ -1,33 +1,43 @@
 <?php
-require_once "./utils/common_util.php";
+
 if (isset($_POST["submit"]))
 {
   $username = $_POST["username"];
   $pwd = $_POST["pwd"];
-  $repeatPwd = $_POST["repeatPwd"];
+  $repeatPwd = $_POST["repeat_pwd"];
   $email = $_POST["email"];
 
-  if (EmptyInputSignup($username, $pwd, $repeatPwd, $email) !== false)  
+  require_once "./utils/dbhandler.php";
+  require_once "./utils/common_util.php";
+
+  if (EmptyInput($username, $pwd, $repeatPwd, $email) !== false)
   {
-    header("location: ../signup.php?error=emptyinput");
+    header("location: ../signup.php?error=EmptyInput");
     exit();
   }
-  else if (InvalidUid($username) !== false)
+  
+  if (InvalidUid($username) !== false)
   {
-    header("location: ../signup.php?error=invaliduid");
+    header("location: ../signup.php?error=Invaliduid");
+    exit();
   }
-  else if (PwdMatch($pwd, $repeatPwd) !== false)
+
+  if (PwdNotMatch($pwd, $repeatPwd))
   {
-    header("location: ../signup.php?error=passwordsdontmatch"); 
+    header("location: ../signup.php?error=PasswordsDontMatch");
+    exit();
   }
-  else if (UIDExists($conn, $username, $email) !== false) 
+
+  if (UIDExists($conn, $username, $email))
   {
-    header("location: ../signup.php?error=usrnametaken");
+    header("location: ../signup.php?error=UsernameTaken");
+    exit();
   }
+
   CreateUser($conn, $username, $pwd, $email);
-  echo "<p>You have signed up! Redirecting to login page...</p>";
-  header( "refresh:1.5;url=../login.php");
+  header("location: ../signup.php?error=None");
 }
+
 else
 {
   header("location: ../signup.php");

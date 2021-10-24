@@ -2,21 +2,31 @@
 
 class Item
 {
+  /** @var int $itemID */
   private $itemID;
-  public $name;
-  public $brand;
-  public $description;
-  public $category;
-  public $sellingPrice;
-  public $quantityInStock;
+  /** @var string $name */
+  private $name;
+  /** @var string $brand */
+  private $brand;
+  /** @var string $description */
+  private $description;
+  /** @var int $category */
+  private $category;
+  /** @var float $sellingPrice */
+  private $sellingPrice;
+  /** @var int $quantityInStock */
+  private $quantityInStock;
+  
+  /** @var Review[] $reviews */
+  private $reviews;
 
-  public $reviews;
+  public const CATEGORY = ["Dog", "Food", "Accessory"];
 
   function __construct($itemID, $conn)
   {
     $this->itemID = $itemID;
     $this->InitData($conn);
-    $this->GetReviews($conn);
+    $this->UpdateReviews($conn);
   }
 
   // copy databse data to object data
@@ -44,7 +54,7 @@ class Item
   }
   
   // copy reviews and ratings from database
-  public function GetReviews($conn)
+  public function UpdateReviews($conn)
   {
     $this->reviews = array();
     $sql = "SELECT Feedback, Rating FROM OrderItems WHERE ItemID = ?";
@@ -101,4 +111,14 @@ class Item
     mysqli_stmt_close($stmt);
     return $success;
   }
+
+  //// get data
+  public function GetItemID() { return $this->itemID; }
+  public function GetName() { return $this->name; }
+  public function GetBrand() { return $this->brand; }
+  public function GetDescription() { return $this->description; }
+  public function GetCategory() { return $this->category; }
+  public function GetSellingPrice() { return $this->sellingPrice; }
+  public function GetQuantityInStock() { return $this->quantityInStock; }
+  public function GetReviews() { return $this->reviews; }
 }

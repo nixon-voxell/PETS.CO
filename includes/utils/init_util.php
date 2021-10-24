@@ -3,8 +3,10 @@ function ExecuteSQL($stmt, $sql)
 {
   // TODO: log to a file
   if (!mysqli_stmt_prepare($stmt, $sql))
-    echo("ERROR");
+  {
+    write_log("Error creating table");
     exit();
+  }
 
   mysqli_stmt_execute($stmt);
 }
@@ -20,7 +22,8 @@ function CreateNeededTables($conn)
       Username VARCHAR(64) NOT NULL,
       Password VARCHAR(512) NOT NULL,
       Email VARCHAR(64) NOT NULL,
-      PrivilegeLevel INT NOT NULL
+      PrivilegeLevel INT NOT NULL DEFAULT 0,
+      OTP INT NOT NULL
     )"
   );
 
@@ -52,10 +55,8 @@ function CreateNeededTables($conn)
       Brand VARCHAR(64) NOT NULL,
       Description VARCHAR(512) NOT NULL,
       Category INT NOT NULL,
-      SellingPrice VARCHAR(64) NOT NULL,
-      QuantityInStock INT NOT NULL,
-      OrderID INT NOT NULL,
-      FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+      SellingPrice FLOAT NOT NULL,
+      QuantityInStock INT NOT NULL
     )"
   );
 
@@ -67,7 +68,7 @@ function CreateNeededTables($conn)
       ItemID INT NOT NULL,
       FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
       FOREIGN KEY (ItemID) REFERENCES Items(ItemID),
-      Price VARCHAR(64) NOT NULL,
+      Price FLOAT NOT NULL,
       Quantity INT NOT NULL,
       AddedDatetime DATETIME NOT NULL,
       Feedback VARCHAR(512),

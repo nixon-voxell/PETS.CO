@@ -1,5 +1,31 @@
 <?php
 
+/**
+ * @param mysqli $conn
+ * @param string $username
+ * @param string $pwd
+ * @param string $email
+*/
+function CreateUser($conn, $username, $pwd, $email, $privilegeLevel=0)
+{
+  // create member
+  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+  $sql = "INSERT INTO Members(Username, Password, Email, PrivilegeLevel)
+    VALUES ('$username', '$hashedPwd', '$email', $privilegeLevel);";
+  $conn->query($sql) or die("<p>*User creation error, please try again!</p>");
+
+  // get member id
+  $sql = "SELECT MemberID FROM Members where Username = '$username';";
+  $result = $conn->query($sql) or die("<p>*MemberID error, please try again!</p>");
+
+  $row = $result->fetch_assoc();
+  $memberID = $row["MemberID"];
+
+  // create cart
+  $sql = "INSERT INTO Orders(MemberID) VALUES ($memberID);";
+  $result = $conn->query($sql) or die("<p>*Cart creation error, please try again!</p>");
+}
+
 function UIDExists($conn, $loginName)
 {
   $sql = "SELECT * FROM Members where Username = ? OR Email = ?;";
@@ -12,9 +38,9 @@ function UIDExists($conn, $loginName)
   
   mysqli_stmt_bind_param($stmt, "ss", $loginName, $loginName);
   mysqli_stmt_execute($stmt);
-  
+
   $result = mysqli_stmt_get_result($stmt);
-  
+
   if ($row = mysqli_fetch_assoc($result)) return $row;
   else return false;
 
@@ -31,43 +57,12 @@ function write_log($log_msg)
   file_put_contents($log_file_data, $log_msg . "\n", FILE_APPEND);
 }
 
-include_once "login_util.php";
-define( "PRIVILEGE_LEVEL_ADMIN", "1" );
-
-function isAdmin() 
-{
-  if ( isset( $_SESSION["MemberID"] ) && $_SESSION["PriviledgeLevel"] == PRIVILEGE_LEVEL_ADMIN ) 
-    return true;
-  else 
-    return false;
-}
-
-require_once "dbhandler.php";
-
-function EmptyInputSignup($username, $pwd, $repeatPwd, $email)
+function EmptyInput($username, $pwd, $repeatPwd, $email)
 { return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)); }
 
 function InvalidUid($username)
 { return !preg_match("/^[a-zA-Z0-9]*$/", $username); }
 
-function PwdMatch($pwd, $repeatPwd)
+function PwdNotMatch($pwd, $repeatPwd)
 { return $pwd !== $repeatPwd; }
-
-function CreateUser($conn, $username, $pwd, $email)
-{
-  $sql = "INSERT INTO Members (Username, Password, Email) VALUES (?, ?, ?);";
-  $stmt = mysqli_stmt_init($conn);
-  if (!mysqli_stmt_prepare($stmt, $sql))
-  {
-    echo "<p>*Something went wrong, please try again!</p>";
-    exit();
-  }
-
-  $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-  mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPwd, $email);
-  mysqli_stmt_execute($stmt);
-  mysqli_stmt_close($stmt);
-  //exit();
-}
 
