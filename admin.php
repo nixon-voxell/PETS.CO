@@ -38,7 +38,7 @@
           <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
-          <a class="glow-gradient" href="#">Go To Manage Products Page</a>
+          <a class="glow-gradient" href="admin_manage_products2.php">Go To Manage Products Page</a>
         </div>
       </div>
     </div>

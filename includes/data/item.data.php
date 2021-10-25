@@ -16,6 +16,8 @@ class Item
   private $sellingPrice;
   /** @var int $quantityInStock */
   private $quantityInStock;
+  /** @var int $image */
+  private $image;
   
   /** @var Review[] $reviews */
   private $reviews;
@@ -48,6 +50,7 @@ class Item
       $this->category = $row["Category"];
       $this->sellingPrice = $row["SellingPrice"];
       $this->quantityInStock = $row["QuantityInStock"];
+      $this->image = $row["Image"];
     }
 
     mysqli_stmt_close($stmt);
@@ -92,7 +95,7 @@ class Item
   public function SetData($conn)
   {
     $sql = "UPDATE Items SET
-      Name = ?, Brand = ?, Description = ?, Category = ?, SellingPrice = ?, QuantityInStock = ?
+      Name = ?, Brand = ?, Description = ?, Category = ?, SellingPrice = ?, QuantityInStock = ?, Image = ?
       WHERE ItemID = ?";
     $stmt = mysqli_stmt_init($conn);
     mysqli_stmt_prepare($stmt, $sql);
@@ -104,6 +107,7 @@ class Item
       $this->category,
       $this->sellingPrice,
       $this->quantityInStock,
+      $this->image,
       $this->itemID
     );
     
@@ -120,5 +124,6 @@ class Item
   public function GetCategory() { return $this->category; }
   public function GetSellingPrice() { return $this->sellingPrice; }
   public function GetQuantityInStock() { return $this->quantityInStock; }
+  public function GetImage() { return $this->image; }
   public function GetReviews() { return $this->reviews; }
 }

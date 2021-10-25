@@ -58,11 +58,38 @@ function write_log($log_msg)
 }
 
 function EmptyInput($username, $pwd, $repeatPwd, $email)
-{ return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or (empty($email)); }
+{ return empty($username) || (empty($pwd)) || (empty($repeatPwd)) || (empty($email)); }
 
 function InvalidUid($username)
 { return !preg_match("/^[a-zA-Z0-9]*$/", $username); }
 
 function PwdNotMatch($pwd, $repeatPwd)
 { return $pwd !== $repeatPwd; }
+
+
+/**
+ * @param mysqli $conn
+ * @param string $name
+ * @param string $brand
+ * @param string $description
+ * @param string $category
+ * @param string $sellingprice
+ * @param string $quantityinstock
+ * @param string $image
+*/
+function CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image=0)
+{
+  // create product
+  $sql = "INSERT INTO Items(Name, Brand, Description, Category, SellingPrice, QuantityInStock, Image)
+    VALUES ('$name', '$brand', '$description', $category, $sellingprice, $quantityinstock, '$image');";
+  $conn->query($sql) or die("<p>*Product creation error, please try again!</p>");
+
+  // get item id
+  $sql = "SELECT ItemID FROM items where Name = '$name';";
+  $result = $conn->query($sql) or die("<p>*ItemID error, please try again!</p>");
+
+  $row = $result->fetch_assoc();
+  $itemID = $row["ItemID"];
+}
+
 

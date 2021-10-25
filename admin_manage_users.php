@@ -6,6 +6,8 @@
   include "header.php"; 
   include "includes/admin/controller_admin.php";
   include "includes/utils/dbhandler.php";
+  include "admin_nav_bar.php"; 
+  include "side_nav.html"; 
 ?>
 
 <style>
@@ -16,11 +18,6 @@ body {
   background-size: 100% 100%;
 }
 </style>
-
-<?php include "admin_nav_bar.php"; ?>
-
-<?php include "side_nav.html"; ?>
-
 <div class="container">
   <h3 class="white-text page-title">Manage Users</h3>
 
@@ -50,7 +47,7 @@ body {
         </form>
         <!-- search member input field end -->
 
-        <!-- serach member result list start -->
+        <!-- search member result list start -->
         <form action="admin_manage_users.php" method="GET">
           <table class="responsive-table">
             <thead class="text-primary">
@@ -61,8 +58,7 @@ body {
                 if (isset($_POST["search_member"]))
                 {
                   $searchMember = $_POST["search_member"];
-                  require_once "includes/utils/dbhandler.php";
-
+                  
                   if (EmptyInputSelectUser($searchMember))
                     echo "<p class='prompt-warning'>Please enter a value</p>";
                   else
@@ -133,7 +129,7 @@ body {
                 {
                   $uid = $_GET["inspect"];
                   $sql = "SELECT MemberID, Username, Email, PrivilegeLevel FROM Members WHERE Username = '$uid' ORDER BY Username";
-                  $result = mysqli_query($conn, $sql) or die ("Select statement FAILED!");
+                  $result = $conn->query($sql) or die ("Select statement FAILED!");
                   while ($row = mysqli_fetch_array($result))
                   {
                     $deleteid = $row["MemberID"];
