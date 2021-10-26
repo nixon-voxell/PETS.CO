@@ -1,33 +1,136 @@
 @import url(../materialize/css/materialize.css);
+@import url(./font_styles.css);
 
 @font-face { font-family: LoveloBold; src: url(Lovelo-LineBold.otf); }
 @font-face { font-family: LoveloLight; src: url(Lovelo-LineLight.ttf); }
 
-html, body
+html { height: 100%; background-repeat: no-repeat; }
+
+body
 {
   height: 100%;
+  animation-name: backgroundColorPalette;
+  background-blend-mode: luminosity;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+body::before
+{
+  background: url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;
+  filter: grayscale();
+}
+
+@keyframes backgroundColorPalette
+{
+  0% { background: #f700ff5d url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  50% { background: #a6ff006b url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+  100% { background: #00ccff6e url('admin_background.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; }
+}
+
+nav { height: 100px; line-height: 100px; }
+
+thead { border-bottom: 1.5px solid cyan; }
+
+.page-title
+{
+  text-shadow: black 4px 0px 8px,
+  black -4px 0px 8px,
+  black 0px 4px 8px,
+  black 0px -4px 8px;
+}
+
+.carousel-magic
+{
+  color: white;
+  text-shadow: black 1px 1px 4px, black -1px -1px 4px;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
-nav
+.rounded-card-parent
 {
-  height: 100px;
-  line-height: 100px;
+  box-shadow: black 4px 4px 8px 2px;
+  border-radius: 50px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
 }
 
-.errormsg
+.rounded-card-parent:hover { border-radius: 20px; }
+
+.rounded-card
 {
-  color: red;
+  padding: 40px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+  clip-path: inset(0px 0px round 50px 50px);
+  background-color: rgba(56, 56, 56, 0.7);
+  backdrop-filter: blur(10px);
 }
 
-.content
-{
-  min-height: 100%;
-}
+.rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
+
+.content { min-height: 100%; }
 
 .wide-container
 {
   padding-top: 20px;
   padding-left: 100px;
   padding-right: 100px;
+}
+
+.unused-image { opacity: 70%; }
+
+.glow-image
+{
+  animation: imageGlowColor 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.25, 0.0, 0.45, 1.0);
+}
+
+@keyframes imageGlowColor
+{
+  0% { -webkit-filter: drop-shadow(0px 0px 2px rgb(255, 81, 28)); opacity: 60%; }
+  100% { -webkit-filter: drop-shadow(0px 0px 8px rgb(255, 154, 38)); opacity: 100%; }
+}
+
+.glow-text { text-shadow: 0px 0px 5px cyan; font-weight: bold; }
+
+.glow-title
+{
+  background-color: cyan;
+  color: white;
+  font-weight: bold;
+  pointer-events: none;
+  box-shadow: 2px 2px 20px cyan;
+}
+
+.unglow { -webkit-text-fill-color: white; }
+
+.glow-gradient
+{
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: hue 5s infinite linear;
+  text-shadow: 0px 0px 8px orange;
+}
+
+.glow-gradient-box
+{
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: hue 5s infinite linear;
+  text-shadow: 0px 0px 8px orange;
+  box-shadow: 0px 2px 5px orange;
+}
+
+@-webkit-keyframes hue
+{
+  from { -webkit-filter: hue-rotate(0deg); }
+  to { -webkit-filter: hue-rotate(360deg); }
 }

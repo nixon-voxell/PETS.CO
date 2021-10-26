@@ -2,20 +2,34 @@
 
 class Member
 {
+  /** @var int $memberID */
   private $memberID;
+  /** @var string $username */
   private $username;
+  /** @var string $email */
   private $email;
-  private $priviledgeLevel;
+  /** @var int $privilegeLevel */
+  private $privilegeLevel;
+  
+  /** @var Order $cart */
+  private $cart;
+  /** @var Order[] $orders */
+  private $orders;
 
-  public $cart;
-  public $orders;
-
-  function __construct($username, $conn)
+  function __construct($memberID, $username, $email, $privilegeLevel, $conn)
   {
+    $this->memberID = $memberID;
     $this->username = $username;
-    $this->InitData($conn);
-    $this->GetCart($conn);
-    $this->GetPreviousOrder($conn);
+    $this->email = $email;
+    $this->privilegeLevel = $privilegeLevel;
+    $this->UpdateCart($conn);
+    $this->UpdatePreviousOrder($conn);
+  }
+
+  /** @return Member */
+  public static function CreateMember($memberID)
+  {
+    // 
   }
 
   // copy databse data to object data
@@ -33,14 +47,14 @@ class Member
       $row = $result->fetch_array(MYSQLI_ASSOC);
       $this->memberID = $row["MemberID"];
       $this->email = $row["Email"];
-      $this->priviledgeLevel = $row["PriviledgeLevel"];
+      $this->privilegeLevel = $row["PriviledgeLevel"];
     }
 
     mysqli_stmt_close($stmt);
   }
 
   // copy cart data from database
-  public function GetCart($conn)
+  public function UpdateCart($conn)
   {
     $sql = "SELECT OrderID FROM Orders WHERE MemberID = ? AND CartFlag = 1";
     $stmt = mysqli_stmt_init($conn);
@@ -52,6 +66,7 @@ class Member
       $result = mysqli_stmt_get_result($stmt);
 
       $row = $result->fetch_array(MYSQLI_ASSOC);
+      require_once "order.data.php";
       $this->cart = new Order($row["OrderID"], $conn);
     }
 
@@ -59,7 +74,7 @@ class Member
   }
 
   // copy previous order data from database
-  public function GetPreviousOrder($conn)
+  public function UpdatePreviousOrder($conn)
   {
     $this->orders = array();
     $sql = "SELECT OrderID FROM Orders WHERE MemberID = ? AND CartFlag = 0";
@@ -87,4 +102,16 @@ class Member
     if (isset($this->orders) && count($this->orders) > 0) return true;
     return false;
   }
+
+  //// get data
+  public function GetMemberID() { return $this->memberID; }
+  public function GetUsername() { return $this->username; }
+  public function GetEmail() { return $this->email; }
+  public function GetPriviledgeLevel() { return $this->privilegeLevel; }
+  public function GetCart() { return $this->cart; }
+  public function GetOrders() { return $this->orders; }
+
+  //// set data
+  public function SetUsername($username) { $this->username = $username; }
+  public function SetEmail($email) { $this->email = $email; }
 }
