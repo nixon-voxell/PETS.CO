@@ -45,7 +45,7 @@ class Member
     $row = $result->fetch_assoc();
     $username = $row["Username"];
     $email = $row["Email"];
-    $privilegeLevel = $row["PriviledgeLevel"];
+    $privilegeLevel = $row["PrivilegeLevel"];
 
     return new Member($memberID, $username, $email, $privilegeLevel, $conn);
   }

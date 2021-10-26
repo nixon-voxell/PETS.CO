@@ -3,25 +3,6 @@
 function EmptyInputCreateUser($username, $pwd, $repeatPwd, $privilegeLevel, $email)
 { return empty($username) or (empty($pwd)) or (empty($repeatPwd)) or ($privilegeLevel === "") or (empty($email)); }
 
-function SelectedIDOrders($conn, $uid)
-{
-  $sql = mysqli_query($conn, "SELECT memberid, cartflag FROM Orders WHERE memberid = '$uid' AND cartflag = 1")
-  or die ("SELECT statement FAILED!");
-  
-  while (list($usrid, $cartFlag) = mysqli_fetch_array($sql))
-  if ($usrid == $uid && $cartFlag == "1")
-    include "cart_items.php";
-
-  else if ($usrid == $uid && $cartFlag == "0")
-    include "order_items.php";
-
-  else if (($usrid == $uid && $cartFlag == "1") && ($usrid == $uid && $cartFlag == "0"))
-  {
-    include "cart_items.php";
-    include "order_items.php";
-  } else echo "ERROR!";
-}
-
 function EmptyInputSelectUser($value) { return empty($value); }
 
 if (isset($_POST["submit_user"]))

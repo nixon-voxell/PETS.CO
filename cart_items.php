@@ -23,34 +23,45 @@
           {
             $itemID = $cartItems[$c]->GetItemID();
             $item = new Item($itemID, $conn);
-            echo(GenerateItem($item->GetName(), $item->GetCategory(), $cartItems[$c]->GetAddedDateTime()));
+            GenerateItem(
+              $item->GetName(), $item->GetCategory(), $cartItems[$c]->GetAddedDateTime(), $itemID
+            );
             $totalSum += $item->GetSellingPrice();
           }
+          $totalSum = number_format($totalSum, 2);
         }
       ?>
     </ul>
   </div>
 
   <div class="col s4">
-    <div class="card brown darken-3">
-      <div class="card-content white-text">
+    <div class="rounded-card-parent">
+      <div class="card rounded-card">
         <span class="card-title" style="font-weight: bold;">Cart Details</span>
-        <?php
-          if (isset($cartItems))
-          {
-            echo("<p>Total Items: $cartItemCount</p>");
-            echo("<p>Delivery Charges: $totalSum</p>");
-            echo("<p>Sum Total: </p>");
-          } else
-          {
-            echo("<p>Total Items: 0</p>");
-            echo("<p>Delivery Charges: $0.00</p>");
-            echo("<p>Sum Total: $0.00</p>");
-          }
-        ?>
-      </div>
-      <div class="card-action">
-        <a href="#">Empty Cart</a>
+        <form action="cart_items.php" method="POST">
+          <table class="responsive-table">
+            <tbody>
+              <?php
+                if (isset($cartItems))
+                {
+                  echo("<tr><td>Total Items:</td><td>$cartItemCount</td></tr>");
+                  echo("<tr><td>Delivery Charges:</td><td>$1.00</td></tr>");
+                  echo("<tr><td>Sum Total:</td><td>$$totalSum</td></tr>");
+                } else
+                {
+                  echo("<tr><td>Total Items:</td><td>0</td></tr>");
+                  echo("<tr><td>Delivery Charges:</td><td>$0.00</td></tr>");
+                  echo("<tr><td>Sum Total:</td><td>$0.00</td></tr>");
+                }
+              ?>
+            </tbody>
+          </table>
+          <?php if (!isset($_GET["view_order"])) { ?>
+          <button class="btn orange darken-3" style="margin-top: 10px;">
+            Empty Cart
+          </button>
+          <?php } ?>
+        </form>
       </div>
     </div>
   </div>

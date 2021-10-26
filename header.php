@@ -34,13 +34,6 @@
     $privilegeLevel = $member->GetPriviledgeLevel();
     $cart = $member->GetCart();
     $orders = $member->GetOrders();
-
-    /** @var Order $cart */
-    /** @var Order[] $orders */
-    $cartItems = $cart->GetOrderItems();
-    $cartItemCount = count($cartItems);
-
-    $orderCount = count($orders);
   }
 ?>
 

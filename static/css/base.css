@@ -61,6 +61,7 @@ thead { border-bottom: 1.5px solid cyan; }
 
 .rounded-card
 {
+  color: white;
   padding: 40px;
   transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
   clip-path: inset(0px 0px round 50px 50px);
