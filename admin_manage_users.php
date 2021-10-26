@@ -117,20 +117,19 @@ body {
   <!-- users list end -->
 
   <!-- selected member details start -->
-  <div class="rounded-card-parent">
-    <div class="card rounded-card">
-      <div class="card-content white-text">
-        <span class="card-title orange-text bold">Selected Member Details</span>
-        <table class="responsive-table">
-          <form action="admin_manage_users.php" method="GET">
-            <thead class="text-primary">
-              <tr><th>MemberID</th><th>Username</th><th>Email</th><th>Privilege Level</th></tr>
-            </thead>
-            <tbody>
-              <?php
-                // inspect user
-                if (isset($_GET["inspect"]))
-                {
+  <?php if (isset($_GET["inspect"])) { ?>
+    <div class="rounded-card-parent">
+      <div class="card rounded-card">
+        <div class="card-content white-text">
+          <span class="card-title orange-text bold">Selected Member Details</span>
+          <table class="responsive-table">
+            <form action="admin_manage_users.php" method="GET">
+              <thead class="text-primary">
+                <tr><th>MemberID</th><th>Username</th><th>Email</th><th>Privilege Level</th></tr>
+              </thead>
+              <tbody>
+                <?php
+                  // inspect user
                   $uid = $_GET["inspect"];
                   $sql = "SELECT MemberID, Username, Email, PrivilegeLevel FROM Members WHERE Username = '$uid' ORDER BY Username";
                   $result = mysqli_query($conn, $sql) or die ("Select statement FAILED!");
@@ -153,22 +152,24 @@ body {
                       </tr>"
                     );
                   }
-                }
-
-                // delete user
-                if (isset($_GET["delete"]))
-                {
-                  $id = $_GET["delete"];
-                  $sql =  "DELETE FROM Members WHERE MemberID = $id";
-                  $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
-                }
-              ?>
-            </tbody>
-          </form>
-        </table>
+                ?>
+              </tbody>
+            </form>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
+
+  <?php
+    // delete user
+    if (isset($_GET["delete"]))
+    {
+      $id = $_GET["delete"];
+      $sql =  "DELETE FROM Members WHERE MemberID = $id";
+      $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
+    }
+  ?>
   <!-- selected member details end -->
 
   <div class="rounded-card-parent">

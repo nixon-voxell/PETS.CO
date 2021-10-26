@@ -69,6 +69,12 @@ thead { border-bottom: 1.5px solid cyan; }
   backdrop-filter: blur(10px);
 }
 
+.rounded-card.tint-glass-cyan { background-color: rgba(0, 170, 200, 0.5); }
+
+.rounded-card.tint-glass-brown { background-color: rgba(128, 73, 0, 0.5); }
+
+.rounded-card.blurer { backdrop-filter: blur(20px); }
+
 .rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
 
 .content { min-height: 100%; }

@@ -100,13 +100,14 @@
       </div>
     </div>
   </div>
-  <div class="row">
+
+  <?php if (isset($_GET["view_order"])) { ?>
     <div class="rounded-card-parent">
       <div class="card rounded-card">
         <div class="card-content">
           <span class="card-title cyan-text bold">
             Cart/Order Details
-            [<?php if (isset($_GET["view_order"])) echo $_GET["username"];?>]
+            <?php echo("[".$_GET["username"]."]");?>
           </span>
             <?php
               // View Selected Customer Cart/Orders 
@@ -120,7 +121,7 @@
         </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
 </div>
 
 <script>

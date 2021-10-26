@@ -11,6 +11,7 @@
   }
 ?>
 
+<h4 class="white-text page-title">Cart</h4>
 <div class="row">
   <div class="col s8">
     <ul class="collapsible popout" id="cart">
@@ -36,7 +37,7 @@
 
   <div class="col s4">
     <div class="rounded-card-parent">
-      <div class="card rounded-card">
+      <div class="card rounded-card tint-glass-cyan blurer">
         <span class="card-title" style="font-weight: bold;">Cart Details</span>
         <form action="cart_items.php" method="POST">
           <table class="responsive-table">
