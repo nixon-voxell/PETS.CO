@@ -19,8 +19,7 @@ function SelectedIDOrders($conn, $uid)
   {
     include "cart_items.php";
     include "order_items.php";
-  }
-  else echo "ERROR!";
+  } else echo "ERROR!";
 }
 
 function EmptyInputSelectUser($value) { return empty($value); }
@@ -35,7 +34,7 @@ if (isset($_POST["submit_user"]))
 
   require_once "includes/utils/dbhandler.php";
   require_once "includes/utils/common_util.php";
-  
+
   if (EmptyInputCreateUser($username, $pass, $repeatPass, $emailadd, $privilegeLevel))
   {
     header("location: admin_manage_users.php?error=EmptyInput");

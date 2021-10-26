@@ -20,7 +20,10 @@ class Item
   /** @var Review[] $reviews */
   private $reviews;
 
-  public const CATEGORY = ["Dog", "Food", "Accessory"];
+  /** @var string[] CATEGORY */
+  public static const CATEGORY = ["Dog", "Food", "Accessory"];
+  /** @var string[] CATEGORY_ICON */
+  public static const CATEGORY_ICON = ["pets", "restaurant", "toys"];
 
   function __construct($itemID, $conn)
   {

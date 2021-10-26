@@ -4,7 +4,7 @@
 </head>
 <?php 
   include "header.php";
-  include "includes/admin/controller_admin.php";
+  include "includes/admin.inc.php";
   require_once "includes/utils/dbhandler.php";
 ?>
 
