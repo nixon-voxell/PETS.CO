@@ -16,6 +16,8 @@ class Item
   private $sellingPrice;
   /** @var int $quantityInStock */
   private $quantityInStock;
+  /** @var int $image */
+  private $image;
   
   /** @var Review[] $reviews */
   private $reviews;
@@ -51,6 +53,7 @@ class Item
       $this->category = $row["Category"];
       $this->sellingPrice = $row["SellingPrice"];
       $this->quantityInStock = $row["QuantityInStock"];
+      $this->image = $row["Image"];
     }
 
     mysqli_stmt_close($stmt);
@@ -120,5 +123,6 @@ class Item
   public function GetCategory() { return $this->category; }
   public function GetSellingPrice() { return $this->sellingPrice; }
   public function GetQuantityInStock() { return $this->quantityInStock; }
+  public function GetImage() { return $this->image; }
   public function GetReviews() { return $this->reviews; }
 }

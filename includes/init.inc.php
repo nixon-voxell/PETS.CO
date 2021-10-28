@@ -8,7 +8,7 @@ function CreateNeededTables($conn)
 {
   $tables = array();
 
-  //Members table no error
+  //Members table
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Members(
       MemberID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -20,7 +20,7 @@ function CreateNeededTables($conn)
     )"
   );
 
-  // Orders table (display cart (items table) /payment + orderitems tables) no error
+  // Orders table (display cart (items table) /payment + orderitems tables)
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Orders(
       OrderID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -30,7 +30,7 @@ function CreateNeededTables($conn)
     )"
   );
 
-  // Payment table (payment history) no error
+  // Payment table (payment history)
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Payment(
       PaymentID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -40,7 +40,7 @@ function CreateNeededTables($conn)
     )"
   );
 
-  // Items table no error
+  // Items table
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS Items(
       ItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -49,11 +49,12 @@ function CreateNeededTables($conn)
       Description VARCHAR(512) NOT NULL,
       Category INT NOT NULL,
       SellingPrice FLOAT NOT NULL,
-      QuantityInStock INT NOT NULL
+      QuantityInStock INT NOT NULL,
+      Image VARCHAR(64) NOT NULL
     )"
   );
 
-  // OrderItems table no error
+  // OrderItems table
   array_push(
     $tables, "CREATE TABLE IF NOT EXISTS OrderItems(
       OrderItemID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
