@@ -5,7 +5,7 @@
       
     </div>
   <div class="row container">
-    <div class="col s3">
+    <div class="col s4">
       <h4 class="white-text lovelo">PETS.co</h4>
       <p class="grey-text text-lighten-4">Your favorite online pet store.</p>
     </div>
@@ -22,7 +22,7 @@
         52200 Kuala Lumpur
       </p>
     </div>
-    <div class="col s5">
+    <div class="col s4">
       <h5 class="white-text lovelo">Social</h5>
       <a class="waves-effect waves-light blue lighten-1 btn"><i class="fa fa-facebook fa-fw"></i> Facebook</a></li>
       <a class="waves-effect waves-light pink lighten-1 btn"><i class="fa fa-instagram fa-fw"></i> Instagram</a></li>

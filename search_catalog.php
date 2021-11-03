@@ -5,7 +5,8 @@
 
 <div class="container" style="padding-top: 50px;">
   <div class="rounded-card-parent">
-    <nav class="nav-wrapper rounded-card">
+    <nav class="rounded-card">
+      <a href="#" class="brand-logo">Logo</a>
     </nav>
   </div>
 </div>

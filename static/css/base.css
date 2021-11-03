@@ -68,15 +68,27 @@ thead { border-bottom: 1.5px solid cyan; }
   background-color: rgba(56, 56, 56, 0.7);
   backdrop-filter: blur(10px);
 }
+.rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
 
 .rounded-card.tint-glass-cyan { background-color: rgba(0, 170, 200, 0.5); }
-
 .rounded-card.tint-glass-brown { background-color: rgba(128, 73, 0, 0.5); }
-
 .rounded-card.blurer { backdrop-filter: blur(20px); }
 
-.rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
-.rounded-card-parent.selectable:hover { clip-path: inset(0px 0px round 20px 20px); }
+.selectable-card
+{
+  color: white;
+  padding: 40px;
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
+  background-color: rgba(56, 56, 56, 0.7);
+  border-radius: 20px;
+  box-shadow: black 4px 4px 8px 2px;
+  backdrop-filter: blur(15px);
+}
+
+.selectable-card:hover
+{
+  box-shadow: black 8px 8px 20px 4px;
+}
 
 .content { min-height: 100%; }
 
