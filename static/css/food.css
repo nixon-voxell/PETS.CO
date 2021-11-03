@@ -1,0 +1,22 @@
+foodbody{
+  overflow:visible
+}
+
+foodbody,
+foodhtml {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.containerfood{
+  position:absolute;
+  width:600px
+  
+}
+
+svg{
+  width:100%;
+  visibility:hidden;
+}
+

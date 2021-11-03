@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<foodhtml lang="en">
+<head>
+  <script src="static/js/food.js"></script>
+  <link rel="stylesheet" href="./static/css/food.css">
+</head>
+<foodbody>
+  <div class="containerfood">
+    <svg class="dogSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+      <defs>
+          
+        <clipPath id="mainMask">
+        <rect id="bg" width="600" height="600" rx="56" ry="56" fill="#C32747"/>
+        
+        </clipPath>
+      </defs>
+      <use xlink:href="#bg"/>
+      <g id="dogGroup">
+        <rect id="earL" x="207" y="220" width="31" height="187" rx="15" ry="15" fill="#CC6A49"/>
+        <rect id="earR" x="361" y="220.94" width="31" height="187" rx="15.7" ry="15.7" fill="#CC6A49"/>
+          <ellipse id="head" cx="301" cy="285" rx="86" ry="94" fill="#E69C53"/>
+      <rect id="earLTOP" x="207" y="220" width="31" height="187" rx="15" ry="15" fill="#CC6A49"/>
+        <rect id="earRTOP" x="361" y="220.94" width="31" height="187" rx="15.7" ry="15.7" fill="#CC6A49"/>
+       <rect id="snout" x="239" y="294" width="121" height="84.98" rx="42" ry="42" fill="#F1F4E4"/>
+        <g id="nose" >
+        <rect x="276" y="325" width="46" height="23" rx="11" ry="11" fill="#443F43"/>
+    <path id="noseShine" fill="none" stroke="#AAABAF" stroke-width="4" stroke-linecap="round" d="
+        M282.1,337.7L282.1,337.7c0-4.2,3.4-7.6,7.6-7.6h20.4c4.2,0,7.6,3.4,7.6,7.6l0,0"/>      
+        </g>
+        <!-- <rect id="noseShine" x="306" y="331" width="6" height="6" rx="3" ry="3" fill="#ededed"/> -->
+        <g id="browGroup" stroke="#443F43" stroke-linecap="round" >
+          <line id="browL" x1="250" y1="253" x2="290" y2="253" fill="none"  stroke-miterlimit="10" stroke-width="7"/>
+          <line id="browR" x1="309" y1="253" x2="349" y2="253" fill="none" stroke-miterlimit="10" stroke-width="7"/>
+        </g>
+        <g id="eyeGroup" fill="#443F43">
+          <g id="eyeSpinL">
+            <ellipse id="eyeL" class="eye" cx="270" cy="285" rx="7" ry="7" />
+          </g>
+          <g id="eyeSpinR">
+            <ellipse id="eyeR" class="eye" cx="329" cy="285" rx="7" ry="7" />
+          </g>
+        </g>
+    
+      </g>
+      <g clip-path="url(#mainMask)">
+      
+    <path id="bone" stroke="#AAABAD" stroke-width="4" fill="#F8FAF1" d="M108,28c7.7,0,14-6.3,14-14s-6.3-14-14-14S94,6.3,94,14H28c0-7.7-6.3-14-14-14S0,6.3,0,14s6.3,14,14,14
+      C6.3,28,0,34.3,0,42s6.3,14,14,14s14-6.3,14-14h66c0,7.7,6.3,14,14,14s14-6.3,14-14S115.7,28,108,28z"/>  
+        </g>
+    </svg>
+      
+      
+  </div>
+</foodbody>
+</foodhtml>
