@@ -76,6 +76,7 @@ thead { border-bottom: 1.5px solid cyan; }
 .rounded-card.blurer { backdrop-filter: blur(20px); }
 
 .rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
+.rounded-card-parent.selectable:hover { clip-path: inset(0px 0px round 20px 20px); }
 
 .content { min-height: 100%; }
 
