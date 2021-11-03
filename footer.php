@@ -1,7 +1,25 @@
   </div>
 </body>
-
 <footer class="page-footer grey darken-4">
+  <div class="page-footer yellow darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Contact Us</h5>
+          <h6 class="grey-text bold text-lighten-4"><a href="call:+60104438322" style="color: white"><i class="material-icons">phone</i>+60104438322</a></h6>
+          <h6 class="grey-text bold text-lighten-4"><a href="mailto:Pets.Co.customerservice@gmail.com" style="color: white"><i class="material-icons">email</i> Email</a></h6>
+        </div>
+        <div class="col">
+          <h5 class="white-text">Find Us</h5>
+          <p class="bold">
+            1, Jalan Emas SD 5/1 <br>
+            Bandar Sri Damansara <br>
+            52200 Kuala Lumpur
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
