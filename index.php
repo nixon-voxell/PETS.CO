@@ -31,21 +31,14 @@
 <div class="container">
   <div class="row">
     <div class="row">
-      <h4 class="white-text page-title" style="display: inline; vertical-align: top; line-height: 28px;">Categories</h4>
-      <a href="#" class="page-title" style="display: inline; vertical-align: top; line-height: 48px; color: yellow">Shop All></a>
+      <h4 class="white-text page-title" style="display: inline;;">Categories</h4>
+      <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
-    <div class="col s12 m3" style="margin-left: 70px">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white">
-          <a href="https://petico.my/alps/">
-            <img src="dog.jpg" width="220" height="150">
-            <h5 class="green-text center">Dogs</h5>
-          </a>
-        </div>
-      </div>
+    <div class="col">
+      <?php include_once "dog.html"; ?>
     </div>
 
-    <div class="col s12 m3" style="margin-left: 70px">
+    <div class="col">
       <div class="rounded-card-parent">
         <div class="card rounded-card white">
           <a href="https://petico.my/brit-care/">
@@ -56,7 +49,7 @@
       </div>
     </div>
 
-    <div class="col s12 m3" style="margin-left: 70px">
+    <div class="col">
       <div class="rounded-card-parent">
         <div class="card rounded-card white">
           <a href="https://petico.my/alps/">
@@ -70,8 +63,8 @@
 
   <div class="row">
     <div class="row">
-      <h4 class="white-text page-title" style="display: inline; vertical-align: top; line-height: 28px;">Best Sellers On Sale</h4>
-      <a href="#" class="page-title" style="display: inline; vertical-align: top; line-height: 48px; color: yellow">Shop All></a>
+      <h4 class="white-text page-title" style="display: inline;">Best Sellers On Sale</h4>
+      <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
     <div class="col s12 m3">
       <div class="rounded-card-parent">
