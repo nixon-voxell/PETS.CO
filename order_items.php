@@ -1,5 +1,15 @@
 <?php
+  require_once "includes/utils/dbhandler.php";
+  if (isset($_GET["member_id"]))
+  {
+    /** @var int $memberID */
+    $memberID = $_GET["member_id"];
+    $member = Member::CreateMemberFromID($memberID, $conn);
+    $orders = $member->GetOrders();
+    $orderCount = count($orders);
+  }
 ?>
+
 <h4 class="white-text page-title">Previous Orders</h4>
 <h5 class="white-text">#1</h5>
 <div class="row">
