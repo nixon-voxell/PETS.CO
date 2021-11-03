@@ -35,7 +35,12 @@
       <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
     <div class="col">
-      <?php include_once "dog.html"; ?>
+      <div class="rounded-card-parent">
+        <div class="rounded-card">
+          <?php include_once "dog.html"; ?>
+          <h5 class="orange-text center bold">DOG</h5>
+        </div>
+      </div>
     </div>
 
     <div class="col">
