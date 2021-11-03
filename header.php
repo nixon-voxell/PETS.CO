@@ -43,7 +43,7 @@
             <li class="grey darken-4"
             style="height: 60px; width: 400px; border-radius: 20px; margin-top: 20px;
             box-shadow: 0px 0px 10px cyan; margin-right: 20px;">
-              <form action="search_catalog.php">
+              <form action="search_catalogue.php">
                 <div class="white-text row" style="padding-right: 40px; padding-left: 20px;">
                   <i class="material-icons col s2">search</i>
                   <input type="text" name="search_name" placeholder="Search" class="white-text col s10 autocomplete-content" >

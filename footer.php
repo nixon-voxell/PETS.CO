@@ -24,9 +24,15 @@
     </div>
     <div class="col s4">
       <h5 class="white-text lovelo">Social</h5>
-      <a class="waves-effect waves-light blue lighten-1 btn"><i class="fa fa-facebook fa-fw"></i> Facebook</a></li>
-      <a class="waves-effect waves-light pink lighten-1 btn"><i class="fa fa-instagram fa-fw"></i> Instagram</a></li>
-      <a class="waves-effect waves-light indigo lighten-1 btn"><i class="fa fa-linkedin fa-fw"></i> Linkedin</a></li>
+      <a class="waves-effect waves-light blue lighten-1 btn" style="margin: 2px;">
+        <i class="fa fa-facebook fa-fw"></i> Facebook
+      </a>
+      <a class="waves-effect waves-light pink lighten-1 btn" style="margin: 2px;">
+        <i class="fa fa-instagram fa-fw"></i> Instagram
+      </a>
+      <a class="waves-effect waves-light indigo lighten-1 btn" style="margin: 2px;">
+        <i class="fa fa-linkedin fa-fw"></i> Linkedin
+      </a>
     </div>
   </div>
   <div class="footer-copyright">
