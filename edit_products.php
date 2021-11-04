@@ -3,7 +3,7 @@
 <title>PETS.CO - Edit Product</title>
 <?php 
   include "header.php";
-  include "includes/admin/controller_admin.php";
+  // include "includes/admin/controller_admin.php";
   include "includes/utils/dbhandler.php";
 
   if (isset($_GET['itemid']))
@@ -31,7 +31,7 @@
       $sellingprice = $_POST["sellingprice"];
       $quantityinstock = $_POST["quantityinstock"];
 
-      $sql = "update Items set Name='$name', Brand='$brand', Description='$description', Category=$category, SellingPrice='$sellingprice', QuantityInStock=$quantityinstock, Image='$image' where ItemID=$itemid;";
+      $sql = "update Items set Name='$name', Brand='$brand', Description='$description', Category=$category, SellingPrice='$sellingprice', QuantityInStock=$quantityinstock, Image='$image' where ItemID=$itemID;";
       $conn->query($sql) or die("SQL Update Failed !");
       header("location: admin_manage_products2.php?message=UpdateProductSuccessful");
       mtsqli_close($conn);
@@ -78,13 +78,11 @@
       <div class="row">
         <div class="input-field col s8 white-text">
           <i class="material-icons prefix white-text">account_circle</i>
-          <select name="category">
-            <option value="" disabled selected>Choose your option</option>
-            <option value=1>Dog</option>
-            <option value=2>Food</option>
-            <option value=3>Accessory</option>
-          </select>
-          <label class="white-text">Category</label>
+          <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
+            <?php
+            echo "<input class='white-text' name='category' type='text' value='$category'/>";
+            ?>
+          <label for="category" class="white-text">Category</label>
         </div>
       </div>
       <div class="row">
