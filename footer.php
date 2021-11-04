@@ -1,7 +1,7 @@
   </div>
 </body>
 <footer class="page-footer grey darken-4">
-  <div class="row container">
+  <div class="row wide-container">
     <div class="col s4">
       <h4 class="white-text lovelo">PETS.co</h4>
       <p class="grey-text text-lighten-4">Your favorite online pet store.</p>
@@ -32,8 +32,8 @@
       </a>
     </div>
   </div>
-  <div class="footer-copyright">
-    <div class="container">© 2021 PETS.co All rights reserved.</div>
+  <div class="footer-copyright" style="padding-bottom: 20px;">
+    <div class="wide-container">© 2021 PETS.co All rights reserved.</div>
   </div>
 
   <script src="./static/js/footer.js"></script>

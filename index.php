@@ -33,7 +33,7 @@
       <div class="selectable-card" style="width: 350px;">
         <a href="#">
           <?php include_once "dog.html"; ?>
-          <h5 class="orange-text center bold">DOG</h5>
+          <h5 class="orange-text center bold">DOGS</h5>
         </a>
       </div>
     </div>
@@ -51,7 +51,7 @@
       <div class="selectable-card" style="width: 350px;">
         <a href="#">
           <?php include_once "ball.html"; ?>
-          <h5 class="orange-text center bold">ACCESSORY</h5>
+          <h5 class="orange-text center bold">ACCESSORIES</h5>
         </a>
       </div>
     </div>

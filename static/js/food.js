@@ -152,4 +152,4 @@ container.addEventListener('click', function(e){
 })
 blink();
 sniff();
-dogSVG.onmousemove( {offsetX:300, offsetY:60 })
+dogSVG.onmousemove( {offsetX:150, offsetY:60 })
