@@ -3,7 +3,7 @@
 <title>PETS.CO</title>
 <?php include "header.php";?>
 
-<div class="carousel carousel-slider center">
+<div class="carousel carousel-slider center" style="margin-bottom: 100px">
   <div class="carousel-fixed-item center">
     <a class="btn waves-effect waves-teal grey darken-4 cyan-text">Shop!</a>
   </div>
@@ -24,56 +24,48 @@
   </a>
 </div>
 
-<div class="row container" style="text-align: center; margin-bottom: 100px">
-  <h3 class="page-title">The largest community of pets enthusiasts</h3>
-</div>
-
 <div class="container">
   <div class="row">
     <div class="row">
-      <h4 class="page-title" style="display: inline;;">Categories</h4>
-      <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
+      <h4 class="page-title lovelo center">Categories</h4>
     </div>
-    <div class="col">
-      <div class="selectable-card">
-        <?php include_once "dog.html"; ?>
-        <h5 class="orange-text center bold">DOG</h5>
+    <div class="col s4">
+      <div class="selectable-card" style="width: 350px;">
+        <a href="#">
+          <?php include_once "dog.html"; ?>
+          <h5 class="orange-text center bold">DOG</h5>
+        </a>
       </div>
     </div>
 
-    <div class="col">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white">
-          <a href="https://petico.my/brit-care/">
-            <img src="dog_food.jpg" width="220" height="150">
-            <h5 class="green-text center">Food</h5>
-          </a>
-        </div>
+    <div class="col s4">
+      <div class="selectable-card" style="width: 350px;">
+        <a href="#">
+          <?php include_once "food.html"; ?>
+          <h5 class="orange-text center bold">FOOD</h5>
+        </a>
       </div>
     </div>
 
-    <div class="col">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white">
-          <a href="https://petico.my/alps/">
-            <img src="dog_accessory.webp" width="220" height="150">
-            <h5 class="green-text center">Accessories</h5>
-          </a>
-        </div>
+    <div class="col s4">
+      <div class="selectable-card" style="width: 350px;">
+        <a href="#">
+          <?php include_once "ball.html"; ?>
+          <h5 class="orange-text center bold">ACCESSORY</h5>
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" style="margin-top:50px">
     <div class="row">
       <h4 class="page-title" style="display: inline;">Best Sellers On Sale</h4>
-      <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
     <div class="col s12 m3">
       <div class="rounded-card-parent">
-        <div class="card rounded-card white center">
+        <div class="card rounded-card white center" style="padding: 0px">
           <a href="https://petico.my/royal-canin-maxi-adult-15kg-dry-dog-food.html">
-            <img src="https://petico.my/image/cache/catalog/PRODUCTS/ROYAL%20CANIN/DOG/Size%20Health/Adult/Maxi%20Adult/SHN%20Maxi%20Adult%20Hero%201-250x250.jpg" width="250" height="300" style="padding-right: 30px">            
+          <img src="https://petico.my/image/cache/catalog/PRODUCTS/ROYAL%20CANIN/DOG/Size%20Health/Adult/Maxi%20Adult/SHN%20Maxi%20Adult%20Hero%201-250x250.jpg" width="300" height="300">           
           </a>
           <div class="ratings">
             <div class="empty-stars"></div>
@@ -85,9 +77,9 @@
 
     <div class="col s12 m3">
       <div class="rounded-card-parent">
-        <div class="card rounded-card white center">
+        <div class="card rounded-card white center" style="padding: 0px">
           <a href="https://petico.my/brit-premium-by-nature-adult-l-15-kg-dry-dog-food.html">
-            <img src="https://petico.my/image/cache/catalog/PRODUCTS/BRIT%20PREMIUM/brit-premium-by-nature-adult-l-15-kg-dry-dog-food-648-250x250h.jpg" width="250" height="300" style="padding-right: 30px">
+            <img src="https://petico.my/image/cache/catalog/PRODUCTS/BRIT%20PREMIUM/brit-premium-by-nature-adult-l-15-kg-dry-dog-food-648-250x250h.jpg" width="300" height="300">
           </a>
           <div class="ratings">
             <div class="empty-stars"></div>
@@ -99,9 +91,9 @@
 
     <div class="col s12 m3">
       <div class="rounded-card-parent center">
-        <div class="card rounded-card white">
+        <div class="card rounded-card white center" style="padding: 0px">
           <a href="https://petico.my/instinct-dog-be-natural-real-salmon-and-brown-rice-recipe-2kg-dry-dog-food.html">
-            <img src="https://petico.my/image/cache/catalog/PRODUCTS/INSTINCT/DOG/Be%20Natural/Be%20Natural%20Salmon%202kg%20652892-250x250.jpg" width="250" height="300" style="padding-right: 30px">               
+            <img src="https://petico.my/image/cache/catalog/PRODUCTS/INSTINCT/DOG/Be%20Natural/Be%20Natural%20Salmon%202kg%20652892-250x250.jpg" width="300" height="300">               
           </a>
           <div class="ratings">
             <div class="empty-stars"></div>
@@ -113,9 +105,9 @@
 
     <div class="col s15 m3">
       <div class="rounded-card-parent">
-        <div class="card rounded-card white center">
+        <div class="card rounded-card white center" style="padding: 0px">
           <a href="https://petico.my/instinct-dog-be-natural-real-salmon-and-brown-rice-recipe-2kg-dry-dog-food.html">
-            <img src="https://www.alpsnaturalpetfood.com/wp-content/uploads/2021/06/Alps-Pureness-Canned-Free-Range-Beef-Pate-Recipe-1.png" width="250" height="300" style="padding-right: 60px">  
+            <img src="https://www.alpsnaturalpetfood.com/wp-content/uploads/2021/06/Alps-Pureness-Canned-Free-Range-Beef-Pate-Recipe-1.png" width="300" height="300" style="padding-right: 50px">  
           </a>
           <div class="ratings">
             <div class="empty-stars"></div>
