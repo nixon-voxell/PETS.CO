@@ -11,7 +11,7 @@
   }
 ?>
 
-<h4 class="white-text page-title">Cart</h4>
+<h4 class="page-title">Cart</h4>
 <div class="row">
   <div class="col s8">
     <ul class="collapsible popout" id="cart">
@@ -38,8 +38,8 @@
   <div class="col s4">
     <div class="rounded-card-parent">
       <div class="card rounded-card tint-glass-cyan blurer">
-        <span class="card-title" style="font-weight: bold;">Cart Details</span>
-        <form action="cart_items.php" method="POST">
+        <span class="card-title bold">Cart Details</span>
+        <form action="cart.php" method="POST">
           <table class="responsive-table">
             <tbody>
               <?php
@@ -58,9 +58,11 @@
             </tbody>
           </table>
           <?php if (!isset($_GET["view_order"])) { ?>
-          <button class="btn orange darken-3" style="margin-top: 10px;">
+          <button class="btn orange darken-3" style="margin-top: 10px;"
+          onclick="return confirm('Are you sure you want to empty your cart?');">
             Empty Cart
           </button>
+          <input type="hidden" name="empty_cart" value=1>
           <?php } ?>
         </form>
       </div>

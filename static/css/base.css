@@ -36,6 +36,7 @@ thead { border-bottom: 1.5px solid cyan; }
 
 .page-title
 {
+  color: white;
   text-shadow: black 4px 0px 8px,
   black -4px 0px 8px,
   black 0px 4px 8px,
@@ -63,10 +64,10 @@ thead { border-bottom: 1.5px solid cyan; }
 {
   color: white;
   padding: 40px;
-  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
   clip-path: inset(0px 0px round 50px 50px);
   background-color: rgba(56, 56, 56, 0.7);
   backdrop-filter: blur(10px);
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
 }
 .rounded-card:hover { clip-path: inset(0px 0px round 20px 20px); }
 
@@ -78,17 +79,21 @@ thead { border-bottom: 1.5px solid cyan; }
 {
   color: white;
   padding: 20px;
-  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
   background-color: rgba(56, 56, 56, 0.7);
   border-radius: 20px;
   box-shadow: black 4px 4px 8px 2px;
   backdrop-filter: blur(15px);
+  transition: 0.3s cubic-bezier(0.8, 0, 0.2, 1);
 }
+.selectable-card:hover { box-shadow: black 8px 8px 24px 4px; }
 
-.selectable-card:hover
+.collapsible-card
 {
-  box-shadow: black 8px 8px 24px 4px;
+  color: white;
+  background-color: rgba(0, 52, 63, 0.8);
+  backdrop-filter: blur(20px);
 }
+.collapsible-card:hover { box-shadow: black 4px 4px 20px 2px; }
 
 .content { min-height: 100%; }
 

@@ -1,9 +1,6 @@
   </div>
 </body>
 <footer class="page-footer grey darken-4">
-    <div class="row container">
-      
-    </div>
   <div class="row container">
     <div class="col s4">
       <h4 class="white-text lovelo">PETS.co</h4>

@@ -25,13 +25,13 @@
 </div>
 
 <div class="row container" style="text-align: center; margin-bottom: 100px">
-  <h3 class="white-text page-title">The largest community of pets enthusiasts</h3>
+  <h3 class="page-title">The largest community of pets enthusiasts</h3>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="row">
-      <h4 class="white-text page-title" style="display: inline;;">Categories</h4>
+      <h4 class="page-title" style="display: inline;;">Categories</h4>
       <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
     <div class="col">
@@ -66,7 +66,7 @@
 
   <div class="row">
     <div class="row">
-      <h4 class="white-text page-title" style="display: inline;">Best Sellers On Sale</h4>
+      <h4 class="page-title" style="display: inline;">Best Sellers On Sale</h4>
       <a href="#" class="page-title yellow-text" style="display: inline;">Shop All></a>
     </div>
     <div class="col s12 m3">
@@ -127,8 +127,8 @@
   </div>
 
   <div class="row center" style="margin-top: 150px">
-    <h2 class="white-text page-title">You're in good company</h2>
-    <h5 class="white-text page-title">
+    <h2 class="page-title">You're in good company</h2>
+    <h5 class="page-title">
       <b class="orange-text">At Pets.co</b>, we strive for <b class="orange-text">PETS</b>. These guiding principles define our commitment and promise to serve you better by working towards our mutual goals.
     </h5>
   </div>

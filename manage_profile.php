@@ -4,7 +4,7 @@
 <?php include "header.php"; ?>
 
 <div class="container">
-  <h3 class="white-text page-title">Manage Personal Profile</h3>
+  <h3 class="page-title">Manage Personal Profile</h3>
 
   <div id="id_card_parent" class="rounded-card-parent">
     <div id="id_card" class="card rounded-card" style="height: 350px;">

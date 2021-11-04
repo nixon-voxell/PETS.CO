@@ -11,7 +11,7 @@
 ?>
 
 <div class="container">
-  <h3 class="white-text page-title">Manage Products</h3>
+  <h3 class="page-title">Manage Products</h3>
 
   <!-- users list start -->
   <div class="rounded-card-parent">
