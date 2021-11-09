@@ -105,22 +105,6 @@
         </div>
       </div>
       <div class="row">
-<<<<<<< HEAD
-        <div class="input-field col s8 white-text">
-          <i class="material-icons prefix">account_circle</i>
-          <input name="image" type="text" class="validate white-text">
-          <label for="image" class="white-text">Product Image</label>
-          <span class="helper-text white-text" data-error="wrong_file_type"></span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s8" style = "color:black">
-          <?php 
-          echo "<img src='images/$image' style='height:100px;'>"
-          ?>
-        </div>
-      </div>
-=======
             <div class="file-field col s8">
               <a class="waves-effect waves-light btn cyan">
                 <i class="material-icons prefix">image</i>
@@ -131,7 +115,6 @@
               </div>
             </div>
           </div>
->>>>>>> 70ae7612e758eeb777097ce1307644ca2814a2d7
       <button type="submit" id="update" name="update" class="btn">Update Product</button>
     </form>
   </div>
