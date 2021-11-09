@@ -34,6 +34,12 @@ nav { height: 100px; line-height: 100px; }
 
 thead { border-bottom: 1.5px solid cyan; }
 
+.section
+{
+  background-color: rgba(56, 56, 56, 0.7);
+  backdrop-filter: blur(10px);
+}
+
 .page-title
 {
   color: white;

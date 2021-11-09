@@ -119,53 +119,68 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="rounded-card-parent">
-    <div class="card rounded-card" style="margin: 150px 0 150px 0">
-      <h2 class="page-title">You're in good company</h2>
-      <h5 class="page-title" style="text-align:left">
-        <b class="orange-text">At Pets.co</b>, we strive for <b class="orange-text">PETS</b>. These guiding principles define our commitment and promise to serve you better by working towards our mutual goals.
-      </h5>
+<div class="section">
+  <div class="wide-container">
+    <h3 class="white-text">You're in good company!</h3>
+    <h5 class="white-text">
+      At <b class="orange-text">Pets.co</b>, we strive for <b class="orange-text">PETS</b>.
+      These guiding principles define our commitment and promise to serve you better
+      by working towards our mutual goals.
+    </h5>
 
-      <div class="row center">
-        <div class="col s12 m3">
-          <div class="rounded-card-parent">
-            <div class="card rounded-card black">
-              <img src="static/values_images/P.jpg" width="200" height="200">
-              <h5 class="orange-text bold center" style="display: inline; vertical-align: top">P</h5><h5 class="white-text bold center" style="display: inline; vertical-align: top">REMIUM<h5>
+    <div class="row container center-align" style="margin-bottom: 0px;">
+      <div class="col">
+        <div class="rounded-card-parent">
+          <div class="card rounded-card black" style="height: 300px">
+            <img src="static/values_images/P.jpg" width="200px">
+            <div class="row">
+              <h5 class="orange-text bold center" style="display: inline;">P</h5>
+              <h5 class="white-text bold center" style="display: inline;">REMIUM</h5>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col s12 m3">
-          <div class="rounded-card-parent">
-            <div class="card rounded-card black">
-              <img src="static/values_images/E.png"width="200" height="200">
-              <h5 class="orange-text bold center" style="display: inline; vertical-align: top">E</h5><h5 class="white-text bold center" style="display: inline; vertical-align: top">NTHUSIATIC<h5>
+      <div class="col">
+        <div class="rounded-card-parent">
+          <div class="card rounded-card black" style="height: 300px">
+            <img src="static/values_images/E.png" width="200px">
+            <div class="row">
+              <h5 class="orange-text bold center" style="display: inline;">E</h5>
+              <h5 class="white-text bold center" style="display: inline;">NTHUSIATIC</h5>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col s12 m3">
-          <div class="rounded-card-parent">
-            <div class="card rounded-card black">
-              <img src="static/values_images/T.png"  width="200" height="200">
-              <h5 class="orange-text bold center" style="display: inline; vertical-align: top">T</h5><h5 class="white-text bold center" style="display: inline; vertical-align: top">RUSTWORTY<h5>
+      <div class="col">
+        <div class="rounded-card-parent">
+          <div class="card rounded-card black" style="height: 300px">
+            <img src="static/values_images/T.png" width="200px">
+            <div class="row">
+              <h5 class="orange-text bold center" style="display: inline;">T</h5>
+              <h5 class="white-text bold center" style="display: inline;">RUSTWORTY</h5>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col s12 m3">
-          <div class="rounded-card-parent">
-            <div class="card rounded-card black">
-              <img src="static/values_images/S.jpg" width="200" height="200">
-              <h5 class="orange-text bold center" style="display: inline; vertical-align: top">S</h5><h5 class="white-text bold center" style="display: inline; vertical-align: top">AFETY<h5>
+      <div class="col">
+        <div class="rounded-card-parent">
+          <div class="card rounded-card black" style="width: 300px">
+            <img src="static/values_images/S.svg" height="200px">
+            <div class="row">
+              <h5 class="orange-text bold center" style="display: inline;">S</h5>
+              <h5 class="white-text bold center" style="display: inline;">AFETY</h5>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 <?php include "footer.php"; ?>
 
