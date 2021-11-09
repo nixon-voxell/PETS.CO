@@ -29,8 +29,8 @@
     <div class="row">
       <h4 class="page-title lovelo center">Categories</h4>
     </div>
-    <div class="col s4">
-      <div class="selectable-card" style="width: 350px;">
+    <div class="col">
+      <div class="selectable-card" style="width: 350px; margin: 20px;">
         <a href="#">
           <?php include_once "dog.html"; ?>
           <h5 class="orange-text center bold">DOGS</h5>
@@ -38,8 +38,8 @@
       </div>
     </div>
 
-    <div class="col s4">
-      <div class="selectable-card" style="width: 350px;">
+    <div class="col">
+      <div class="selectable-card" style="width: 350px; margin: 20px;">
         <a href="#">
           <?php include_once "food.html"; ?>
           <h5 class="orange-text center bold">FOOD</h5>
@@ -47,8 +47,8 @@
       </div>
     </div>
 
-    <div class="col s4">
-      <div class="selectable-card" style="width: 350px;">
+    <div class="col">
+      <div class="selectable-card" style="width: 350px; margin: 20px;">
         <a href="#">
           <?php include_once "ball.html"; ?>
           <h5 class="orange-text center bold">ACCESSORIES</h5>

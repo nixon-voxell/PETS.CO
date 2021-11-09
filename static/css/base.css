@@ -83,7 +83,7 @@ thead { border-bottom: 1.5px solid cyan; }
   border-radius: 20px;
   box-shadow: black 4px 4px 8px 2px;
   backdrop-filter: blur(15px);
-  transition: 0.1s cubic-bezier(0.8, 0, 0.2, 1);
+  transition: 0.2s cubic-bezier(0.8, 0, 0.2, 1);
 }
 .selectable-card:hover { box-shadow: black 8px 8px 24px 4px; }
 
