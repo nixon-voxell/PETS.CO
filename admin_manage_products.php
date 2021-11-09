@@ -43,7 +43,7 @@
         <form action="admin_manage_products.php" method="GET">
           <table class="responsive-table">
             <thead class="text-primary">
-              <tr><th>Product Brand</th><th></th></tr>
+              <tr><th>Name</th><th>Brand</th><th></th></tr>
             </thead>
             <tbody>
               <?php
@@ -58,13 +58,16 @@
                     $sql = "SELECT Image, Name, Brand FROM Items WHERE Brand LIKE '%$searchProduct%' ORDER BY Brand";
                     $result = $conn->query($sql) or die ("Product does not exists!");
                     while ($row = mysqli_fetch_assoc($result) ) 
-                    { 
-                      $brand = $row["Brand"]; 
+                    {
+                      $itemID = $row["ItemID"]; 
+                      $brand = $row["Brand"];
+                      $name = $row["Name"];
                       echo(
                         "<tr>
-                          <td>$brand</td>
+                          <td class='white-text'>$brand</td>
+                          <td class='white-text'>$name</td>
                           <td>
-                            <button name='inspect_product' value='$brand' class='btn'>
+                            <button name='inspect_product' value='$itemID' class='btn'>
                               <i class='material-icons'>search</i>
                             </button>
                           </td>
@@ -80,14 +83,16 @@
                   $sql = "SELECT ItemID, Image, Name, Brand FROM Items ORDER BY Brand LIMIT 20";
                   $result = $conn->query($sql) or die ($conn->error);
                   while ($row = mysqli_fetch_assoc($result)) 
-                  { 
+                  {
+                    $itemID = $row["ItemID"]; 
                     $brand = $row["Brand"];
-                    $iid = $row["ItemID"]; 
+                    $name = $row["Name"];
                     echo(
                       "<tr>
-                        <td>$brand</td>
-                        <td class='left-align'>
-                          <button name='inspect_product' value='$iid' class='btn'>
+                        <td class='white-text'>$brand</td>
+                        <td class='white-text'>$name</td>
+                        <td>
+                          <button name='inspect_product' value='$itemID' class='btn'>
                             <i class='material-icons'>search</i>
                           </button>
                         </td> 
@@ -107,6 +112,7 @@
   <!-- productss list end -->
 
   <!-- selected product details start -->
+  <?php if (isset($_GET["inspect_product"])) { ?>
   <div class="rounded-card-parent">
     <div class="card rounded-card">
       <div class="card-content white-text">
@@ -120,43 +126,41 @@
             <tbody>
               <?php
                 // inspect product
-                if (isset($_GET["inspect_product"]))
+                $itemID = $_GET["inspect_product"];
+                $sql = "SELECT * FROM Items where ItemID = $itemID ORDER BY Brand";
+                $result = $conn->query($sql) or die("<p> * ItemID error, please try again!</p>");
+                while ($row = mysqli_fetch_assoc($result))    
                 {
-                  $iid = $_GET["inspect_product"];
-                  $sql = "SELECT * FROM Items where ItemID = $iid ORDER BY Brand";
-                  $result = $conn->query($sql) or die("<p> * ItemID error, please try again!</p>");
-                  while ($row = mysqli_fetch_assoc($result))    
-                  {
-                    $itemID = $row["ItemID"];
-                    $image=$row['Image'];
-                    $deleteid = $row["ItemID"];
-                    $editid = $row["ItemID"];
-                    $name = $row['Name'];
-                    $brand = $row["Brand"];
-                    $description = $row["Description"];
-                    $category = $row["Category"];
-                    $sellingprice = $row["SellingPrice"];
-                    $quantityinstock = $row["QuantityInStock"];
+                  $itemID = $row["ItemID"];
+                  $image=$row['Image'];
+                  $deleteid = $row["ItemID"];
+                  $editid = $row["ItemID"];
+                  $name = $row['Name'];
+                  $brand = $row["Brand"];
+                  $description = $row["Description"];
+                  $category = $row["Category"];
+                  $sellingprice = $row["SellingPrice"];
+                  $quantityinstock = $row["QuantityInStock"];
 
-                    echo(
-                      "<tr> 
-                        <td>$itemID</td>
-                        <td>$name</td>
-                        <td>$brand</td>
-                        <td>$description</td>
-                        <td>$category</td>
-                        <td>$sellingprice</td>
-                        <td>$quantityinstock</td>
-                        <td><a> 
-                          <button class='btn red darken-4' name='edit' value='$itemID' class='btn'>
-                          <a href='edit_products.php? itemid=$itemID & action=edit'>Edit</a></button>
-                          <br><br>
-                          <button class='btn red darken-4' name='delete_product' value='$itemID'
-                          onclick=\"return confirm('Are you sure you want to delete record: \'$name, $brand\'?');\">Delete</button>
-                        </a></td>
-                      </tr>"
-                    );
-                  }
+                  echo(
+                    "<tr> 
+                      <td>$itemID</td>
+                      <td>$name</td>
+                      <td>$brand</td>
+                      <td>$description</td>
+                      <td>$category</td>
+                      <td>$sellingprice</td>
+                      <td>$quantityinstock</td>
+                      <td><a>
+                        <button class='btn yellow darken-4' name='edit' value='$itemID' class='btn'>
+                          <a class='white-text' href='edit_products.php? itemid=$itemID & action=edit'>
+                          Edit</a>
+                        </button>
+                        <button class='btn red darken-4' name='delete_product' value='$itemID'
+                        onclick=\"return confirm('Are you sure you want to delete record: \'$name, $brand\'?');\">Delete</button>
+                      </a></td>
+                    </tr>"
+                  );
                 }
 
                 // delete product
@@ -173,8 +177,10 @@
       </div>
     </div>
   </div>
+  <?php } ?>
   <!-- selected member details end -->
 
+  <!-- create product start -->
   <div class="rounded-card-parent">
     <div class="card rounded-card">
       <div class="card-content">
@@ -185,14 +191,14 @@
               <div class="row">
                 <div class="input-field white-text">
                   <i class="material-icons prefix">inventory_2</i>
-                  <input name="name" type="text" class="validate white-text" minlength="2" maxlength="30">
+                  <input name="name" type="text" class="validate white-text" maxlength="30">
                   <label for="name" class="white-text">Product Name</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field white-text">
                   <i class="material-icons prefix">branding_watermark</i>
-                  <input name="brand" type="text" class="validate white-text" minlength="6" maxlength="20">
+                  <input name="brand" type="text" class="validate white-text" maxlength="20">
                   <label for="brand" class="white-text">Brand</label>
                 </div>
               </div>
@@ -220,7 +226,7 @@
               <div class="row">
                 <div class="input-field white-text">
                   <i class="material-icons prefix">attach_money</i>
-                  <input name="sellingprice" type="number" class="validate white-text" maxlength="30">
+                  <input name="sellingprice" type="number" step=".01" class="validate white-text" maxlength="30">
                   <label for="sellingprice" class="white-text">Selling Price</label>
                 </div>
               </div>
@@ -240,19 +246,19 @@
                 <input type="file">
               </a>
               <div class="file-path-wrapper">
-                <input class="file-path validate white-text" type="text">
+                <input name="image" class="file-path validate white-text" type="text">
               </div>
             </div>
           </div>
 
           <div class="errormsg">
             <?php
-              if (isset($_GET["error"]))
+              if (isset($_GET["create_product"]))
               {
-                if ($_GET["error"] == "empty_input")
+                if ($_GET["create_product"] == "empty_input")
                   echo "<p>*Fill in all fields!<p>";
 
-                else if ($_GET["message"] == "create_product_succesful")
+                else if ($_GET["create_product"] == "successful")
                   echo "<p class='green-text'>Added Product.</p>";
               }
             ?>
@@ -262,6 +268,7 @@
       </div>
     </div> 
   </div>
+  <!-- create product end -->
 </div>
 
 <script>

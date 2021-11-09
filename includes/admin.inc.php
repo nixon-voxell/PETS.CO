@@ -11,7 +11,7 @@ function EmptyInputSelectProduct($value) { return empty($value); }
 
 function EmptyInputCreateProduct($name, $brand, $description, $category, $sellingprice, $quantityinstock, $image)
 {
-  return empty($name) || empty($brand) || empty($description) ||
+  return empty($name) || empty($brand) || empty($description) or
   ($category === "") || empty($sellingprice) ||
   empty($quantityinstock) || empty($image);
 }
@@ -69,11 +69,10 @@ if (isset($_POST["submit_product"]))
 
   if (EmptyInputCreateProduct($name, $brand, $description, $category, $sellingprice, $quantityinstock, $image))
   {
-    header("location: admin_manage_products.php?error=empty_input");
+    header("location: admin_manage_products.php?create_product=empty_input");
     exit();
   }
 
   CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image);
-  header("location: admin_manage_products.php?message=create_product_succesful");
-  mysqli_close($conn);
+  header("location: admin_manage_products.php?create_product=successful");
 }
