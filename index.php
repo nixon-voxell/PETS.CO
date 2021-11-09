@@ -134,7 +134,7 @@
       <div class="col">
         <div class="rounded-card-parent">
           <div class="card rounded-card tint-glass-black" style="height: 300px; width: 250px;">
-            <img src="static/values_images/P.svg" height="200px">
+            <img src="images/values_images/P.svg" height="200px">
             <div class="row">
               <h5 class="orange-text bold center" style="display: inline;">P</h5>
               <h5 class="white-text bold center" style="display: inline;">REMIUM</h5>
@@ -146,7 +146,7 @@
       <div class="col">
         <div class="rounded-card-parent">
           <div class="card rounded-card tint-glass-black" style="height: 300px; width: 250px;">
-            <img src="static/values_images/E.svg" height="200px">
+            <img src="images/values_images/E.svg" height="200px">
             <div class="row">
               <h5 class="orange-text bold center" style="display: inline;">E</h5>
               <h5 class="white-text bold center" style="display: inline;">NTHUSIATIC</h5>
@@ -158,7 +158,7 @@
       <div class="col">
         <div class="rounded-card-parent">
           <div class="card rounded-card tint-glass-black" style="height: 300px; width: 250px;">
-            <img src="static/values_images/T.svg" height="200px">
+            <img src="images/values_images/T.svg" height="200px">
             <div class="row">
               <h5 class="orange-text bold center" style="display: inline;">T</h5>
               <h5 class="white-text bold center" style="display: inline;">RUSTWORTY</h5>
@@ -170,7 +170,7 @@
       <div class="col">
         <div class="rounded-card-parent">
           <div class="card rounded-card tint-glass-black" style="height: 300px; width: 250px;">
-            <img src="static/values_images/S.svg" height="200px">
+            <img src="images/values_images/S.svg" height="200px">
             <div class="row">
               <h5 class="orange-text bold center" style="display: inline;">S</h5>
               <h5 class="white-text bold center" style="display: inline;">AFETY</h5>
