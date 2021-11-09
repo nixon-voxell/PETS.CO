@@ -181,71 +181,81 @@
         <span class="card-title orange-text bold">Create Product</span>
         <form action="admin_manage_products.php" method="POST">
           <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix">account_circle</i>
-              <input name="name" type="text" class="validate white-text" minlength="2" maxlength="30">
-              <label for="name" class="white-text"> Product Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix">account_circle</i>
-              <input name="brand" type="text" class="validate white-text" minlength="6" maxlength="20">
-              <label for="brand" class="white-text"> Brand</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix">account_circle</i>
-              <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
-              <label for="description" class="white-text"> Description</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix white-text">account_circle</i>
-              <select name="category">
-                <option value="" disabled selected>Choose your option</option>
-                <option value=1>Dog</option>
-                <option value=2>Food</option>
-                <option value=3>Accessory</option>
-              </select>
-              <label class="white-text">Category</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix">account_circle</i>
-              <input name="sellingprice" type="text" class="validate white-text" maxlength="30">
-              <label for="sellingprice" class="white-text">Selling Price</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix white-text">account_circle</i>
-              <input name="quantityinstock" type="text" class="validate white-text" maxlength="30">
-              <label for="quantityinstock" class="white-text">Quantity In Stock</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s8 white-text">
-              <i class="material-icons prefix">account_circle</i>
-              <input name="image" type="text" class="validate white-text">
-              <label for="image" class="white-text">Product Image</label>
-              <span class="helper-text white-text" data-error="wrong_file_type"></span>
-              <div class="errormsg">
-                <?php
-                  if (isset($_GET["error"]))
-                  {
-                    if ($_GET["error"] == "EmptyInput")
-                      echo "<p>*Fill in all fields!<p>";
-
-                    else if ($_GET["error"] == "None")
-                      echo "<p class='green-text'>Added Product.</p>";
-                  }
-                ?>
+            <div class="col s6" style="padding-right: 40px;">
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix">inventory_2</i>
+                  <input name="name" type="text" class="validate white-text" minlength="2" maxlength="30">
+                  <label for="name" class="white-text">Product Name</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix">branding_watermark</i>
+                  <input name="brand" type="text" class="validate white-text" minlength="6" maxlength="20">
+                  <label for="brand" class="white-text">Brand</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix">description</i>
+                  <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
+                  <label for="description" class="white-text">Description</label>
+                </div>
               </div>
             </div>
+            <div class="col s6" style="padding-right: 40px;">
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix white-text">category</i>
+                  <select name="category">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value=1>Dog</option>
+                    <option value=2>Food</option>
+                    <option value=3>Accessory</option>
+                  </select>
+                  <label class="white-text">Category</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix">attach_money</i>
+                  <input name="sellingprice" type="number" class="validate white-text" maxlength="30">
+                  <label for="sellingprice" class="white-text">Selling Price</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field white-text">
+                  <i class="material-icons prefix white-text">production_quantity_limits</i>
+                  <input name="quantityinstock" type="number" class="validate white-text" maxlength="30">
+                  <label for="quantityinstock" class="white-text">Quantity In Stock</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field col s8">
+              <a class="waves-effect waves-light btn cyan">
+                <i class="material-icons prefix">image</i>
+                <input type="file">
+              </a>
+              <div class="file-path-wrapper">
+                <input class="file-path validate white-text" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="errormsg">
+            <?php
+              if (isset($_GET["error"]))
+              {
+                if ($_GET["error"] == "EmptyInput")
+                  echo "<p>*Fill in all fields!<p>";
+
+                else if ($_GET["error"] == "None")
+                  echo "<p class='green-text'>Added Product.</p>";
+              }
+            ?>
           </div>
           <input class="btn orange btn-block z-depth-5" type="submit" name="submit_product" value="Create Product">
         </form>
