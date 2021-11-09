@@ -118,7 +118,7 @@
               value="<?php echo $image;?>">
           </div>
         </div>
-        <img id="image" src="images/<?php echo $image;?>" style="width: 300px;">
+        <img class="shadow-img" id="image" src="images/<?php echo $image;?>" style="width: 300px;">
       </div>
       <button type="submit" id="update" name="update" class="btn">Update Product</button>
     </form>

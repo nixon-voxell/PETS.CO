@@ -34,7 +34,7 @@ nav { height: 100px; line-height: 100px; }
 
 thead { border-bottom: 1.5px solid cyan; }
 
-img { box-shadow: 0px 4px 20px 1px black; }
+.shadow-img { box-shadow: 0px 4px 20px 1px black; }
 
 .section
 {

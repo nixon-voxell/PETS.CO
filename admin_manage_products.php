@@ -147,7 +147,7 @@
 
                   echo(
                     "<tr>
-                      <td><img src='images/$image' style='height:100px;'></td>
+                      <td><img class='shadow-img' src='images/$image' style='height:100px;'></td>
                       <td>$name</td>
                       <td>$brand</td>
                       <td>$description</td>
@@ -252,7 +252,7 @@
                 <input name="image" class="file-path validate white-text" type="text" onchange="update_image(this)">
               </div>
             </div>
-            <img id="image" src="" style="width: 300px;">
+            <img class="shadow-img" id="image" src="" style="width: 300px;">
           </div>
 
           <div class="errormsg">
