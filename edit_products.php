@@ -34,7 +34,6 @@
       $sql = "update Items set Name='$name', Brand='$brand', Description='$description', Category=$category, SellingPrice='$sellingprice', QuantityInStock=$quantityinstock, Image='$image' where ItemID=$itemID;";
       $conn->query($sql) or die("SQL Update Failed !");
       header("location: admin_manage_products2.php?message=UpdateProductSuccessful");
-      mtsqli_close($conn);
     }  
   ?>
 
