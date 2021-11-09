@@ -16,13 +16,7 @@
   include "includes/data/review.data.php";
   include_once "includes/utils/common_util.php";
   session_start();
-  // $member = NULL;
-  // $memberID = NULL;
-  // $username = NULL;
-  // $email = NULL;
-  // $cart = NULL;
-  // $orders = NULL;
-  $privilegeLevel = 0;
+
   if (isset($_SESSION["Member"]))
   {
     /** @var Member $member */
@@ -34,13 +28,6 @@
     $privilegeLevel = $member->GetPriviledgeLevel();
     $cart = $member->GetCart();
     $orders = $member->GetOrders();
-
-    /** @var Order $cart */
-    /** @var Order[] $orders */
-    $cartItems = $cart->GetOrderItems();
-    $cartItemCount = count($cartItems);
-
-    $orderCount = count($orders);
   }
 ?>
 
@@ -48,14 +35,25 @@
   <nav style="height: 100px";>
     <div class="nav-wrapper black">
       <a href="index.php"><img src = "logo.svg" alt="logo" id="logo" class="brand-logo" height="100"/></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+      <ul class="right hide-on-med-and-down">
         <?php
           if (isset($_SESSION["Member"]))
-          {
-            if ($privilegeLevel == 1)
+          { ?>
+            <li class="grey darken-4"
+            style="height: 60px; width: 400px; border-radius: 20px; margin-top: 20px;
+            box-shadow: 0px 0px 10px cyan; margin-right: 20px;">
+              <form action="search_catalogue.php">
+                <div class="white-text row" style="padding-right: 40px; padding-left: 20px;">
+                  <i class="material-icons col s2">search</i>
+                  <input type="text" name="search_name" placeholder="Search" class="white-text col s10 autocomplete-content" >
+                </div>
+              </form>
+            </li>
+          <?php if ($privilegeLevel == 1)
               echo "<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>";
-            echo "<li><a class='cart' href='cart.php'>Cart<span class='new badge unglow' id='cart_badge'>0</span></a></li>";
-            echo "<li><a class='manage_profile' href='manage_profile.php?email = $email'>Manage Profile</a></li>";
+            echo "<li><a class='cart' href='cart.php?member_id=$memberID'>Cart<span class='new badge unglow' id='cart_badge'>0</span></a></li>";
+            echo "<li><a class='manage_profile' href='manage_profile.php?email=$email'>Manage Profile</a></li>";
             echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
           } else
           {

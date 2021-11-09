@@ -56,7 +56,7 @@ class OrderItem
 
   //// get data
   public function GetOrderItemID() { return $this->orderItemID; }
-  public function ItemID() { return $this->itemID; }
+  public function GetItemID() { return $this->itemID; }
   public function GetPrice() { return $this->price; }
   public function GetQuantity() { return $this->quantity; }
   public function GetAddedDateTime() { return $this->addedDateTime; }

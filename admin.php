@@ -2,16 +2,12 @@
 <html lang="en">
 <title>PETS.CO - Admin Panel</title>
 </head>
-<?php include "header.php"; ?>
+<?php
+  include "header.php";
+  include "admin_nav_bar.php";
+  include "side_nav.html";
+?>
 
-<?php include "admin_nav_bar.php"; ?>
-
-<?php include "side_nav.html"; ?>
-
-<!-- <div class = "iris">
-  <div class = "card transparent z-depth-5">
-  </div>
-</div> -->
 <div class="row">
   <div class="container center; z-depth-5" style= "text-align: center; margin-top: 50px">
     <div class="col s12 m12; z-depth-5">
@@ -38,7 +34,7 @@
           <i class="material-icons blue-text">view_agenda</i>
         </div>
         <div class="card-action">
-          <a class="glow-gradient" href="#">Go To Manage Products Page</a>
+          <a class="glow-gradient" href="admin_manage_products.php">Go To Manage Products Page</a>
         </div>
       </div>
     </div>

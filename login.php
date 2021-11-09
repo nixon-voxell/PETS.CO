@@ -5,7 +5,7 @@
 
 <form method="POST" action="includes/login.inc.php">
   <div class="container">
-    <h3 class="white-text page-title">Login</h3>
+    <h3 class="page-title">Login</h3>
     <div class="rounded-card-parent">
       <div class="card rounded-card">
         <div class="row">
@@ -37,7 +37,7 @@
             <?php
               if (isset($_GET["error"]))
               {
-                if ($_GET["error"] == "EmptyInput")
+                if ($_GET["error"] == "empty_input")
                   echo "<p>*Fill in all fields!</p>";
                 else if ($_GET["error"] == "WrongLogin")
                   echo "<p>*Incorrect credentials!</p>";

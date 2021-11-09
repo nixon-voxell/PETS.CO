@@ -12,30 +12,30 @@ if (isset($_POST["submit"]))
 
   if (EmptyInput($username, $pwd, $repeatPwd, $email) !== false)
   {
-    header("location: ../signup.php?error=EmptyInput");
+    header("location: ../signup.php?error=empty_input");
     exit();
   }
   
   if (InvalidUid($username) !== false)
   {
-    header("location: ../signup.php?error=Invaliduid");
+    header("location: ../signup.php?error=invaliid_uid");
     exit();
   }
 
   if (PwdNotMatch($pwd, $repeatPwd))
   {
-    header("location: ../signup.php?error=PasswordsDontMatch");
+    header("location: ../signup.php?error=passwords_dont_match");
     exit();
   }
 
   if (UIDExists($conn, $username, $email))
   {
-    header("location: ../signup.php?error=UsernameTaken");
+    header("location: ../signup.php?error=username_taken");
     exit();
   }
 
   CreateUser($conn, $username, $pwd, $email);
-  header("location: ../signup.php?error=None");
+  header("location: ../signup.php?error=none");
 }
 
 else

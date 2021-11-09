@@ -28,11 +28,10 @@
             </div>
           </form>
           <table class="responsive-table">
-            <thead class="text-white">
+            <thead>
               <tr><th>Username</th><th>Email</th><th>MemberID</th><th></th></tr>
             </thead>
             <tbody>
-            <form class="col s14" action="admin_view_orders.php" method="GET" style="margin-left: 1080px">
               <?php 
                 if (isset($_POST["search_member"]))
                 {
@@ -82,45 +81,47 @@
                         <td>$email</td>
                         <td>$memberID</td>
                         <td>
-                          <button name='view_order' value='$memberID' class='btn'>
-                            <i class='material-icons'>search</i>
-                          </button>
+                          <form action='admin_view_orders.php' method='GET'>
+                            <input type='hidden' name='username' value='$searchMember'/>
+                            <input type='hidden' name='member_id' value='$memberID'/>
+                            <button name='view_order' value=1 class='btn' type='submit'>
+                              <i class='material-icons'>search</i>
+                            </button>
+                          </form>
                         </td>
                       </tr>"
                     );
                   }
                 }
               ?>
-            </form>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+
+  <?php if (isset($_GET["view_order"])) { ?>
     <div class="rounded-card-parent">
       <div class="card rounded-card">
         <div class="card-content">
-          <span class="card-title cyan-text bold">MemberID <?php if (isset($_GET["view_order"])) echo $_GET["view_order"];?> Cart/Orders Details</span>
-          <table class="centered responsive-table">
-          <tbody>
+          <span class="card-title cyan-text bold">
+            Cart/Order Details
+            <?php echo("[".$_GET["username"]."]");?>
+          </span>
             <?php
               // View Selected Customer Cart/Orders 
               if (isset($_GET["view_order"]))
               {
                 $uid = $_GET["view_order"];
-                echo $cartItemCount;
-                echo $orderCount;
-                SelectedIDOrders($conn, $uid);
+                include_once "cart_items.php";
+                include_once "order_items.php";
               }  
             ?>
-          </tbody>
-          </table>
         </div>
       </div>
     </div>
-  </div>
+  <?php } ?>
 </div>
 
 <script>

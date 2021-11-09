@@ -16,6 +16,13 @@ class Member
   /** @var Order[] $orders */
   private $orders;
 
+  /**
+   * @param int $memberID
+   * @param string $username
+   * @param string $email
+   * @param int $privilegeLevel
+   * @param mysqli $conn
+   */
   function __construct($memberID, $username, $email, $privilegeLevel, $conn)
   {
     $this->memberID = $memberID;
@@ -26,31 +33,34 @@ class Member
     $this->UpdatePreviousOrder($conn);
   }
 
-  /** @return Member */
-  public static function CreateMember($memberID)
+  /**
+   * @param int $memberID
+   * @param mysqli $conn
+   * @return Member
+  */
+  public static function CreateMemberFromID($memberID, $conn)
   {
-    // 
+    $sql = "SELECT * FROM Members WHERE MemberID = $memberID";
+    $result = $conn->query($sql) or die($conn->error);
+    $row = $result->fetch_assoc();
+    $username = $row["Username"];
+    $email = $row["Email"];
+    $privilegeLevel = $row["PrivilegeLevel"];
+
+    return new Member($memberID, $username, $email, $privilegeLevel, $conn);
   }
 
   // copy databse data to object data
+  /** @param mysqli $conn */
   public function InitData($conn)
   {
-    $sql = "SELECT * FROM Members WHERE Username = ?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $this->username);
+    $sql = "SELECT * FROM Members WHERE Username = $this->username";
+    $result = $conn->query($sql) or die($conn->error);
 
-    if (mysqli_stmt_execute($stmt))
-    {
-      $result = mysqli_stmt_get_result($stmt);
-
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      $this->memberID = $row["MemberID"];
-      $this->email = $row["Email"];
-      $this->privilegeLevel = $row["PriviledgeLevel"];
-    }
-
-    mysqli_stmt_close($stmt);
+    $row = $result->fetch_assoc();
+    $this->memberID = $row["MemberID"];
+    $this->email = $row["Email"];
+    $this->privilegeLevel = $row["PriviledgeLevel"];
   }
 
   // copy cart data from database

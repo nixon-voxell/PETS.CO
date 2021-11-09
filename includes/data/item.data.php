@@ -16,14 +16,16 @@ class Item
   private $sellingPrice;
   /** @var int $quantityInStock */
   private $quantityInStock;
+  /** @var int $image */
+  private $image;
   
   /** @var Review[] $reviews */
   private $reviews;
 
   /** @var string[] CATEGORY */
-  public static const CATEGORY = ["Dog", "Food", "Accessory"];
+  public const CATEGORY = ["Dog", "Food", "Accessory"];
   /** @var string[] CATEGORY_ICON */
-  public static const CATEGORY_ICON = ["pets", "restaurant", "toys"];
+  public const CATEGORY_ICON = ["pets", "restaurant", "toys"];
 
   function __construct($itemID, $conn)
   {
@@ -51,6 +53,7 @@ class Item
       $this->category = $row["Category"];
       $this->sellingPrice = $row["SellingPrice"];
       $this->quantityInStock = $row["QuantityInStock"];
+      $this->image = $row["Image"];
     }
 
     mysqli_stmt_close($stmt);
@@ -92,28 +95,25 @@ class Item
   }
 
   // copy object data to database
+  /** @param mysqli $conn */
   public function SetData($conn)
   {
     $sql = "UPDATE Items SET
-      Name = ?, Brand = ?, Description = ?, Category = ?, SellingPrice = ?, QuantityInStock = ?
-      WHERE ItemID = ?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param(
-      $stmt, "sssiiii",
-      $this->name,
-      $this->brand,
-      $this->description,
-      $this->category,
-      $this->sellingPrice,
-      $this->quantityInStock,
-      $this->itemID
-    );
-    
-    $success = mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+      Name = $this->name,
+      Brand = $this->brand,
+      Description = $this->description,
+      Category = $this->category,
+      SellingPrice = $this->sellingPrice,
+      QuantityInStock = $this->quantityInStock
+      WHERE ItemID = $this->itemID";
+
+    $success = $conn->query($sql);    
     return $success;
   }
+
+  //// set data
+  /** @param float $sellingPrice */
+  public function SetSellingPrice($sellingPrice) { $this->sellingPrice = $sellingPrice; }
 
   //// get data
   public function GetItemID() { return $this->itemID; }
@@ -123,5 +123,6 @@ class Item
   public function GetCategory() { return $this->category; }
   public function GetSellingPrice() { return $this->sellingPrice; }
   public function GetQuantityInStock() { return $this->quantityInStock; }
+  public function GetImage() { return $this->image; }
   public function GetReviews() { return $this->reviews; }
 }

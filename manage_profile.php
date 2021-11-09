@@ -4,7 +4,7 @@
 <?php include "header.php"; ?>
 
 <div class="container">
-  <h3 class="white-text page-title">Manage Personal Profile</h3>
+  <h3 class="page-title">Manage Personal Profile</h3>
 
   <div id="id_card_parent" class="rounded-card-parent">
     <div id="id_card" class="card rounded-card" style="height: 350px;">
@@ -55,25 +55,25 @@
         <?php
           if (isset($_GET["error"]))
           {
-            if ($_GET["error"] == "EmptyInput")
+            if ($_GET["error"] == "empty_input")
               echo "<p>*Fill in all fields!<p>";
 
-            else if ($_GET["error"] == "Invaliduid")
+            else if ($_GET["error"] == "invaliid_uid")
               echo "<p>*Choose a proper username!</p>";
 
             else if ($_GET["error"] == "invalidemail")
               echo "<p>*Choose a proper email!</p>";
 
-            else if ($_GET["error"] == "PasswordsDontMatch")
+            else if ($_GET["error"] == "passwords_dont_match")
               echo "<p>*Passwords doesn't match!</p>";
 
             else if ($_GET["error"] == "stmtfailed")
               echo "<p>*Something went wrong, please try again!</p>";
 
-            else if ($_GET["error"] == "UsernameTaken")
+            else if ($_GET["error"] == "username_taken")
               echo "<p>*Username already taken!</p>";
 
-            else if ($_GET["error"] == "None")
+            else if ($_GET["error"] == "none")
             {
               echo "<p>Successfully changed your profile.</p>";
               exit();

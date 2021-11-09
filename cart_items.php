@@ -1,66 +1,70 @@
 <?php
-  /** @var Order $cart */
-  $cartItems = $cart->GetOrderItems();
-  $cartItemCount = count($cartItems);
-
-  /**
-   * @param string $itemName
-   * @param int $categoryIdx
-   * @param string $dateAdded
-  */
-  function GenerateItem($itemName, $categoryIdx, $dateAdded)
+  require_once "includes/utils/dbhandler.php";
+  if (isset($_GET["member_id"]))
   {
-    $iconName = Item::CATEGORY_ICON[$categoryIdx];
-    $categoryName = Item::CATEGORY[$categoryIdx];
-    return "
-    <li>
-      <div class='collapsible-header cyan white'><i class='material-icons'>$iconName</i>$itemName</div>
-      <div class='collapsible-body row white' style='margin: 0px;'>
-        <span class='col s6'>Date Added: $dateAdded</span>
-        <span class='col s6'>Category: $categoryName</span>
-      </div>
-    </li>
-    ";
+    /** @var int $memberID */
+    $memberID = $_GET["member_id"];
+    $member = Member::CreateMemberFromID($memberID, $conn);
+    $cart = $member->GetCart();
+    $cartItems = $cart->GetOrderItems();
+    $cartItemCount = count($cartItems);
   }
 ?>
 
+<h4 class="page-title">Cart</h4>
 <div class="row">
   <div class="col s8">
     <ul class="collapsible popout" id="cart">
-      <li>
-        <div class="collapsible-header cyan white"><i class="material-icons">pets</i>First</div>
-        <div class="collapsible-body row white" style="margin: 0px;">
-          <span class="col s6">Date Added: </span>
-          <span class="col s6">Category: Pet</span>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header white"><i class="material-icons">toys</i>Second</div>
-        <div class="collapsible-body row white" style="margin: 0px;">
-          <span class="col s6">Date Added: </span>
-          <span class="col s6">Category: Accessory</span>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header white"><i class="material-icons">restaurant</i>Third</div>
-        <div class="collapsible-body row white" style="margin: 0px;">
-          <span class="col s6">Date Added: </span>
-          <span class="col s6">Category: Food</span>
-        </div>
-      </li>
+      <!-- generate all rows of items -->
+      <?php
+        if (isset($cartItems))
+        {
+          $totalSum = 0;
+          for ($c=0; $c < $cartItemCount; $c++)
+          {
+            $itemID = $cartItems[$c]->GetItemID();
+            $item = new Item($itemID, $conn);
+            GenerateItem(
+              $item->GetName(), $item->GetCategory(), $cartItems[$c]->GetAddedDateTime(), $itemID
+            );
+            $totalSum += $item->GetSellingPrice();
+          }
+          $totalSum = number_format($totalSum, 2);
+        }
+      ?>
     </ul>
   </div>
 
   <div class="col s4">
-    <div class="card brown darken-3">
-      <div class="card-content white-text">
-        <span class="card-title" style="font-weight: bold;">Cart Details</span>
-        <p>Total Items: </p>
-        <p>Delivery Charges: </p>
-        <p>Sum Total: </p>
-      </div>
-      <div class="card-action">
-        <a href="#">Empty Cart</a>
+    <div class="rounded-card-parent">
+      <div class="card rounded-card tint-glass-cyan blurer">
+        <span class="card-title bold">Cart Details</span>
+        <form action="cart.php" method="POST">
+          <table class="responsive-table">
+            <tbody>
+              <?php
+                if (isset($cartItems))
+                {
+                  echo("<tr><td>Total Items:</td><td>$cartItemCount</td></tr>");
+                  echo("<tr><td>Delivery Charges:</td><td>$1.00</td></tr>");
+                  echo("<tr><td>Sum Total:</td><td>$$totalSum</td></tr>");
+                } else
+                {
+                  echo("<tr><td>Total Items:</td><td>0</td></tr>");
+                  echo("<tr><td>Delivery Charges:</td><td>$0.00</td></tr>");
+                  echo("<tr><td>Sum Total:</td><td>$0.00</td></tr>");
+                }
+              ?>
+            </tbody>
+          </table>
+          <?php if (!isset($_GET["view_order"])) { ?>
+          <button class="btn orange darken-3" style="margin-top: 10px;"
+          onclick="return confirm('Are you sure you want to empty your cart?');">
+            Checkout
+          </button>
+          <input type="hidden" name="empty_cart" value=1>
+          <?php } ?>
+        </form>
       </div>
     </div>
   </div>
