@@ -45,14 +45,14 @@
               <?php
                 if (isset($cartItems))
                 {
-                  echo("<tr><td>Total Items:</td><td>$cartItemCount</td></tr>");
-                  echo("<tr><td>Delivery Charges:</td><td>$1.00</td></tr>");
-                  echo("<tr><td>Sum Total:</td><td>$$totalSum</td></tr>");
+                  echo("<tr><th>Total Items:</th><td>$cartItemCount</td></tr>");
+                  echo("<tr><th>Delivery Charges:</th><td>$1.00</td></tr>");
+                  echo("<tr><th>Sum Total:</th><td>$$totalSum</td></tr>");
                 } else
                 {
-                  echo("<tr><td>Total Items:</td><td>0</td></tr>");
-                  echo("<tr><td>Delivery Charges:</td><td>$0.00</td></tr>");
-                  echo("<tr><td>Sum Total:</td><td>$0.00</td></tr>");
+                  echo("<tr><th>Total Items:</th><td>0</td></tr>");
+                  echo("<tr><th>Delivery Charges:</th><td>$0.00</td></tr>");
+                  echo("<tr><th>Sum Total:</th><td>$0.00</td></tr>");
                 }
               ?>
             </tbody>

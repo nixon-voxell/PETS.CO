@@ -1,0 +1,55 @@
+.unused-image { opacity: 70%; }
+
+.glow-image
+{
+  animation: imageGlowColor 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.25, 0.0, 0.45, 1.0);
+}
+
+@keyframes imageGlowColor
+{
+  0% { -webkit-filter: drop-shadow(0px 0px 2px rgb(255, 81, 28)); opacity: 60%; }
+  100% { -webkit-filter: drop-shadow(0px 0px 8px rgb(255, 154, 38)); opacity: 100%; }
+}
+
+.glow-text { text-shadow: 0px 0px 5px cyan; font-weight: bold; }
+
+.glow-title
+{
+  background-color: cyan;
+  color: white;
+  font-weight: bold;
+  pointer-events: none;
+  box-shadow: 2px 2px 20px cyan;
+}
+
+.unglow { -webkit-text-fill-color: white; }
+
+.glow-gradient
+{
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: hue 5s infinite linear;
+  text-shadow: 0px 0px 8px orange;
+}
+
+.glow-gradient-box
+{
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-animation: hue 5s infinite linear;
+  text-shadow: 0px 0px 8px orange;
+  box-shadow: 0px 2px 5px orange;
+}
+
+@-webkit-keyframes hue
+{
+  from { -webkit-filter: hue-rotate(0deg); }
+  to { -webkit-filter: hue-rotate(360deg); }
+}

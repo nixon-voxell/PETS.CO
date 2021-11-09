@@ -21,12 +21,24 @@ function GenerateItemList($items)
     {
       $itemID = $items[$itemIdx]->GetItemID();
       $image = $items[$itemIdx]->GetImage();
+      $name = $items[$itemIdx]->GetName();
+      $brand = $items[$itemIdx]->GetBrand();
+      $price = $items[$itemIdx]->GetSellingPrice();
+      $price = "$" . number_format($price, 2);
       echo(
         "<div class='col s3'>
-          <div href='item_page.php?item_id=$itemID'
-            class='selectable-card'>
-            <img class='shadow-img' src='images/$image' style='width:250px;'>
-          </div>
+          <a href='item_page.php?item_id=$itemID'>
+            <div class='selectable-card' style='height: 450px; min-width: 300px'>
+              <img class='shadow-img' src='images/$image' style='max-height: 300px; max-width: 250px;'>
+              <table>
+                <tbody>
+                  <tr><th>Name: </th><td>$name</td></tr>
+                  <tr><th>Brand: </th><td>$brand</td></tr>
+                  <tr><th>Price: </th><td>$price</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </a>
         </div>"
       );
     }
