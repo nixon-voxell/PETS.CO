@@ -1,0 +1,7 @@
+collar
+<img src="https://m.media-amazon.com/images/I/91d4r7kxsWL._AC_SY500_.jpg" width="300" height="300">
+<img src="https://petico.my/image/cache/catalog/PRODUCTS/taobao/Dog%20Collar/yellow%20collar-400x385h.jpg" width="300" height="300">
+
+leash/harness
+<img src="https://petico.my/image/cache/catalog/PRODUCTS/taobao/Harness/2-400x385h.jpg" width="300" height="300"> - harness
+<img src="https://petico.my/image/cache/catalog/PRODUCTS/taobao/pleash%20red-400x385h.jpg" width="300" height="300"> - reflective leash
