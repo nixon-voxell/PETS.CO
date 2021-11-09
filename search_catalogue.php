@@ -9,6 +9,7 @@
 ?>
 
 <div class="container" style="padding-top: 50px;">
+  <!-- filter start -->
   <div class="selectable-card nav-wrapper">
     <form id="filter-form" action="search_catalogue.php" method="POST">
       <div class="row" style="margin: 0px;">
@@ -66,6 +67,34 @@
       </div>
     </form>
   </div>
+  <!-- filter end -->
+
+  <!-- item list start -->
+  <div style="margin-top: 40px;">
+    <div class="row center">
+      <div class="col s3">
+        <div href="#" class="selectable-card">
+          <p>Just a simple paragraph.</p>
+        </div>
+      </div>
+      <div class="col s3">
+        <div href="#" class="selectable-card">
+          <p>Just a simple paragraph.</p>
+        </div>
+      </div>
+      <div class="col s3">
+        <div href="#" class="selectable-card">
+          <p>Just a simple paragraph.</p>
+        </div>
+      </div>
+      <div class="col s3">
+        <div href="#" class="selectable-card">
+          <p>Just a simple paragraph.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- item list end -->
 </div>
 
 <script>

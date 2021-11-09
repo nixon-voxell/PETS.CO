@@ -96,6 +96,8 @@ thead { border-bottom: 1.5px solid cyan; }
 }
 .selectable-card:hover { box-shadow: black 8px 8px 24px 4px; }
 
+.selectable-card.item { margin: 20px; }
+
 .collapsible-card
 {
   color: white;
