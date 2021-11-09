@@ -1,8 +1,0 @@
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0316359214402.jpg" width="300" height="300"> Brand - Labrador
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0216358424380.jpg" width="300" height="300"> Brand - Dashchund
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0216358384660.jpg" width="300" height="300"> Brand - German Shepherd
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_10_3116356855160.jpg" width="300" height="300"> Brand - Toy Poodle
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0216358419780.jpg" width="300" height="300"> Brand - Maltese
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0316359214800.jpg" width="300" height="300"> Brand - Pug
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_11_0216358417210.jpg" width="300" height="300"> Brand - Golden Retriever
-<img src="https://mypetslibrary.s3.ap-southeast-1.amazonaws.com/images/pets/2021_10_2416350948813.jpg" width="300" height="300"> Brand - Pomeranian
