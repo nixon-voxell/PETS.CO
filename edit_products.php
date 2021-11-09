@@ -115,7 +115,7 @@
       <div class="row">
         <div class="input-field col s8" style = "color:black">
           <?php 
-          echo "<img src='images/$image' style='width:100px; height:100px;'>"
+          echo "<img src='images/$image' style='height:100px;'>"
           ?>
         </div>
       </div>

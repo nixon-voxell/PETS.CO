@@ -49,13 +49,14 @@
               <?php
                 if (isset($_POST["search_product"]))
                 {
+                  require_once "includes/data/item.data.php";
                   $searchProduct = $_POST["search_product"];
 
                   if (EmptyInputSelectProduct($searchProduct))
                     echo "<p class='prompt-warning'>Please enter a value</p>";
                   else
                   {
-                    $sql = "SELECT Image, Name, Brand FROM Items WHERE Brand LIKE '%$searchProduct%' ORDER BY Brand";
+                    $sql = "SELECT ItemID, Name, Brand FROM Items WHERE Brand LIKE '%$searchProduct%' ORDER BY Brand";
                     $result = $conn->query($sql) or die ("Product does not exists!");
                     while ($row = mysqli_fetch_assoc($result) ) 
                     {
@@ -80,7 +81,7 @@
                 if (!isset($searchProduct) || EmptyInputSelectProduct($searchProduct))
                 {
                   // limited search to prevent page overflow
-                  $sql = "SELECT ItemID, Image, Name, Brand FROM Items ORDER BY Brand LIMIT 20";
+                  $sql = "SELECT ItemID, Name, Brand FROM Items ORDER BY Brand LIMIT 20";
                   $result = $conn->query($sql) or die ($conn->error);
                   while ($row = mysqli_fetch_assoc($result)) 
                   {
@@ -120,7 +121,7 @@
         <table class="responsive-table">
           <form action="admin_manage_products.php" method="GET">
             <thead class="text-primary">
-            <tr><th>ItemID</th><th>Name</th><th>Brand</th>
+            <tr><th>Image</th><th>Name</th><th>Brand</th>
             <th>Description</th><th>Category</th><th>Selling Price</th><th>Qty In Stock</th></tr>
             </thead>
             <tbody>
@@ -132,23 +133,25 @@
                 while ($row = mysqli_fetch_assoc($result))    
                 {
                   $itemID = $row["ItemID"];
-                  $image=$row['Image'];
+                  $image = $row['Image'];
                   $deleteid = $row["ItemID"];
                   $editid = $row["ItemID"];
                   $name = $row['Name'];
                   $brand = $row["Brand"];
                   $description = $row["Description"];
                   $category = $row["Category"];
+                  $category = Item::CATEGORY_ICON[(int)$category];
                   $sellingprice = $row["SellingPrice"];
+                  $sellingprice = "$ ". number_format($sellingprice, 2);
                   $quantityinstock = $row["QuantityInStock"];
 
                   echo(
-                    "<tr> 
-                      <td>$itemID</td>
+                    "<tr>
+                      <td><img src='images/$image' style='height:100px;'></td>
                       <td>$name</td>
                       <td>$brand</td>
                       <td>$description</td>
-                      <td>$category</td>
+                      <td><i class='material-icons prefix'>$category</i></td>
                       <td>$sellingprice</td>
                       <td>$quantityinstock</td>
                       <td><a>
@@ -162,14 +165,6 @@
                     </tr>"
                   );
                 }
-
-                // delete product
-                if (isset($_GET["delete_product"]))
-                {
-                  $id = $_GET["delete_product"];
-                  $sql =  "DELETE FROM Items WHERE ItemID = $id";
-                  $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
-                }
               ?>
             </tbody>
           </form>
@@ -177,7 +172,15 @@
       </div>
     </div>
   </div>
-  <?php } ?>
+  <?php }
+    // delete product
+    if (isset($_GET["delete_product"]))
+    {
+      $id = $_GET["delete_product"];
+      $sql =  "DELETE FROM Items WHERE ItemID = $id";
+      $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
+    }
+  ?>
   <!-- selected member details end -->
 
   <!-- create product start -->
@@ -216,9 +219,9 @@
                   <i class="material-icons prefix white-text">category</i>
                   <select name="category">
                     <option value="" disabled selected>Choose your option</option>
-                    <option value=1>Dog</option>
-                    <option value=2>Food</option>
-                    <option value=3>Accessory</option>
+                    <option value=0>Dog</option>
+                    <option value=1>Food</option>
+                    <option value=2>Accessory</option>
                   </select>
                   <label class="white-text">Category</label>
                 </div>
