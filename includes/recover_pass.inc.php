@@ -12,7 +12,7 @@ if (isset($_POST["submit_email"]))
 
   if (empty($submit_email))
   {
-    header("location: recover_pass.php?reset=EmptyInput");
+    header("location: recover_pass.php?reset=empty_input");
     exit();
 
   } else
@@ -91,7 +91,7 @@ if (isset($_POST["change_pass"]))
 
   if (empty($pwd) || empty($repeatPwd))
   {
-    header("location: ../new_pass.php?error=EmptyInput");
+    header("location: ../new_pass.php?error=empty_input");
     exit();
   } else
   {

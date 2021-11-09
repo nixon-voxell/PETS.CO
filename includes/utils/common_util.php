@@ -77,19 +77,12 @@ function PwdNotMatch($pwd, $repeatPwd)
  * @param string $quantityinstock
  * @param string $image
 */
-function CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image=0)
+function CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image)
 {
   // create product
   $sql = "INSERT INTO Items(Name, Brand, Description, Category, SellingPrice, QuantityInStock, Image)
     VALUES ('$name', '$brand', '$description', $category, $sellingprice, $quantityinstock, '$image');";
   $conn->query($sql) or die("<p>*Product creation error, please try again!</p>");
-
-  // get item id
-  $sql = "SELECT ItemID FROM items where Name = '$name';";
-  $result = $conn->query($sql) or die("<p>*ItemID error, please try again!</p>");
-
-  $row = $result->fetch_assoc();
-  $itemID = $row["ItemID"];
 }
 
 

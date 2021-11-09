@@ -44,19 +44,19 @@
           <?php
             if (isset($_GET["error"]))
             {
-              if ($_GET["error"] == "EmptyInput")
+              if ($_GET["error"] == "empty_input")
                 echo "<p>*Fill in all fields!<p>";
 
-              else if ($_GET["error"] == "Invaliduid")
+              else if ($_GET["error"] == "invaliid_uid")
                 echo "<p>*Choose a proper username!</p>";
 
-              else if ($_GET["error"] == "PasswordsDontMatch")
+              else if ($_GET["error"] == "passwords_dont_match")
                 echo "<p>*Passwords doesn't match!</p>";
 
-              else if ($_GET["error"] == "UsernameTaken")
+              else if ($_GET["error"] == "username_taken")
                 echo "<p>*Username/Email already taken!</p>";
 
-              else if ($_GET["error"] == "None")
+              else if ($_GET["error"] == "none")
               {
                 echo "<p>You have signed up! Redirecting to login page...</p>";
                 header( "refresh:1.5;url=login.php" );

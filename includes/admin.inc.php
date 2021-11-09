@@ -16,7 +16,7 @@ function EmptyInputCreateProduct($name, $brand, $description, $category, $sellin
   empty($quantityinstock) || empty($image);
 }
 
-//Manage User
+// Manage User
 if (isset($_POST["submit_user"]))
 {
   $username = $_POST["username"];
@@ -30,33 +30,33 @@ if (isset($_POST["submit_user"]))
 
   if (EmptyInputCreateUser($username, $pass, $repeatPass, $emailadd, $privilegeLevel))
   {
-    header("location: admin_manage_users.php?error=EmptyInput");
+    header("location: admin_manage_users.php?error=empty_input");
     exit();
   }
   if (PwdNotMatch($pass, $repeatPass))
   {
-    header("location: admin_manage_users.php?error=PasswordsDontMatch");
+    header("location: admin_manage_users.php?error=passwords_dont_match");
     exit();
   }
   if (InvalidUid($username))
   {
-    header("location: admin_manage_users.php?error=Invaliduid");
+    header("location: admin_manage_users.php?error=invaliid_uid");
     exit();
   }
   if (UIDExists($conn, $username, $emailadd ))
   {
-    header("location: admin_manage_users.php?error=UsernameTaken");
+    header("location: admin_manage_users.php?error=username_taken");
     exit();
   }
 
   $privilegeLevel -= 1;
   CreateUser($conn, $username, $pass, $email, $privilegeLevel);
-  header ("location: admin_manage_users.php?error=None");
+  header ("location: admin_manage_users.php?error=none");
   mysqli_close($conn);
 }
 
 
-//Manage Products
+// Manage Products
 if (isset($_POST["submit_product"]))
 {
   $name = $_POST["name"];
@@ -69,20 +69,11 @@ if (isset($_POST["submit_product"]))
 
   if (EmptyInputCreateProduct($name, $brand, $description, $category, $sellingprice, $quantityinstock, $image))
   {
-    header("location: admin_manage_products.php?error=EmptyInput");
+    header("location: admin_manage_products.php?error=empty_input");
     exit();
   }
 
   CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image);
-  header("location: admin_manage_products.php?message=CreateProductSuccessful");
+  header("location: admin_manage_products.php?message=create_product_succesful");
   mysqli_close($conn);
 }
-
-
-
-  //   if (isset($_GET['action']) && $_GET['action'] == 'delete')
-  //   {
-  //     $itemid = $_GET["itemid"];
-  //     mysqli_query($conn,"delete from items where ItemID=$itemid") or die ("SQL Statement Failed");
-  //   }
-  // }

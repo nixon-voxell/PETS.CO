@@ -3,11 +3,11 @@
 <title>PETS.CO - Manage Products Panel</title>
 </head>
 <?php 
-  include "header.php"; 
+  require_once "header.php"; 
+  require_once "admin_nav_bar.php";
+  require_once "side_nav.html";
   include "includes/admin.inc.php";
   include "includes/utils/dbhandler.php";
-  include "admin_nav_bar.php";
-  include "side_nav.html";
 ?>
 
 <div class="container">
@@ -29,7 +29,7 @@
                 <?php
                   if (isset($_GET["error"]))
                   {
-                    if ($_GET["error"] == "emptysearch")
+                    if ($_GET["error"] == "empty_search")
                     echo "<p>Empty Input!</p>";
                   }
                   ?>
@@ -114,7 +114,7 @@
         <table class="responsive-table">
           <form action="admin_manage_products.php" method="GET">
             <thead class="text-primary">
-            <tr><th>ItemID</th><th>Product Image</th><th>Name</th><th>Brand</th>
+            <tr><th>ItemID</th><th>Name</th><th>Brand</th>
             <th>Description</th><th>Category</th><th>Selling Price</th><th>Qty In Stock</th></tr>
             </thead>
             <tbody>
@@ -127,8 +127,8 @@
                   $result = $conn->query($sql) or die("<p> * ItemID error, please try again!</p>");
                   while ($row = mysqli_fetch_assoc($result))    
                   {
-                    $image=$row['Image'];
                     $itemID = $row["ItemID"];
+                    $image=$row['Image'];
                     $deleteid = $row["ItemID"];
                     $editid = $row["ItemID"];
                     $name = $row['Name'];
@@ -138,10 +138,9 @@
                     $sellingprice = $row["SellingPrice"];
                     $quantityinstock = $row["QuantityInStock"];
 
-                    echo
+                    echo(
                       "<tr> 
                         <td>$itemID</td>
-                        <td>$image</td>
                         <td>$name</td>
                         <td>$brand</td>
                         <td>$description</td>
@@ -155,7 +154,8 @@
                           <button class='btn red darken-4' name='delete_product' value='$itemID'
                           onclick=\"return confirm('Are you sure you want to delete record: \'$name, $brand\'?');\">Delete</button>
                         </a></td>
-                      </tr>";
+                      </tr>"
+                    );
                   }
                 }
 
@@ -249,10 +249,10 @@
             <?php
               if (isset($_GET["error"]))
               {
-                if ($_GET["error"] == "EmptyInput")
+                if ($_GET["error"] == "empty_input")
                   echo "<p>*Fill in all fields!<p>";
 
-                else if ($_GET["error"] == "None")
+                else if ($_GET["message"] == "create_product_succesful")
                   echo "<p class='green-text'>Added Product.</p>";
               }
             ?>
@@ -262,6 +262,7 @@
       </div>
     </div> 
   </div>
+</div>
 
 <script>
   $(document).ready(function () 

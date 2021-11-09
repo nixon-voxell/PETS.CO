@@ -28,7 +28,7 @@
         {
           if ($_GET["reset"] == "Success")
             echo "<p>*Check your e-mail spam folder!<p></br>";
-          else if ($_GET["reset"] == "EmptyInput")
+          else if ($_GET["reset"] == "empty_input")
             echo "<p>*Fill in all fields!</p>";
           else if ($_GET["reset"] == "OtpError")
             echo "<p>*Failed while sending code!</p>";

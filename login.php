@@ -37,7 +37,7 @@
             <?php
               if (isset($_GET["error"]))
               {
-                if ($_GET["error"] == "EmptyInput")
+                if ($_GET["error"] == "empty_input")
                   echo "<p>*Fill in all fields!</p>";
                 else if ($_GET["error"] == "WrongLogin")
                   echo "<p>*Incorrect credentials!</p>";

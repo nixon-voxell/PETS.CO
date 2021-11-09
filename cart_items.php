@@ -60,7 +60,7 @@
           <?php if (!isset($_GET["view_order"])) { ?>
           <button class="btn orange darken-3" style="margin-top: 10px;"
           onclick="return confirm('Are you sure you want to empty your cart?');">
-            Empty Cart
+            Checkout
           </button>
           <input type="hidden" name="empty_cart" value=1>
           <?php } ?>
