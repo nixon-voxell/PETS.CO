@@ -19,7 +19,7 @@
 
     list($itemid, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image) = mysqli_fetch_array($result);
   }
- 
+
     if (isset($_POST["update"]))
     {
       $image= $_POST['image'];
@@ -37,7 +37,7 @@
     }  
   ?>
 
-<div class="rounded-card-parent">
+<div class="rounded-card-parent container">
   <div class="card rounded-card">
     <span class="card-title orange-text bold" style="padding-left: 20px;">Edit Product</span>
     <form action="edit_products.php" method="POST" style="padding-left: 10px;">
@@ -105,16 +105,18 @@
         </div>
       </div>
       <div class="row">
-            <div class="file-field col s8">
-              <a class="waves-effect waves-light btn cyan">
-                <i class="material-icons prefix">image</i>
-                <input type="file">
-              </a>
-              <div class="file-path-wrapper">
-                <input name="image" class="file-path validate white-text" type="text">
-              </div>
-            </div>
+        <div class="file-field col s8">
+          <a class="waves-effect waves-light btn cyan">
+            <i class="material-icons prefix">image</i>
+            <input type="file">
+          </a>
+          <div class="file-path-wrapper">
+            <?php
+            echo "<input name='image' class='file-path validate white-text' type='text' value='$image'>"
+            ?>
           </div>
+        </div>
+      </div>
       <button type="submit" id="update" name="update" class="btn">Update Product</button>
     </form>
   </div>
