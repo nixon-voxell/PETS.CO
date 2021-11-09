@@ -2,10 +2,8 @@
 <html lang="en">
 <title>PETS.CO - Search Catalogue</title>
 <?php
-  include "header.php";
-
-  const CATEGORY_NAMES = ["Dog", "Food", "Accessory"];
-  const SORT_NAMES = ["Price low to high", "Price high to low", "Rating high to low"];
+  require_once "header.php";
+  require_once "includes/search_catalogue.inc.php";
 ?>
 
 <div class="container" style="padding-top: 50px;">
@@ -71,28 +69,27 @@
 
   <!-- item list start -->
   <div style="margin-top: 40px;">
-    <div class="row center">
-      <div class="col s3">
-        <div href="#" class="selectable-card">
-          <p>Just a simple paragraph.</p>
-        </div>
-      </div>
-      <div class="col s3">
-        <div href="#" class="selectable-card">
-          <p>Just a simple paragraph.</p>
-        </div>
-      </div>
-      <div class="col s3">
-        <div href="#" class="selectable-card">
-          <p>Just a simple paragraph.</p>
-        </div>
-      </div>
-      <div class="col s3">
-        <div href="#" class="selectable-card">
-          <p>Just a simple paragraph.</p>
-        </div>
-      </div>
-    </div>
+    <?php
+      if (isset($_GET["search_name"]))
+      {
+        /** 
+         * @var mysqli $conn
+         * @var Item[] $items
+         */
+        $searchName = $_GET["search_name"];
+        $sql = "SELECT ItemID FROM Items WHERE Name LIKE '%$searchName%' LIMIT 50";
+        $result = $conn->query($sql) or die($conn->error);
+
+        $items = array();
+        while ($row = $result->fetch_assoc())
+        {
+          $itemID = $row["ItemID"];
+          array_push($items, new Item($itemID, $conn));
+        }
+      
+        GenerateItemList($items);
+      }
+    ?>
   </div>
   <!-- item list end -->
 </div>
