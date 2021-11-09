@@ -69,12 +69,12 @@ if (isset($_POST["submit_product"]))
 
   if (EmptyInputCreateProduct($name, $brand, $description, $category, $sellingprice, $quantityinstock, $image))
   {
-    header("location: admin_manage_products2.php?error=EmptyInput");
+    header("location: admin_manage_products.php?error=EmptyInput");
     exit();
   }
 
   CreateProduct($conn, $name, $brand, $description, $category, $sellingprice, $quantityinstock, $image);
-  header("location: admin_manage_products2.php?message=CreateProductSuccessful");
+  header("location: admin_manage_products.php?message=CreateProductSuccessful");
   mysqli_close($conn);
 }
 

@@ -20,7 +20,7 @@
         <span class="card-title orange-text bold">Products List</span>
 
         <!-- search product input field start -->
-        <form action="admin_manage_products2.php" method="POST">
+        <form action="admin_manage_products.php" method="POST">
           <div class="row" style="margin: 0px;">
           <div class="input-field col s3" style = "color:azure">
               <input name="search_product" type="text" class="validate white-text" maxlength="20">
@@ -40,7 +40,7 @@
         <!-- search product input field end -->
 
         <!-- search product result list start -->
-        <form action="admin_manage_products2.php" method="GET">
+        <form action="admin_manage_products.php" method="GET">
           <table class="responsive-table">
             <thead class="text-primary">
               <tr><th>Product Brand</th><th></th></tr>
@@ -112,7 +112,7 @@
       <div class="card-content white-text">
         <span class="card-title orange-text bold">Selected Product Details</span>
         <table class="responsive-table">
-          <form action="admin_manage_products2.php" method="GET">
+          <form action="admin_manage_products.php" method="GET">
             <thead class="text-primary">
             <tr><th>ItemID</th><th>Product Image</th><th>Name</th><th>Brand</th>
             <th>Description</th><th>Category</th><th>Selling Price</th><th>Qty In Stock</th></tr>
@@ -179,7 +179,7 @@
     <div class="card rounded-card">
       <div class="card-content">
         <span class="card-title orange-text bold">Create Product</span>
-        <form action="admin_manage_products2.php" method="POST">
+        <form action="admin_manage_products.php" method="POST">
           <div class="row">
             <div class="input-field col s8 white-text">
               <i class="material-icons prefix">account_circle</i>
