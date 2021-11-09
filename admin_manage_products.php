@@ -61,12 +61,12 @@
                     while ($row = mysqli_fetch_assoc($result) ) 
                     {
                       $itemID = $row["ItemID"]; 
-                      $brand = $row["Brand"];
                       $name = $row["Name"];
+                      $brand = $row["Brand"];
                       echo(
                         "<tr>
-                          <td class='white-text'>$brand</td>
                           <td class='white-text'>$name</td>
+                          <td class='white-text'>$brand</td>
                           <td>
                             <button name='inspect_product' value='$itemID' class='btn'>
                               <i class='material-icons'>search</i>
@@ -86,12 +86,12 @@
                   while ($row = mysqli_fetch_assoc($result)) 
                   {
                     $itemID = $row["ItemID"]; 
-                    $brand = $row["Brand"];
                     $name = $row["Name"];
+                    $brand = $row["Brand"];
                     echo(
                       "<tr>
-                        <td class='white-text'>$brand</td>
                         <td class='white-text'>$name</td>
+                        <td class='white-text'>$brand</td>
                         <td>
                           <button name='inspect_product' value='$itemID' class='btn'>
                             <i class='material-icons'>search</i>

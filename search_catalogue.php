@@ -77,7 +77,7 @@
          * @var Item[] $items
          */
         $searchName = $_GET["search_name"];
-        $sql = "SELECT ItemID FROM Items WHERE Name LIKE '%$searchName%' LIMIT 50";
+        $sql = "SELECT ItemID FROM Items WHERE Name LIKE '%$searchName%' OR Brand LIKE '%$searchName%' LIMIT 50";
         $result = $conn->query($sql) or die($conn->error);
 
         $items = array();

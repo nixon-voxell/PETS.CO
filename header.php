@@ -46,7 +46,10 @@
               <form action="search_catalogue.php">
                 <div class="white-text row" style="padding-right: 40px; padding-left: 20px;">
                   <i class="material-icons col s2">search</i>
-                  <input type="text" name="search_name" placeholder="Search" class="white-text col s10 autocomplete-content" >
+                  <!-- remain the last search name -->
+                  <input type="text" name="search_name" placeholder="Search"
+                    class="white-text col s10 autocomplete-content"
+                    value="<?php if (isset($_GET["search_name"])) echo($_GET["search_name"]); ?>">
                 </div>
               </form>
             </li>
