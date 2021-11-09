@@ -46,65 +46,66 @@
     </div>
       <div class="row">
         <div class="input-field col s8 white-text">
-          <i class="material-icons prefix">account_circle</i>
-          <input name="name" type="text" class="validate white-text" minlength="2" maxlength="30">
+          <i class="material-icons prefix">inventory_2</i>
           <?php
           echo "<input class='white-text' name='name' type='text' value='$name'/>";
           ?>
-          <label for="name" class="white-text"> Product Name</label>
+          <label for="name" class="white-text">Product Name</label>
+          <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s8 white-text">
-          <i class="material-icons prefix">account_circle</i>
-          <input name="brand" type="text" class="validate white-text" minlength="6" maxlength="20">
+          <i class="material-icons prefix">branding_watermark</i>
           <?php
           echo "<input class='white-text' name='brand' type='text' value='$brand'/>";
           ?>
-          <label for="brand" class="white-text"> Brand</label>
+          <label for="brand" class="white-text">Brand</label>
+          <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
         </div>
       </div>
       <div class="row">
           <div class="input-field col s8 white-text">
-            <i class="material-icons prefix">account_circle</i>
-            <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
+            <i class="material-icons prefix">description</i>
             <?php
             echo "<input class='white-text' name='description' type='text' value='$description'/>";
             ?>
             <label for="description" class="white-text"> Description</label>
+            <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
           </div>
         </div>
       <div class="row">
         <div class="input-field col s8 white-text">
-          <i class="material-icons prefix white-text">account_circle</i>
-          <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
+          <i class="material-icons prefix white-text">category</i>
             <?php
             echo "<input class='white-text' name='category' type='text' value='$category'/>";
             ?>
           <label for="category" class="white-text">Category</label>
+          <span class="helper-text grey-text" data-error="wrong" data-success="correct">Category:1-Dog, 2-Food, 3-Accessories</span>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s8 white-text">
-          <i class="material-icons prefix">account_circle</i>
-          <input name="sellingprice" type="text" class="validate white-text" maxlength="30">
+          <i class="material-icons prefix">attach_money</i>
           <?php
           echo "<input class='white-text' name='sellingprice' type='text' value='$sellingprice'/>";
           ?>
-          <label for="sellingprice">Selling Price</label>
+          <label for="sellingprice" class="white-text">Selling Price</label>
+          <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s8 white-text">
-          <i class="material-icons prefix white-text">account_circle</i>
-          <input name="quantityinstock" type="text" class="validate white-text" maxlength="30">
+          <i class="material-icons prefix white-text">production_quantity_limits</i>
           <?php
           echo "<input class='white-text' name='quantityinstock' type='text' value='$quantityinstock'/>";
           ?>
-          <label for="quantityinstock">Quantity In Stock</label>
+          <label for="quantityinstock" class="white-text">Quantity In Stock</label>
+          <span class="helper-text white-text" data-error="wrong" data-success="correct"></span>
         </div>
       </div>
       <div class="row">
+<<<<<<< HEAD
         <div class="input-field col s8 white-text">
           <i class="material-icons prefix">account_circle</i>
           <input name="image" type="text" class="validate white-text">
@@ -119,6 +120,18 @@
           ?>
         </div>
       </div>
+=======
+            <div class="file-field col s8">
+              <a class="waves-effect waves-light btn cyan">
+                <i class="material-icons prefix">image</i>
+                <input type="file">
+              </a>
+              <div class="file-path-wrapper">
+                <input name="image" class="file-path validate white-text" type="text">
+              </div>
+            </div>
+          </div>
+>>>>>>> 70ae7612e758eeb777097ce1307644ca2814a2d7
       <button type="submit" id="update" name="update" class="btn">Update Product</button>
     </form>
   </div>
