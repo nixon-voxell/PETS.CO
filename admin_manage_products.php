@@ -156,7 +156,7 @@
                       <td>$quantityinstock</td>
                       <td><a>
                         <button class='btn yellow darken-4' name='edit' value='$itemID' class='btn'>
-                          <a class='white-text' href='edit_products.php? itemid=$itemID & action=edit'>
+                          <a class='white-text' href='edit_products.php?item_id=$itemID'>
                           Edit</a>
                         </button>
                         <button class='btn red darken-4' name='delete_product' value='$itemID'
@@ -249,9 +249,10 @@
                 <input type="file">
               </a>
               <div class="file-path-wrapper">
-                <input name="image" class="file-path validate white-text" type="text">
+                <input name="image" class="file-path validate white-text" type="text" onchange="update_image(this)">
               </div>
             </div>
+            <img id="image" src="" style="width: 300px;">
           </div>
 
           <div class="errormsg">
@@ -275,21 +276,20 @@
 </div>
 
 <script>
-  $(document).ready(function () 
-  {
-    $(".sidenav").sidenav();
-  });
-  
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, options);
   });
 
-  // Or with jQuery
-
   $(document).ready(function(){
     $('select').formSelect();
   });
+
+  function update_image(path)
+  {
+    var image = document.getElementById("image");
+    image.src = `images/${path.value}`;
+  }
 </script>
 
 <?php include "footer.php"; ?>
