@@ -47,9 +47,9 @@ if (isset($_GET['itemid']))
           <div class="row">
             <div class="d-flex flex-row flex-wrap">
               <label for="addQty" class="white-text">Quantity</label>
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">-</i></a>
+              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">remove</i></a>
               <input type="float" style="width:10%"></input>
-              <a class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">add</i></a>
+              <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">add</i></a>
             </div>
           </div>
           <div class="row">
