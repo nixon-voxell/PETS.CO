@@ -32,7 +32,7 @@
     <div class="row" style="margin-left: 20px">
       <div class="col">
         <div class="selectable-card" style="width: 350px; margin: 20px;">
-          <a href="#">
+          <a href="search_catalogue.php?category=0">
             <?php include_once "dog.html"; ?>
             <h5 class="orange-text center bold">DOGS</h5>
           </a>
@@ -41,7 +41,7 @@
 
       <div class="col">
         <div class="selectable-card" style="width: 350px; margin: 20px;">
-          <a href="#">
+          <a href="search_catalogue.php?category=1">
             <?php include_once "food.html"; ?>
             <h5 class="orange-text center bold">FOOD</h5>
           </a>
@@ -50,7 +50,7 @@
 
       <div class="col">
         <div class="selectable-card" style="width: 350px; margin: 20px;">
-          <a href="#">
+          <a href="search_catalogue.php?category=2">
             <?php include_once "ball.html"; ?>
             <h5 class="orange-text center bold">ACCESSORIES</h5>
           </a>
