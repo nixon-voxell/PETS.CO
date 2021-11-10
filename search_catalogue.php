@@ -8,7 +8,7 @@
 
 <div class="container" style="padding-top: 50px;">
   <!-- filter start -->
-  <div class="selectable-card nav-wrapper">
+  <div class="selectable-card nav-wrapper tint-glass-cyan">
     <form id="filter-form" action="search_catalogue.php" method="GET">
       <input type="hidden" name="search_name"
         value="<?php if(isset($_GET["search_name"])) echo($_GET["search_name"]); ?>">
