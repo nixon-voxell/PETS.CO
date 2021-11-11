@@ -21,7 +21,7 @@
   <div class="rounded-card-parent">
     <div class="rounded-card card-content">
       <h4 class="orange-text">Payment</h4>
-      <form class="col s12 white-text" action="checkout_payment.php?order_id=<?php echo($_GET["order_id"]) ?>" method="POST" style="margin-left:50px">
+      <form class="col s12 white-text" action="checkout_payment.php?order_id=<?php echo($_GET["order_id"]) ?>" method="POST" style="margin-left: 50px;">
         <div class="row">
           <div class="input-field col s3">
             <i class="material-icons prefix">account_circle</i>

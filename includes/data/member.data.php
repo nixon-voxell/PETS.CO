@@ -73,27 +73,18 @@ class Member
     $row = $result->fetch_assoc();
     require_once "order.data.php";
     $this->cart = new Order($row["OrderID"], $conn);
-
   }
 
   // copy previous order data from database
+  /** @param mysqli $conn */
   public function UpdatePreviousOrder($conn)
   {
+    $sql = "SELECT OrderID FROM Orders WHERE MemberID = $this->memberID AND CartFlag = 0";
+    $result = $conn->query($sql) or die($conn->error);
+    
     $this->orders = array();
-    $sql = "SELECT OrderID FROM Orders WHERE MemberID = ? AND CartFlag = 0";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $this->memberID);
-
-    if (mysqli_stmt_execute($stmt))
-    {
-      $result = mysqli_stmt_get_result($stmt);
-
-      while ($row = $result->fetch_array(MYSQLI_ASSOC))
-        array_push($this->orders, new Order($row["OrderID"], $conn));
-    }
-
-    mysqli_stmt_close($stmt);
+    while ($row = $result->fetch_assoc())
+      array_push($this->orders, new Order($row["OrderID"], $conn));
   }
 
   // check if member has cart (must have a cart, if cart does not exists, means there is something wrong)
