@@ -21,25 +21,15 @@ class Order
   public function UpdateOrderItems($conn)
   {
     $sql = "SELECT OrderItemID FROM OrderItems WHERE OrderID = $this->orderID";
-    
-    $result = $conn->query($sql);
-    
+    $result = $conn->query($sql) or die($conn->error);
+
     // create multiple OrderItem instances
     $this->orderItems = array();
     while ($row = $result->fetch_assoc())
       array_push($this->orderItems, new OrderItem($row["OrderItemID"], $conn));
   }
 
-  // clear all items in the order
-  /** @param mysqli $conn */
-  public function EmptyItems($conn)
-  {
-    $sql = "DELETE FROM OrderItems WHERE OrderID = $this->orderID";
-    $conn->query($sql);
-    $this->orderItems = array();
-  }
-  
   //// get data
   public function GetOrderID() { return $this->orderID; }
-  public function GetORderItems() { return $this->orderItems; }
+  public function GetOrderItems() { return $this->orderItems; }
 }

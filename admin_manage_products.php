@@ -24,7 +24,7 @@
           <div class="row" style="margin: 0px;">
           <div class="input-field col s3" style = "color:azure">
               <input name="search_product" type="text" class="validate white-text" maxlength="20">
-              <label for="search_product">Search product by brand</label>
+              <label for="search_product">Search product</label>
               <div class="errormsg">
                 <?php
                   if (isset($_GET["error"]))
@@ -56,7 +56,8 @@
                     echo "<p class='prompt-warning'>Please enter a value</p>";
                   else
                   {
-                    $sql = "SELECT ItemID, Name, Brand FROM Items WHERE Brand LIKE '%$searchProduct%' ORDER BY Brand";
+                    $sql = "SELECT ItemID, Name, Brand FROM Items
+                      WHERE Brand LIKE '%$searchProduct%' OR Name LIKE '%$searchProduct%'";
                     $result = $conn->query($sql) or die ("Product does not exists!");
                     while ($row = mysqli_fetch_assoc($result) ) 
                     {
@@ -155,10 +156,7 @@
                       <td>$sellingprice</td>
                       <td>$quantityinstock</td>
                       <td><a>
-                        <button class='btn yellow darken-4' name='edit' value='$itemID' class='btn'>
-                          <a class='white-text' href='edit_products.php?item_id=$itemID'>
-                          Edit</a>
-                        </button>
+                        <a class='btn yellow darken-4 white-text' href='edit_products.php?item_id=$itemID'>Edit</a>
                         <button class='btn red darken-4' name='delete_product' value='$itemID'
                         onclick=\"return confirm('Are you sure you want to delete record: \'$name, $brand\'?');\">Delete</button>
                       </a></td>

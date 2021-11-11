@@ -26,6 +26,10 @@ function addToCart()
 {
   var value = parseInt(QTY.value);
   if (value != 0)
-    return confirm('Are you sure you want to add this item to cart?');
-  else alert("There is nothing to add!");
+    return confirm(`Are you sure you want to add ${value} of this item to your cart?`);
+  else
+  {
+    alert("There is nothing to add!");
+    return false;
+  }
 }

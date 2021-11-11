@@ -16,7 +16,7 @@
     $name = $item->GetName();
     $brand = $item->GetBrand();
     $description = $item->GetDescription();
-    $quantity = $item->GetQuantityInStock();
+    $quantityInStock = $item->GetQuantityInStock();
     $price = $item->GetSellingPrice();
     $displayPrice = "$" . number_format($price, 2);
     $category = $item->GetCategory();
@@ -24,13 +24,50 @@
 
     $hasReviews = $item->HasReviews();
     $avgRatings = $item->GetAvgRatings();
-  }
+
+    // ammount of item to be added to the cart
+    $cartQty = 0;
+    if (isset($_GET["qty"])) $cartQty = $_GET["qty"];
+    if ($cartQty > 0)
+    {
+      // we can only add to cart if the quantity in stock is larger than the request quantity
+      if ($quantityInStock >= $cartQty)
+      {
+        $item->SetQuantityInStock($quantityInStock - $cartQty);
+        $item->SetData($conn);
+
+        $orderID = $cart->GetOrderID();
+        // check if order has been added before
+        $sql = "SELECT OrderItemID, Quantity FROM OrderItems WHERE OrderID = $orderID AND ItemID = $itemID";
+        $result = $conn->query($sql) or die($conn->error);
+        $row = $result->fetch_assoc();
+        $orderItemID = $row["OrderItemID"];
+
+        if ($orderItemID == NULL)
+        {
+          // add as new order
+          $sql = "INSERT INTO OrderItems(OrderID, ItemID, Price, Quantity, AddedDatetime)
+            VALUES ($orderID, $itemID, $price, $cartQty, CURRENT_TIME)";
+          $conn->query($sql) or die($conn->error);
+        } else
+        {
+          $cartQty += $row["Quantity"];
+          $sql = "UPDATE OrderItems SET Quantity = $cartQty";
+          $conn->query($sql) or die($conn->error);
+        }
+
+        header("location: http://localhost/PETS.co/item_page.php?item_id=$itemID");
+        exit();
+      }
+    }
+  } else die("<h5 class='container white-text page-title' style='margin-top: 50px'>No item selected...</h5>");
 ?>
 
-<input type="hidden" id="max-quantity" value=<?php echo($quantity) ?>>
+<input type="hidden" id="max-quantity" value=<?php echo($quantityInStock) ?>>
 <div class="container" style="margin-top: 50px;">
   <div class="rounded-card-parent">
     <div class="card rounded-card">
+      <a class="btn red darken-2" href="search_catalogue.php?search_name=">< BACK TO SEARCH</a>
       <h4 class="orange-text bold"><?php echo($name); ?></h4>
       <form action="item_page.php" method="GET" style="padding-left: 10px;">
         <input type="hidden" name="item_id" value=<?php echo($itemID) ?>>
@@ -62,7 +99,7 @@
                       ?>
                     </td>
                   </tr>
-                  <tr><th>Quantity In Stock: </th><td><?php echo($quantity); ?></td></tr>
+                  <tr><th>Quantity In Stock: </th><td><?php echo($quantityInStock); ?></td></tr>
                   <tr><th>Price: </th><td><?php echo($displayPrice); ?></td></tr>
                   <tr><th>Category: </th><td><i class='material-icons prefix'><?php echo($category); ?></i></td></tr>
                 </tbody>
@@ -86,7 +123,7 @@
               </button>
             </div>
             <div class="row">
-              <button type="submit" class="btn waves-effect waves-light" onclick="addToCart()">
+              <button type="submit" class="btn waves-effect waves-light" onclick="return addToCart()">
                 <a class="white-text">
                   <i class="material-icons right">shopping_cart</i>
                   Add To Cart

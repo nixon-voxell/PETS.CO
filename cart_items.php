@@ -6,8 +6,24 @@
     $memberID = $_GET["member_id"];
     $member = Member::CreateMemberFromID($memberID, $conn);
     $cart = $member->GetCart();
+    $cartID = $cart->GetOrderID();
     $cartItems = $cart->GetOrderItems();
     $cartItemCount = count($cartItems);
+  }
+
+  if (isset($_GET["remove_item"]))
+  {
+    $orderItemID = $_GET["remove_item"];
+    $sql = "DELETE FROM OrderItems WHERE OrderItemID = $orderItemID";
+    $conn->query($sql) or die($conn->error);
+    
+    $itemID = $_GET["item_id"];
+    $quantity = $_GET["qty"];
+    $quantityInStock = $_GET["qty_stock"];
+    $quantityInStock += $quantity;
+    $sql = "UPDATE Items SET QuantityInStock = $quantityInStock WHERE ItemID = $itemID";
+    $conn->query($sql) or die($conn->error);
+    header("location: cart.php?member_id=$memberID");
   }
 ?>
 
@@ -22,14 +38,15 @@
           $totalSum = 0;
           for ($c=0; $c < $cartItemCount; $c++)
           {
-            $itemID = $cartItems[$c]->GetItemID();
-            $item = new Item($itemID, $conn);
-            GenerateItem(
-              $item->GetName(), $item->GetCategory(), $cartItems[$c]->GetAddedDateTime(), $itemID
-            );
-            $totalSum += $item->GetSellingPrice();
+            $orderItem = $cartItems[$c];
+            $item = new Item($orderItem->GetItemID(), $conn);
+            GenerateItem($item, $orderItem, $memberID);
+
+            $quantity = $orderItem->GetQuantity();
+            $price = $orderItem->GetPrice();
+            $totalSum += $price * $quantity;
           }
-          $totalSum = number_format($totalSum, 2);
+          $totalSum = number_format($totalSum+1, 2);
         }
       ?>
     </ul>
@@ -39,7 +56,7 @@
     <div class="rounded-card-parent">
       <div class="card rounded-card tint-glass-cyan blurer">
         <span class="card-title bold">Cart Details</span>
-        <form action="cart.php" method="POST">
+        <form action="checkout_payment.php" method="GET">
           <table class="responsive-table">
             <tbody>
               <?php
@@ -58,11 +75,12 @@
             </tbody>
           </table>
           <?php if (!isset($_GET["view_order"])) { ?>
-          <button class="btn orange darken-3" style="margin-top: 10px;"
-          onclick="return confirm('Are you sure you want to empty your cart?');">
+          <button class="btn orange darken-3" style="margin-top: 10px;">
             Checkout
           </button>
-          <input type="hidden" name="empty_cart" value=1>
+          <input type="hidden" name="order_id" value=<?php echo($cartID); ?>>
+          <input type="hidden" name="view_order" value=1>
+          <input type="hidden" name="member_id" value=<?php echo($memberID) ?>>
           <?php } ?>
         </form>
       </div>

@@ -16,17 +16,21 @@
   include_once "includes/data/review.data.php";
   include_once "includes/utils/common_util.php";
   session_start();
-
+  
   if (isset($_SESSION["Member"]))
   {
+    require_once "includes/utils/dbhandler.php";
     /** @var Member $member */
     $member = $_SESSION["Member"];
+    $member = Member::CreateMemberFromID($member->GetMemberID(), $conn);
+    $_SESSION["Member"] = $member;
     // write_log($member);
     $memberID = $member->GetMemberID();
     $username = $member->GetUsername();
     $email = $member->GetEmail();
     $privilegeLevel = $member->GetPriviledgeLevel();
     $cart = $member->GetCart();
+    $orderItemCount = count($cart->GetOrderItems());
     $orders = $member->GetOrders();
   }
 ?>
@@ -54,14 +58,21 @@
               </form>
             </li>
           <?php if ($privilegeLevel == 1)
-              echo "<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>";
-            echo "<li><a class='cart' href='cart.php?member_id=$memberID'>Cart<span class='new badge unglow' id='cart_badge'>0</span></a></li>";
-            echo "<li><a class='manage_profile' href='manage_profile.php?email=$email'>Manage Profile</a></li>";
-            echo "<li><a href='includes/logout.inc.php'>Log out</a></li>";
+              echo("<li><a class='admin admin_manage_users admin_view_orders' href='admin.php'>Admin Panel</a></li>");
+            echo(
+              "<li>
+                <a class='cart' href='cart.php?member_id=$memberID'>
+                  Cart<span class='new badge unglow' id='cart_badge'>$orderItemCount</span></a>
+              </li>
+              <li><a class='manage_profile' href='manage_profile.php?email=$email'>Manage Profile</a></li>
+              <li><a href='includes/logout.inc.php'>Log out</a></li>
+            ");
           } else
           {
-            echo "<li><a class='login' href='login.php'>Login</a></li>";
-            echo "<li><a class='signup' href='signup.php'>Sign Up</a></li>";
+            echo(
+              "<li><a class='login' href='login.php'>Login</a></li>
+              <li><a class='signup' href='signup.php'>Sign Up</a></li>
+            ");
           }
           ?>
       </ul>
