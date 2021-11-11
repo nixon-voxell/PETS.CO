@@ -1,5 +1,7 @@
 <?php
 
+require_once "order_item.data.php";
+
 class Order
 {
   /** @var int $orderID */

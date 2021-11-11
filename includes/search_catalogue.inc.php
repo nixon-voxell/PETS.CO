@@ -11,7 +11,7 @@ const SORT_NAMES = ["Price low to high", "Price high to low", "Rating high to lo
 function GenerateItemList($items)
 {
   $itemCount = count($items);
-  
+
   $itemIdx = 0;
   while ($itemIdx < $itemCount)
   {

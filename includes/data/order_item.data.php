@@ -35,7 +35,7 @@ class OrderItem
       $this->itemID = $row["ItemID"];
       $this->price = $row["Price"];
       $this->quantity = $row["Quantity"];
-      $this->addedDateTime = $row["AddedDateTime"];
+      $this->addedDateTime = $row["AddedDatetime"];
     }
 
     mysqli_stmt_close($stmt);
