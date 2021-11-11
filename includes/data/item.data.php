@@ -97,21 +97,22 @@ class Item
   public function SetData($conn)
   {
     $sql = "UPDATE Items SET
-      Name = $this->name,
-      Brand = $this->brand,
-      Description = $this->description,
+      Name = '$this->name',
+      Brand = '$this->brand',
+      Description = '$this->description',
       Category = $this->category,
       SellingPrice = $this->sellingPrice,
       QuantityInStock = $this->quantityInStock
       WHERE ItemID = $this->itemID";
 
-    $success = $conn->query($sql);    
-    return $success;
+    $conn->query($sql) or die($conn->error);
   }
 
   //// set data
   /** @param float $sellingPrice */
   public function SetSellingPrice($sellingPrice) { $this->sellingPrice = $sellingPrice; }
+  /** @param int $quantityInStock */
+  public function SetQuantityInStock($quantityInStock) { $this->quantityInStock = $quantityInStock; }
 
   //// get data
   public function GetItemID() { return $this->itemID; }

@@ -64,23 +64,16 @@ class Member
   }
 
   // copy cart data from database
+  /** @param mysqli $conn */
   public function UpdateCart($conn)
   {
-    $sql = "SELECT OrderID FROM Orders WHERE MemberID = ? AND CartFlag = 1";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $this->memberID);
+    $sql = "SELECT OrderID FROM Orders WHERE MemberID = $this->memberID AND CartFlag = 1";
+    $result = $conn->query($sql) or die($conn->error);
 
-    if (mysqli_stmt_execute($stmt))
-    {
-      $result = mysqli_stmt_get_result($stmt);
+    $row = $result->fetch_assoc();
+    require_once "order.data.php";
+    $this->cart = new Order($row["OrderID"], $conn);
 
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      require_once "order.data.php";
-      $this->cart = new Order($row["OrderID"], $conn);
-    }
-
-    mysqli_stmt_close($stmt);
   }
 
   // copy previous order data from database
