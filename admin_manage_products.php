@@ -156,10 +156,7 @@
                       <td>$sellingprice</td>
                       <td>$quantityinstock</td>
                       <td><a>
-                        <button class='btn yellow darken-4' name='edit' value='$itemID' class='btn'>
-                          <a class='white-text' href='edit_products.php?item_id=$itemID'>
-                          Edit</a>
-                        </button>
+                        <a class='btn yellow darken-4 white-text' href='edit_products.php?item_id=$itemID'>Edit</a>
                         <button class='btn red darken-4' name='delete_product' value='$itemID'
                         onclick=\"return confirm('Are you sure you want to delete record: \'$name, $brand\'?');\">Delete</button>
                       </a></td>

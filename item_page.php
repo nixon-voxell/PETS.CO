@@ -67,6 +67,7 @@
 <div class="container" style="margin-top: 50px;">
   <div class="rounded-card-parent">
     <div class="card rounded-card">
+      <a class="btn red darken-2" href="search_catalogue.php?search_name=">< BACK TO SEARCH</a>
       <h4 class="orange-text bold"><?php echo($name); ?></h4>
       <form action="item_page.php" method="GET" style="padding-left: 10px;">
         <input type="hidden" name="item_id" value=<?php echo($itemID) ?>>
@@ -122,7 +123,7 @@
               </button>
             </div>
             <div class="row">
-              <button type="submit" class="btn waves-effect waves-light" onclick="addToCart()">
+              <button type="submit" class="btn waves-effect waves-light" onclick="return addToCart()">
                 <a class="white-text">
                   <i class="material-icons right">shopping_cart</i>
                   Add To Cart

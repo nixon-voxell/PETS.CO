@@ -1,5 +1,16 @@
 <?php
   require_once "includes/utils/dbhandler.php";
+  if (isset($_GET["member_id"]))
+  {
+    /** @var int $memberID */
+    $memberID = $_GET["member_id"];
+    $member = Member::CreateMemberFromID($memberID, $conn);
+    $cart = $member->GetCart();
+    $cartID = $cart->GetOrderID();
+    $cartItems = $cart->GetOrderItems();
+    $cartItemCount = count($cartItems);
+  }
+
   if (isset($_GET["remove_item"]))
   {
     $orderItemID = $_GET["remove_item"];
@@ -12,16 +23,7 @@
     $quantityInStock += $quantity;
     $sql = "UPDATE Items SET QuantityInStock = $quantityInStock WHERE ItemID = $itemID";
     $conn->query($sql) or die($conn->error);
-  }
-
-  if (isset($_GET["member_id"]))
-  {
-    /** @var int $memberID */
-    $memberID = $_GET["member_id"];
-    $member = Member::CreateMemberFromID($memberID, $conn);
-    $cart = $member->GetCart();
-    $cartItems = $cart->GetOrderItems();
-    $cartItemCount = count($cartItems);
+    header("location: cart.php?member_id=$memberID");
   }
 ?>
 
@@ -36,12 +38,15 @@
           $totalSum = 0;
           for ($c=0; $c < $cartItemCount; $c++)
           {
-            $itemID = $cartItems[$c]->GetItemID();
-            $item = new Item($itemID, $conn);
-            GenerateItem($item, $cartItems[$c], $memberID);
-            $totalSum += $item->GetSellingPrice();
+            $orderItem = $cartItems[$c];
+            $item = new Item($orderItem->GetItemID(), $conn);
+            GenerateItem($item, $orderItem, $memberID);
+
+            $quantity = $orderItem->GetQuantity();
+            $price = $orderItem->GetPrice();
+            $totalSum += $price * $quantity;
           }
-          $totalSum = number_format($totalSum, 2);
+          $totalSum = number_format($totalSum+1, 2);
         }
       ?>
     </ul>
@@ -51,7 +56,7 @@
     <div class="rounded-card-parent">
       <div class="card rounded-card tint-glass-cyan blurer">
         <span class="card-title bold">Cart Details</span>
-        <form action="checkout.php" method="GET">
+        <form action="checkout_payment.php" method="GET">
           <table class="responsive-table">
             <tbody>
               <?php
@@ -73,7 +78,7 @@
           <button class="btn orange darken-3" style="margin-top: 10px;">
             Checkout
           </button>
-          <input type="hidden" name="empty_cart" value=1>
+          <input type="hidden" name="order_id" value=<?php echo($cartID); ?>>
           <?php } ?>
         </form>
       </div>

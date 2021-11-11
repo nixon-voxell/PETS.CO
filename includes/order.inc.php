@@ -30,14 +30,18 @@ function GenerateItem($item, $cartItem, $memberID)
         <input type='hidden' name='qty_stock' value=$quantityInStock>
         <i class='material-icons'>$iconName</i>
 
-        <p class='col s5' style='padding: 0px; margin: 0px;'>$itemName</p>
-        <p class='col s5' style='padding: 0px; margin: 0px;'>$price</p>
-        <p class='col s5' style='padding: 0px; margin: 0px;'>$quantityDisplay</p>
+        <p class='col s3' style='padding: 0px; margin: 0px;'>$itemName</p>
+        <p class='col s3' style='padding: 0px; margin: 0px;'>$price</p>
+        <p class='col s3' style='padding: 0px; margin: 0px;'>$quantityDisplay</p>
 
-        <button class='btn red darken-4 col s2' style='padding: 0px; margin: 0px;'
+        <a class='btn orange darken-4 col s1 light-weight-text' style='margin-right: 5px; padding: 0px;'
+          href='item_page.php?item_id=$itemID'>
+          Inspect
+        </a>
+        <button class='btn red darken-4 col s1' style='padding: 0px; margin: 0px;'
           name='remove_item' value='$orderItemID'
           onclick=\"return confirm('Are you sure you want remove \'$itemName\'?');\">
-          Remove Item
+          Remove
         </button>
       </form>
       <div class='collapsible-body row collapsible-card bold' style='margin: 0px;'>
