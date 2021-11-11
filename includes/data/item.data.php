@@ -21,6 +21,8 @@ class Item
   
   /** @var Review[] $reviews */
   private $reviews;
+  /** @var float $avgRating */
+  private $avgRating;
 
   /** @var string[] CATEGORY */
   public const CATEGORY = ["Dog", "Food", "Accessory"];
@@ -35,56 +37,52 @@ class Item
   }
 
   // copy databse data to object data
+  /** @param mysqli $conn */
   public function InitData($conn)
   {
-    $sql = "SELECT * FROM Items WHERE ItemID = ?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $this->itemID);
+    $sql = "SELECT * FROM Items WHERE ItemID = $this->itemID";
+    $result = $conn->query($sql) or die($conn->error);
 
-    if (mysqli_stmt_execute($stmt))
-    {
-      $result = mysqli_stmt_get_result($stmt);
-
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      $this->name = $row["Name"];
-      $this->brand = $row["Brand"];
-      $this->description = $row["Description"];
-      $this->category = $row["Category"];
-      $this->sellingPrice = $row["SellingPrice"];
-      $this->quantityInStock = $row["QuantityInStock"];
-      $this->image = $row["Image"];
-    }
-
-    mysqli_stmt_close($stmt);
+    $row = $result->fetch_array(MYSQLI_ASSOC);
+    $this->name = $row["Name"];
+    $this->brand = $row["Brand"];
+    $this->description = $row["Description"];
+    $this->category = $row["Category"];
+    $this->sellingPrice = $row["SellingPrice"];
+    $this->quantityInStock = $row["QuantityInStock"];
+    $this->image = $row["Image"];
   }
   
   // copy reviews and ratings from database
+  /** @param mysqli $conn */
   public function UpdateReviews($conn)
   {
     $this->reviews = array();
-    $sql = "SELECT Feedback, Rating FROM OrderItems WHERE ItemID = ?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $this->itemID);
-    
-    if (mysqli_stmt_execute($stmt))
+    $sql = "SELECT OI.Feedback, OI.Rating, O.MemberID FROM OrderItems OI, Orders O
+      WHERE OI.ItemID = $this->itemID AND OI.OrderID = O.OrderID";
+    $result = $conn->query($sql) or die ($conn->error);
+
+    $this->avgRating = -1;
+    $totalRatings = 0;
+    while ($row = $result->fetch_assoc())
     {
-      $result = mysqli_stmt_get_result($stmt);
-      while ($row = $result->fetch_array(MYSQLI_ASSOC))
+      $feedback = $row["Feedback"];
+      $rating = $row["Rating"];
+      $memberID = $row["MemberID"];
+      $nameResult = $conn->query("SELECT Username FROM Members M WHERE MemberID = $memberID") or die($conn->error);
+      $username = $nameResult->fetch_array()[0];
+      // check to see if a review has been made or not
+      if ($rating != NULL)
       {
-        $feedback = $row["Feedback"];
-        $rating = $row["Rating"];
-        // check to see if a review has been made or not
-        if ($rating != NULL)
-        {
-          // if feedback is empty, we assign it as empty string
-          if ($feedback != NULL) array_push($this->reviews, new Review($feedback, $rating));
-          else array_push($this->reviews, new Review("", $rating));
-        }
+        // if feedback is empty, we assign it as empty string
+        if ($feedback != NULL) array_push($this->reviews, new Review($username, $rating, $feedback));
+        else array_push($this->reviews, new Review($username, $rating, ""));
+        $this->avgRating += $rating;
+        $totalRatings++;
       }
     }
-    mysqli_stmt_close($stmt);
+
+    if ($totalRatings > 0) $this->avgRating /= $totalRatings;
   }
 
   // check whether this item has any reviews
@@ -99,21 +97,22 @@ class Item
   public function SetData($conn)
   {
     $sql = "UPDATE Items SET
-      Name = $this->name,
-      Brand = $this->brand,
-      Description = $this->description,
+      Name = '$this->name',
+      Brand = '$this->brand',
+      Description = '$this->description',
       Category = $this->category,
       SellingPrice = $this->sellingPrice,
       QuantityInStock = $this->quantityInStock
       WHERE ItemID = $this->itemID";
 
-    $success = $conn->query($sql);    
-    return $success;
+    $conn->query($sql) or die($conn->error);
   }
 
   //// set data
   /** @param float $sellingPrice */
   public function SetSellingPrice($sellingPrice) { $this->sellingPrice = $sellingPrice; }
+  /** @param int $quantityInStock */
+  public function SetQuantityInStock($quantityInStock) { $this->quantityInStock = $quantityInStock; }
 
   //// get data
   public function GetItemID() { return $this->itemID; }
@@ -125,4 +124,5 @@ class Item
   public function GetQuantityInStock() { return $this->quantityInStock; }
   public function GetImage() { return $this->image; }
   public function GetReviews() { return $this->reviews; }
+  public function GetAvgRatings() { return $this->avgRating / 5 * 100; }
 }

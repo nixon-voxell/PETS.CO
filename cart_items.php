@@ -1,5 +1,19 @@
 <?php
   require_once "includes/utils/dbhandler.php";
+  if (isset($_GET["remove_item"]))
+  {
+    $orderItemID = $_GET["remove_item"];
+    $sql = "DELETE FROM OrderItems WHERE OrderItemID = $orderItemID";
+    $conn->query($sql) or die($conn->error);
+    
+    $itemID = $_GET["item_id"];
+    $quantity = $_GET["qty"];
+    $quantityInStock = $_GET["qty_stock"];
+    $quantityInStock += $quantity;
+    $sql = "UPDATE Items SET QuantityInStock = $quantityInStock WHERE ItemID = $itemID";
+    $conn->query($sql) or die($conn->error);
+  }
+
   if (isset($_GET["member_id"]))
   {
     /** @var int $memberID */
@@ -24,9 +38,7 @@
           {
             $itemID = $cartItems[$c]->GetItemID();
             $item = new Item($itemID, $conn);
-            GenerateItem(
-              $item->GetName(), $item->GetCategory(), $cartItems[$c]->GetAddedDateTime(), $itemID
-            );
+            GenerateItem($item, $cartItems[$c], $memberID);
             $totalSum += $item->GetSellingPrice();
           }
           $totalSum = number_format($totalSum, 2);
@@ -39,7 +51,7 @@
     <div class="rounded-card-parent">
       <div class="card rounded-card tint-glass-cyan blurer">
         <span class="card-title bold">Cart Details</span>
-        <form action="cart.php" method="POST">
+        <form action="checkout_payment.php?view_order=1" method="GET">
           <table class="responsive-table">
             <tbody>
               <?php
@@ -58,11 +70,10 @@
             </tbody>
           </table>
           <?php if (!isset($_GET["view_order"])) { ?>
-            <?php if (isset($_GET["member_id"])) { ?>
-              <button class="btn orange darken-3" style="margin-top: 10px;">
-                <a href="checkout_payment.php" class="white-text">Checkout</a>
-              </button>
-            <?php } ?>
+          <button class="btn orange darken-3" style="margin-top: 10px;">
+            Checkout
+          </button>
+          <input type="hidden" name="view_order" value=1>
           <?php } ?>
         </form>
       </div>

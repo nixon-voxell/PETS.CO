@@ -17,7 +17,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-          <i class="material-icons prefix white-text"> password</i>
+          <i class="material-icons prefix white-text">password</i>
             <label class="white-text">Password</label>
             <input type="password" name="pwd" class="white-text">
           </div>
