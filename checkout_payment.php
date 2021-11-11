@@ -21,7 +21,9 @@
   <div class="rounded-card-parent">
     <div class="rounded-card card-content">
       <h4 class="orange-text">Payment</h4>
-      <form class="col s12 white-text" action="checkout_payment.php?order_id=<?php echo($_GET["order_id"]) ?>" method="POST" style="margin-left: 50px;">
+      <form class="col s12 white-text"
+        action="checkout_payment.php?order_id=<?php echo($_GET["order_id"]) ?>&member_id=<?php echo($_GET["member_id"]) ?>&view_order=1"
+        method="POST" style="margin-left: 50px;">
         <div class="row">
           <div class="input-field col s3">
             <i class="material-icons prefix">account_circle</i>
@@ -107,7 +109,7 @@
           <?php
             if (isset($_GET["error"]))
             {
-              if ($_GET["error"] == "emptyinput")
+              if ($_GET["error"] == "empty_input")
                 echo "<p>*Fill in all fields!<p>";
             }
           ?>
@@ -137,18 +139,24 @@
 
     if (EmptyInputPayment($name, $number, $month, $year, $cvv, $address, $country, $state, $zip))
     {
-      header("location: checkout_payment.php?error=emptyinput");
+      $orderID = $_GET["order_id"];
+      $memberID = $_GET["member_id"];
+      echo("<script>location.href = 'checkout_payment.php?error=empty_input&order_id=$orderID&member_id=$memberID&view_order=1';</script>");
       exit();
     }
 
     if (isset($_GET["order_id"]))
     {
       $orderid = $_GET["order_id"];
-      $sql = "INSERT INTO Payment (OrderID, PaymentDate)
+      $sql = "INSERT INTO Payment(OrderID, PaymentDate)
         VALUES($orderid, CURRENT_TIME)";
       $conn->query($sql) or die($conn->error);
 
       $sql = "UPDATE Orders SET CartFlag = 0 WHERE OrderID = $orderid";
+      $conn->query($sql) or die($conn->error);
+
+      $sql = "INSERT INTO Orders(MemberID, CartFlag)
+        VALUES($memberID, 1)";
       $conn->query($sql) or die($conn->error);
       echo("<script>location.href = 'payment_successful.php';</script>");
       exit();

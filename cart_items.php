@@ -78,9 +78,10 @@
           <button class="btn orange darken-3" style="margin-top: 10px;">
             Checkout
           </button>
-          <?php } ?>
           <input type="hidden" name="order_id" value=<?php echo($cartID); ?>>
           <input type="hidden" name="view_order" value=1>
+          <input type="hidden" name="member_id" value=<?php echo($memberID) ?>>
+          <?php } ?>
         </form>
       </div>
     </div>
