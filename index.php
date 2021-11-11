@@ -63,6 +63,14 @@
     <div class="row">
       <h4 class="page-title" style="display: inline;">Best Selling Products</h4>
     </div>
+    SELECT 
+
+    SELECT Image from Items 
+    WHERE QuantityInStock > 0
+    SELECT ItemID, Rating FROM OrderItems
+    GROUP BY ItemID
+    ORDER BY AVG(Rating) DESC
+    $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by username")
     <div class="col s12 m3">
       <div class="rounded-card-parent">
         <div class="card rounded-card white center" style="padding: 0px">
