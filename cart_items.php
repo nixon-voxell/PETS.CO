@@ -58,11 +58,11 @@
             </tbody>
           </table>
           <?php if (!isset($_GET["view_order"])) { ?>
-          <button class="btn orange darken-3" style="margin-top: 10px;"
-          onclick="return confirm('Are you sure you want to empty your cart?');">
-            Checkout
-          </button>
-          <input type="hidden" name="empty_cart" value=1>
+            <?php if (isset($_GET["member_id"])) { ?>
+              <button class="btn orange darken-3" style="margin-top: 10px;">
+                <a href="checkout_payment.php" class="white-text">Checkout</a>
+              </button>
+            <?php } ?>
           <?php } ?>
         </form>
       </div>
