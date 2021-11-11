@@ -5546,7 +5546,7 @@ button.btn-floating {
   margin: 0;
   display: none;
   min-width: 100px;
-  overflow-y: auto;
+  overflow-y: visible;
   opacity: 0;
   position: absolute;
   left: 0;

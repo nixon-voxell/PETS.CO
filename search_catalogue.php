@@ -2,15 +2,16 @@
 <html lang="en">
 <title>PETS.CO - Search Catalogue</title>
 <?php
-  include "header.php";
-
-  const CATEGORY_NAMES = ["Dog", "Food", "Accessory"];
-  const SORT_NAMES = ["Price low to high", "Price high to low", "Rating high to low"];
+  require_once "header.php";
+  require_once "includes/search_catalogue.inc.php";
 ?>
 
 <div class="container" style="padding-top: 50px;">
-  <div class="selectable-card nav-wrapper">
-    <form id="filter-form" action="search_catalogue.php" method="POST">
+  <!-- filter start -->
+  <div class="selectable-card nav-wrapper tint-glass-cyan">
+    <form id="filter-form" action="search_catalogue.php" method="GET">
+      <input type="hidden" name="search_name"
+        value="<?php if(isset($_GET["search_name"])) echo($_GET["search_name"]); ?>">
       <div class="row" style="margin: 0px;">
         <div class="col s6">
           <div class="col">
@@ -19,6 +20,7 @@
 
           <div class="col">
             <ul id="filter_dropdown" class="dropdown-content">
+              <li><a class="cyan-text" onclick="select_category(this)">Clear</a></li>
               <li><a class="cyan-text" onclick="select_category(this)">Dog</a></li>
               <li><a class="cyan-text" onclick="select_category(this)">Food</a></li>
               <li><a class="cyan-text" onclick="select_category(this)">Accessory</a></li>
@@ -26,11 +28,10 @@
             <a class="btn dropdown-trigger cyan" data-target="filter_dropdown" style="margin-top: 5px;">
               <?php
                 $category = -1;
-                if (isset($_POST["category"])) $category = $_POST["category"];
-                if ($category != -1)
-                {
-                  echo(CATEGORY_NAMES[$category]);
-                } else echo("Select Category");
+                if (isset($_GET["category"])) $category = $_GET["category"];
+
+                if ($category != -1) echo(CATEGORY_NAMES[$category]);
+                else echo("Select Category");
                 echo("<input type='hidden' name='category' value=$category>");
               ?>
               <i class="material-icons right">arrow_drop_down</i>
@@ -45,18 +46,16 @@
 
           <div class="col">
             <ul id="sort_dropdown" class="dropdown-content">
+              <li><a onclick="select_sort(this)">Clear</a></li>
               <li><a onclick="select_sort(this)">Price low to high</a></li>
               <li><a onclick="select_sort(this)">Price high to low</a></li>
-              <li><a onclick="select_sort(this)">Rating high to low</a></li>
             </ul>
             <a class="btn dropdown-trigger" data-target="sort_dropdown" style="margin-top: 5px;">
               <?php
                 $sort = -1;
-                if (isset($_POST["sort"])) $sort = $_POST["sort"];
-                if ($sort != -1)
-                {
-                  echo(SORT_NAMES[$sort]);
-                } else echo("Select Sort Type");
+                if (isset($_GET["sort"])) $sort = $_GET["sort"];
+                if ($sort != -1) echo(SORT_NAMES[$sort]);
+                else echo("Select Sort Type");
                 echo("<input type='hidden' name='sort' value=$sort>");
               ?>
               <i class="material-icons right">arrow_drop_down</i>
@@ -66,25 +65,63 @@
       </div>
     </form>
   </div>
+  <!-- filter end -->
+
+  <!-- item list start -->
+  <div style="margin-top: 150px;">
+    <?php
+      $searchName = "";
+      if (isset($_GET["search_name"])) $searchName = $_GET["search_name"];
+
+      /** 
+       * @var mysqli $conn
+       * @var Item[] $items
+       */
+      $sql = "SELECT ItemID FROM Items WHERE (Name LIKE '%$searchName%' OR Brand LIKE '%$searchName%')";
+
+      // only limit to a number
+      if ($category != -1) $sql .= " AND Category = $category";
+
+      if ($sort == 0) $sql .= " ORDER BY SellingPrice ASC";
+      else if ($sort == 1) $sql .= " ORDER BY SellingPrice DESC";
+
+      $sql .= " LIMIT 50";
+      $result = $conn->query($sql) or die($conn->error);
+
+      $items = array();
+      while ($row = $result->fetch_assoc())
+      {
+        $itemID = $row["ItemID"];
+        array_push($items, new Item($itemID, $conn));
+      }
+
+      GenerateItemList($items);
+    ?>
+  </div>
+  <!-- item list end -->
 </div>
 
 <script>
   // dropdown
   var form, category, sort;
 
+  // map selections to id
   var categoryMap = {
+    "Clear": -1,
     "Dog": 0,
     "Food": 1,
     "Accessory": 2
   };
-
+  
   var sortMap = {
+    "Clear": -1,
     "Price low to high": 0,
-    "Price high to low": 1,
-    "Rating high to low": 2
+    "Price high to low": 1
   };
 
-  $('.dropdown-trigger').dropdown();
+  $('.dropdown-trigger').dropdown({
+    
+  });
   $(document).ready(() =>
   {
     form = document.getElementById("filter-form");

@@ -44,10 +44,10 @@
           <span class="card-title bold">Order Details</span>
           <table class="responsive-table">
             <tbody>
-              <tr><td>Total Items:</td><td>0</td></tr>
-              <tr><td>Delivery Charges:</td><td>$0.00</td></tr>
-              <tr><td>Sum Total:</td><td>$0.00</td></tr>
-              <tr><td>Date:</td><td>2021-11-4</td></tr>
+              <tr><th>Total Items:</th><td>0</td></tr>
+              <tr><th>Delivery Charges:</th><td>$0.00</td></tr>
+              <tr><th>Sum Total:</th><td>$0.00</td></tr>
+              <tr><th>Date:</th><td>2021-11-4</td></tr>
             </tbody>
           </table>
         </div>

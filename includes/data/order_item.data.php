@@ -20,25 +20,17 @@ class OrderItem
   }
 
   // copy databse data to object data
+  /** @param mysqli $conn */
   public function InitData($conn)
   {
-    $sql = "SELECT * FROM OrderItems WHERE OrderItemID = ?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $this->orderItemID);
+    $sql = "SELECT * FROM OrderItems WHERE OrderItemID = $this->orderItemID";
+    $result = $conn->query($sql) or die($conn->error);
 
-    if (mysqli_stmt_execute($stmt))
-    {
-      $result = mysqli_stmt_get_result($stmt);
-
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      $this->itemID = $row["ItemID"];
-      $this->price = $row["Price"];
-      $this->quantity = $row["Quantity"];
-      $this->addedDateTime = $row["AddedDateTime"];
-    }
-
-    mysqli_stmt_close($stmt);
+    $row = $result->fetch_assoc();
+    $this->itemID = $row["ItemID"];
+    $this->price = $row["Price"];
+    $this->quantity = $row["Quantity"];
+    $this->addedDateTime = $row["AddedDatetime"];
   }
 
   // remove order from database
