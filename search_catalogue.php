@@ -94,7 +94,7 @@
         $itemID = $row["ItemID"];
         array_push($items, new Item($itemID, $conn));
       }
-    
+
       GenerateItemList($items);
     ?>
   </div>
