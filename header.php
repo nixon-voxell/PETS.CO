@@ -8,12 +8,12 @@
   <script src="./static/materialize/js/materialize.js"></script>
 </head>
 
-<?php 
-  include "includes/data/member.data.php";
-  include "includes/data/order.data.php";
-  include "includes/data/order_item.data.php";
-  include "includes/data/item.data.php";
-  include "includes/data/review.data.php";
+<?php
+  include_once "includes/data/member.data.php";
+  include_once "includes/data/order.data.php";
+  include_once "includes/data/order_item.data.php";
+  include_once "includes/data/item.data.php";
+  include_once "includes/data/review.data.php";
   include_once "includes/utils/common_util.php";
   session_start();
 

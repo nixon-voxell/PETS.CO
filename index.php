@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>PETS.CO</title>
-<?php include "header.php";?>
+<?php
+  include "header.php";
+  require_once "includes/utils/dbhandler.php";
+?>
 
 <div class="carousel carousel-slider center" style="margin-bottom: 100px">
   <div class="carousel-fixed-item center">
@@ -59,74 +62,72 @@
     </div>
   </div>
 
-  <div class="row" style="margin-top:50px">
-    <div class="row">
-      <h4 class="page-title" style="display: inline;">Best Selling Products</h4>
-    </div>
-    SELECT 
-
-    SELECT Image from Items 
-    WHERE QuantityInStock > 0
-    SELECT ItemID, Rating FROM OrderItems
-    GROUP BY ItemID
-    ORDER BY AVG(Rating) DESC
-    $sql = mysqli_query($conn, "SELECT M.username, M.email, o.* from Members M INNER JOIN Orders O using (memberid) order by username")
-    <div class="col s12 m3">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white center" style="padding: 0px">
-          <a href="https://petico.my/royal-canin-maxi-adult-15kg-dry-dog-food.html">
-          <img src="https://petico.my/image/cache/catalog/PRODUCTS/ROYAL%20CANIN/DOG/Size%20Health/Adult/Maxi%20Adult/SHN%20Maxi%20Adult%20Hero%201-250x250.jpg" width="300" height="300">           
-          </a>
-          <div class="ratings">
-            <div class="empty-stars"></div>
-            <div class="full-stars" style="width:100%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s12 m3">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white center" style="padding: 0px">
-          <a href="https://petico.my/brit-premium-by-nature-adult-l-15-kg-dry-dog-food.html">
-            <img src="https://petico.my/image/cache/catalog/PRODUCTS/BRIT%20PREMIUM/brit-premium-by-nature-adult-l-15-kg-dry-dog-food-648-250x250h.jpg" width="300" height="300">
-          </a>
-          <div class="ratings">
-            <div class="empty-stars"></div>
-            <div class="full-stars" style="width:92.5%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s12 m3">
-      <div class="rounded-card-parent center">
-        <div class="card rounded-card white center" style="padding: 0px">
-          <a href="https://petico.my/instinct-dog-be-natural-real-salmon-and-brown-rice-recipe-2kg-dry-dog-food.html">
-            <img src="https://petico.my/image/cache/catalog/PRODUCTS/INSTINCT/DOG/Be%20Natural/Be%20Natural%20Salmon%202kg%20652892-250x250.jpg" width="300" height="300">               
-          </a>
-          <div class="ratings">
-            <div class="empty-stars"></div>
-            <div class="full-stars" style="width:90%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s15 m3">
-      <div class="rounded-card-parent">
-        <div class="card rounded-card white center" style="padding: 0px">
-          <a href="https://petico.my/instinct-dog-be-natural-real-salmon-and-brown-rice-recipe-2kg-dry-dog-food.html">
-            <img src="https://www.alpsnaturalpetfood.com/wp-content/uploads/2021/06/Alps-Pureness-Canned-Free-Range-Beef-Pate-Recipe-1.png" width="300" height="300" style="padding-right: 50px">  
-          </a>
-          <div class="ratings">
-            <div class="empty-stars"></div>
-            <div class="full-stars" style="width:88.88%"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="row">
+    <h4 class="page-title" style="display: inline;">Best Selling Products</h4>
   </div>
+
+  <?php
+    $sql = "SELECT ItemID, AVG(Rating) FROM OrderItems
+      GROUP BY ItemID
+      ORDER BY AVG(Rating) DESC";
+
+    /** @var mysqli $conn */
+    $result = $conn->query($sql) or die($conn->error);
+
+    $items = array();
+    $ratings = array();
+    while ($row = $result->fetch_array())
+    {
+      $itemID = $row[0];
+      $avgRating = $row[1];
+      array_push($items, new Item($itemID, $conn));
+      array_push($ratings, $avgRating);
+    }
+
+    $itemCount = count($items);
+
+    echo("<div class='row'>");
+    // generate 4 items in a row
+    for ($itemIdx=0, $itemAdded=0; $itemAdded < 4 && $itemIdx < $itemCount;)
+    {
+      $item = $items[$itemIdx];
+      $avgRating = $ratings[$itemIdx++];
+      if ($item->GetQuantityInStock() <= 0) continue;
+      $itemAdded++;
+
+      $itemID = $item->GetItemID();
+      $image = $item->GetImage();
+      $name = $item->GetName();
+      $brand = $item->GetBrand();
+      $price = $item->GetSellingPrice();
+      $price = "$" . number_format($price, 2);
+
+      $starWidth = $avgRating / 5 * 100;
+      echo(
+        "<div class='col s3'>
+          <a href='item_page.php?item_id=$itemID'>
+            <div class='selectable-card tint-glass-brown blurer' style='height: 450px; min-width: 300px'>
+              <img class='shadow-img' src='images/$image' style='max-height: 200px; max-width: 250px;'>
+              <table>
+                <tbody>
+                  <tr><th>Name: </th><td>$name</td></tr>
+                  <tr><th>Brand: </th><td>$brand</td></tr>
+                  <tr><th>Price: </th><td>$price</td></tr>
+                  <tr>
+                    <div class='ratings'>
+                      <div class='empty-stars'></div>
+                      <div class='full-stars' style='width: $starWidth%'></div>
+                    </div>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </a>
+        </div>"
+      );
+    }
+    echo("</div>");
+  ?>
 </div>
 
 <div class="section">
