@@ -249,7 +249,8 @@
                 <input type="file">
               </a>
               <div class="file-path-wrapper">
-                <input name="image" class="file-path validate white-text" type="text" onchange="update_image(this)">
+                <input name="image" class="file-path validate white-text" type="text"
+                  placeholder="Choose Image" onchange="update_image(this)">
               </div>
             </div>
             <img class="shadow-img" id="image" src="" style="width: 300px;">

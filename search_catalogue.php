@@ -49,16 +49,13 @@
               <li><a onclick="select_sort(this)">Clear</a></li>
               <li><a onclick="select_sort(this)">Price low to high</a></li>
               <li><a onclick="select_sort(this)">Price high to low</a></li>
-              <li><a onclick="select_sort(this)">Rating high to low</a></li>
             </ul>
             <a class="btn dropdown-trigger" data-target="sort_dropdown" style="margin-top: 5px;">
               <?php
                 $sort = -1;
                 if (isset($_GET["sort"])) $sort = $_GET["sort"];
-                if ($sort != -1)
-                {
-                  echo(SORT_NAMES[$sort]);
-                } else echo("Select Sort Type");
+                if ($sort != -1) echo(SORT_NAMES[$sort]);
+                else echo("Select Sort Type");
                 echo("<input type='hidden' name='sort' value=$sort>");
               ?>
               <i class="material-icons right">arrow_drop_down</i>
@@ -73,25 +70,32 @@
   <!-- item list start -->
   <div style="margin-top: 150px;">
     <?php
-      if (isset($_GET["search_name"]))
-      {
-        /** 
-         * @var mysqli $conn
-         * @var Item[] $items
-         */
-        $searchName = $_GET["search_name"];
-        $sql = "SELECT ItemID FROM Items WHERE Name LIKE '%$searchName%' OR Brand LIKE '%$searchName%' LIMIT 50";
-        $result = $conn->query($sql) or die($conn->error);
+      $searchName = "";
+      if (isset($_GET["search_name"])) $searchName = $_GET["search_name"];
 
-        $items = array();
-        while ($row = $result->fetch_assoc())
-        {
-          $itemID = $row["ItemID"];
-          array_push($items, new Item($itemID, $conn));
-        }
-      
-        GenerateItemList($items);
+      /** 
+       * @var mysqli $conn
+       * @var Item[] $items
+       */
+      $sql = "SELECT ItemID FROM Items WHERE (Name LIKE '%$searchName%' OR Brand LIKE '%$searchName%')";
+
+      // only limit to a number
+      if ($category != -1) $sql .= " AND Category = $category";
+
+      if ($sort == 0) $sql .= " ORDER BY SellingPrice ASC";
+      else if ($sort == 1) $sql .= " ORDER BY SellingPrice DESC";
+
+      $sql .= " LIMIT 50";
+      $result = $conn->query($sql) or die($conn->error);
+
+      $items = array();
+      while ($row = $result->fetch_assoc())
+      {
+        $itemID = $row["ItemID"];
+        array_push($items, new Item($itemID, $conn));
       }
+    
+      GenerateItemList($items);
     ?>
   </div>
   <!-- item list end -->
@@ -112,8 +116,7 @@
   var sortMap = {
     "Clear": -1,
     "Price low to high": 0,
-    "Price high to low": 1,
-    "Rating high to low": 2
+    "Price high to low": 1
   };
 
   $('.dropdown-trigger').dropdown({
