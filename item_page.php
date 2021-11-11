@@ -2,83 +2,136 @@
 <html lang="en">
 
 <?php 
-include "header.php";
-include "includes/utils/dbhandler.php";
-require_once "includes/search_catalogue.inc.php";
+  include "header.php";
+  require_once "includes/utils/dbhandler.php";
+  require_once "includes/search_catalogue.inc.php";
+  require_once "includes/data/item.data.php";
 
-if (isset($_GET['item_id']))
+  if (isset($_GET["item_id"]))
   {
-    $itemID = $_GET['item_id'];
-    // $sql = "select ItemID, Name, Brand, Description, Category, SellingPrice, QuantityInStock, image from Items where ItemID=$itemID";
-    $result = mysqli_query($conn, "select ItemID, Name, Brand, Description, SellingPrice, QuantityInStock, image from Items where ItemID=$itemID") 
-    or die ("SQL statement Failed !!");
-    //$result=$conn->query($sql) or die("SQL Update Failed !");
-    list($itemID, $name, $brand, $description, $sellingprice, $quantityinstock, $image) = mysqli_fetch_array($result);
+    $itemID = $_GET["item_id"];
+    $item = new Item($itemID, $conn);
+
+    $image = $item->GetImage();
+    $name = $item->GetName();
+    $brand = $item->GetBrand();
+    $description = $item->GetDescription();
+    $quantity = $item->GetQuantityInStock();
+    $price = $item->GetSellingPrice();
+    $displayPrice = "$" . number_format($price, 2);
+    $category = $item->GetCategory();
+    $category = Item::CATEGORY_ICON[(int)$category];
+
+    $hasReviews = $item->HasReviews();
+    $avgRatings = $item->GetAvgRatings();
   }
 ?>
 
-<div class="container">
+<input type="hidden" id="max-quantity" value=<?php echo($quantity) ?>>
+<div class="container" style="margin-top: 50px;">
   <div class="rounded-card-parent">
     <div class="card rounded-card">
-      <span class="card-title orange-text bold" style="padding-left: 0px;">Item Page</span>
-      <form action="" method="POST" style="padding-left: 10px;">
-        <?php
-          echo("
-            <div class='row'>
-              <div class='col'>   
-                <br>
-                <img class='shadow-img' src='images/$image' style='max-height: 300px; max-width: 300px;'>
-              </div>
-              <br>
-              <div class='col'>
-                <div class='row'>
-                  <tr><th>Product Name: </th>
-                  <label for='productname' class='white-text'>$name</label>
-                </div>
-                <div class='row'>
-                  <tr><th>Brand: </th>
-                  <label for='brand' class='white-text'>$brand</label>
-                </div>
-                <div class='row'>
-                  <tr><th>Description: </th>
-                  <label for='description' class='white-text'>$description</label>
-                </div>
-                <div class='row'>
-                  <div class='ratings'>
-                    <div class='empty-stars'></div>
-                    <div class='full-stars' style='width:90%'></div>
-                  </div>
-                </div>
-                <div class='row'>
-                  <tr><th>Quantity In Stock: </th>
-                  <label for='qtyinstock' class='cyan-text bold'>$quantityinstock</label>
-                  <i class='material-icons prefix'>done</i>
-                </div>
-                <div class='row'>
-                  <tr><th>Price: </th>
-                  <label for='productprice' class='white-text'>$sellingprice</label>
-                </div>
-                <div class='row'>
-                  <div class='d-flex flex-row flex-wrap'>
-                    <label for='addQty' class='white-text'>Quantity</label>
-                    <a class='btn-floating btn-small waves-effect waves-light red'><i class='material-icons'>remove</i></a>
-                    <input type='float' style='width:10%'></input>
-                    <a class='btn-floating btn-small waves-effect waves-light green'><i class='material-icons'>add</i></a>
-                  </div>
-                </div>
-                <div class='row'>
-                  <button class='btn green' name='addcart' value='$itemID' class='btn'>
-                    <a class='white-text' href='cart.php? itemid=$itemID & action=addcart'>
-                    Add to Cart</a>
-                  </button>
-                </div>
-              </div>
+      <h4 class="orange-text bold"><?php echo($name); ?></h4>
+      <form action="item_page.php" method="GET" style="padding-left: 10px;">
+        <input type="hidden" name="item_id" value=<?php echo($itemID) ?>>
+        <div class="row" style="padding-top: 20px;">
+          <div class="col s4">   
+            <img class="shadow-img" src="images/<?php echo($image); ?>"
+              style="max-height: 300px; max-width: 300px;">
+          </div>
+          <div class="col s6">
+            <div class="row">
+              <table>
+                <tbody>
+                  <tr><th>Name: </th><td><?php echo($name); ?></td></tr>
+                  <tr><th>Brand: </th><td><?php echo($brand); ?></td></tr>
+                  <tr><th>Description: </th><td><?php echo($description); ?></td></tr>
+                  <tr>
+                    <th>Rating: </th>
+                    <td>
+                      <?php
+                        if ($hasReviews)
+                        {
+                          echo(
+                            "<div class='ratings'>
+                              <div class='empty-stars'></div>
+                              <div class='full-stars' style='width: $avgRatings%'></div>
+                            </div>"
+                          );
+                        } else echo("-")
+                      ?>
+                    </td>
+                  </tr>
+                  <tr><th>Quantity In Stock: </th><td><?php echo($quantity); ?></td></tr>
+                  <tr><th>Price: </th><td><?php echo($displayPrice); ?></td></tr>
+                  <tr><th>Category: </th><td><i class='material-icons prefix'><?php echo($category); ?></i></td></tr>
+                </tbody>
+              </table>
             </div>
-          ");
-        ?>
-      </div>
+
+            <h6 class="bold cyan-text">Quantity</h6>
+            <div class="row input-field" style="padding-left: 10px;">
+              <button type="button" class="btn-floating btn-small waves-effect waves-light red"
+                onclick="subtractQty()">
+                <i class="material-icons">remove</i>
+              </button>
+
+              <input id="qty" class="white-text" type="number" disabled
+                style="padding: 10px; width: 10%;" value=0></input>
+              <input id="sync-qty" name="qty" class="white-text" type="hidden" value=0></input>
+
+              <button type="button" class="btn-floating btn-small waves-effect waves-light green"
+                onclick="addQty()">
+                <i class="material-icons">add</i>
+              </button>
+            </div>
+            <div class="row">
+              <button type="submit" class="btn waves-effect waves-light" onclick="addToCart()">
+                <a class="white-text">
+                  <i class="material-icons right">shopping_cart</i>
+                  Add To Cart
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-  </div> 
+  </div>
+
+  <div class="rounded-card-parent">
+    <div class="card rounded-card">
+      <h4 class="white-text" style="margin-bottom: 40px;">Reviews</h4>
+
+      <?php
+        if ($hasReviews)
+        {
+          $reviews = $item->GetReviews();
+          $reviewCount = count($reviews);
+          for ($i=0; $r < $reviewCount; $r++)
+          {
+            $review = $reviews[$i];
+            $username = $review->GetUsername();
+            $feedback = $review->GetFeedback();
+            $rating = $review->GetRating();
+            echo(
+              "<div class='ratings'>
+                <div class='empty-stars'></div>
+                <div class='full-stars' style='width: $rating%'></div>
+              </div>
+              <div class=input-field'>
+                <i class='material-icons prefix cyan-text'>account_circle</i>
+                <input id='icon_prefix' disabled type='text' class='white-text' value='$feedback'>
+                <label for='icon_prefix' class='white-text'>$username</label>
+              </div>"
+            );
+          }
+        } else echo("<h6 class='grey-text'>There are no reviews yet... Be the first to leave a review!</h6>")
+      ?>
+    </div>
+  </div>
 </div>
+
+<script src="static/js/item_page.js"></script>
 
 <?php include "footer.php";?>
