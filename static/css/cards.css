@@ -48,4 +48,14 @@
 .selectable-card.tint-glass-black { background-color: rgba(0, 0, 0, 0.5); }
 .selectable-card.tint-glass-cyan { background-color: rgba(0, 170, 200, 0.5); }
 .selectable-card.tint-glass-brown { background-color: rgba(128, 73, 0, 0.5); }
+.selectable-card.tint-glass-white { background-color: rgba(202, 202, 202, 0.3); }
 .selectable-card.blurer { backdrop-filter: blur(20px); }
+
+.payable-cards
+{
+  background-color: white;
+  box-shadow: 0px 0px 10px;
+  border-radius: 5px;
+  padding: 5px;
+}
+

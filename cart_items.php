@@ -1,4 +1,5 @@
 <?php
+  require_once "includes/order.inc.php";
   require_once "includes/utils/dbhandler.php";
   if (isset($_GET["member_id"]))
   {

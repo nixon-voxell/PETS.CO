@@ -145,9 +145,9 @@
         {
           $reviews = $item->GetReviews();
           $reviewCount = count($reviews);
-          for ($i=0; $r < $reviewCount; $r++)
+          for ($r=0; $r < $reviewCount; $r++)
           {
-            $review = $reviews[$i];
+            $review = $reviews[$r];
             $username = $review->GetUsername();
             $feedback = $review->GetFeedback();
             $rating = $review->GetRating();
@@ -156,10 +156,11 @@
                 <div class='empty-stars'></div>
                 <div class='full-stars' style='width: $rating%'></div>
               </div>
-              <div class=input-field'>
-                <i class='material-icons prefix cyan-text'>account_circle</i>
-                <input id='icon_prefix' disabled type='text' class='white-text' value='$feedback'>
-                <label for='icon_prefix' class='white-text'>$username</label>
+              <div class=input-field row'>
+              <i class='material-icons prefix cyan-text'>account_circle</i>
+              <textarea id='icon_prefix2' disabled type='text'
+                class='white-text materialize-textarea'>$feedback</textarea>
+              <label for='icon_prefix2' class='white-text'>$username</label>
               </div>"
             );
           }

@@ -13,7 +13,7 @@
 <h4 class="page-title">Previous Orders</h4>
 
 <?php
-  if ($orderCount <= 0) echo("<h5 class='grey-text page-title'>There are no orders yet, make your first one!</h5>");
+  if ($orderCount <= 0) echo("<h5 class='grey-text page-title'>There are no orders yet.</h5>");
   for ($i=0; $i < $orderCount; $i++)
   {
     $idx = $i+1;

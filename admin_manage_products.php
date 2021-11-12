@@ -206,7 +206,7 @@
               <div class="row">
                 <div class="input-field white-text">
                   <i class="material-icons prefix">description</i>
-                  <input name="description" type="text" class="validate white-text" minlength="5" maxlength="30">
+                  <input name="description" type="text" class="validate white-text" minlength="5" maxlength="100">
                   <label for="description" class="white-text">Description</label>
                 </div>
               </div>
