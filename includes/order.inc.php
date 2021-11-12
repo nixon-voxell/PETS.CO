@@ -22,6 +22,8 @@ function GenerateItem($item, $cartItem, $memberID)
   $quantity = $cartItem->GetQuantity();
   $quantityDisplay = "x" . $quantity;
   $orderItemID = $cartItem->GetOrderItemID();
+
+  $view_order = isset($_GET["view_order"]);
   echo(
     "<li>
       <form method='GET' class='collapsible-header collapsible-card bold'>
@@ -31,20 +33,29 @@ function GenerateItem($item, $cartItem, $memberID)
         <input type='hidden' name='qty_stock' value=$quantityInStock>
         <i class='material-icons'>$iconName</i>
 
-        <p class='col s3' style='padding: 0px; margin: 0px;'>$itemName</p>
+        <p class='col s4' style='padding: 0px; margin: 0px;'>$itemName</p>
         <p class='col s3' style='padding: 0px; margin: 0px;'>$price</p>
         <p class='col s3' style='padding: 0px; margin: 0px;'>$quantityDisplay</p>
 
-        <a class='btn orange darken-4 col s1 light-weight-text' style='margin-right: 5px; padding: 0px;'
+        <a class='btn orange darken-4 col s2 light-weight-text' style='margin-right: 5px; padding: 0px;'
           href='item_page.php?item_id=$itemID'>
           Inspect
-        </a>
-        <button class='btn red darken-4 col s1' style='padding: 0px; margin: 0px;'
-          name='remove_item' value='$orderItemID'
-          onclick=\"return confirm('Are you sure you want remove \'$itemName\'?');\">
-          Remove
-        </button>
-      </form>
+        </a>"
+  );
+
+  if (!$view_order)
+  {
+    echo(
+          "<button class='btn red darken-4 col s2' style='padding: 0px; margin: 0px;'
+            name='remove_item' value='$orderItemID'
+            onclick=\"return confirm('Are you sure you want remove \'$itemName\'?');\">
+            Remove
+          </button>"
+    );
+  }
+
+  echo(
+      "</form>
       <div class='collapsible-body row collapsible-card bold' style='margin: 0px;'>
         <div class='col s6'>
           <span>Date Added:</span>
@@ -77,24 +88,33 @@ function GenerateBoughtItem($item, $orderItem)
   $quantity = $orderItem->GetQuantity();
   $quantityDisplay = "x" . $quantity;
   $orderItemID = $orderItem->GetOrderItemID();
+
+  $view_order = isset($_GET["view_order"]);
   echo(
     "<li>
       <div class='collapsible-header collapsible-card bold'>
         <i class='material-icons'>$iconName</i>
 
-        <p class='col s3' style='padding: 0px; margin: 0px;'>$itemName</p>
+        <p class='col s4' style='padding: 0px; margin: 0px;'>$itemName</p>
         <p class='col s3' style='padding: 0px; margin: 0px;'>$price</p>
         <p class='col s3' style='padding: 0px; margin: 0px;'>$quantityDisplay</p>
+        <a class='btn orange darken-4 col s2 light-weight-text' style='margin-right: 5px; padding: 0px;'
+            href='item_page.php?item_id=$itemID'>
+            Inspect
+        </a>"
+  );
 
-        <a class='btn orange darken-4 col s1 light-weight-text' style='margin-right: 5px; padding: 0px;'
-          href='item_page.php?item_id=$itemID'>
-          Inspect
-        </a>
-        <a class='btn cyan darken-4 col s1' style='padding: 0px; margin: 0px;'
-          href='review.php?review_item=$orderItemID'>
-          Review
-        </a>
-      </div>
+  if (!$view_order)
+  {
+    echo(
+          "<a class='btn cyan darken-4 col s2' style='padding: 0px; margin: 0px;'
+            href='review.php?review_item=$orderItemID'>
+            Review
+          </a>"
+    );
+  }
+  echo(
+      "</div>
       <div class='collapsible-body row collapsible-card bold' style='margin: 0px;'>
         <div class='col s6'>
           <span>Date Added:</span>
