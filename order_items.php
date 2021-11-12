@@ -11,47 +11,43 @@
 ?>
 
 <h4 class="page-title">Previous Orders</h4>
-<h5 class="white-text">#1</h5>
-<div class="row">
-  <div class="col s8">
-    <ul class="collapsible popout black-text" id="orders">
-      <li>
-        <form class="collapsible-header collapsible-card bold">
-          <i class="material-icons">filter_drama</i>
-          <p class="col s10" style="padding: 0px; margin: 0px;">First</p>
-          <button class="btn red darken-4 col s2" style="padding: 0px; margin: 0px;"
-          name='delete' value='$deleteid'
-          onclick="return confirm('Are you sure you want remove this item?');">Remove Item</button>
-        </form>
-        <div class="collapsible-body row collapsible-card bold" style="margin: 0px;">
-          <div class="col s6">
-            <span>Date Added:</span>
-            <span class="light-weight-text">2020-10-8</span>
-          </div>
-          <div class="col s6">
-            <span>Category:</span>
-            <span class="light-weight-text">Pet</span>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
 
-  <div class="col s4">
-    <div class="rounded-card-parent">
-      <div class="card rounded-card tint-glass-brown">
-        <div class="card-content white-text">
-          <span class="card-title bold">Order Details</span>
-          <table class="responsive-table">
-            <tbody>
-              <tr><th>Total Items:</th><td>0</td></tr>
-              <tr><th>Delivery Charges:</th><td>$0.00</td></tr>
-              <tr><th>Sum Total:</th><td>$0.00</td></tr>
-              <tr><th>Date:</th><td>2021-11-4</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+  if ($orderCount <= 0) echo("<h5 class='grey-text page-title'>There are no orders yet, make your first one!</h5>");
+  for ($i=0; $i < $orderCount; $i++)
+  {
+    $idx = $i+1;
+    echo("<h5 class='white-text page-title'>#$idx</h5>");
+    // row starting point
+    echo("<div class='row'>");
+    // prev order list starting point
+    echo("<div class='col s8'> <ul class='collapsible popout' id='cart'>");
+
+    $order = $orders[$i];
+    $orderID = $order->GetOrderID();
+    $orderItems = $order->GetOrderItems();
+    $orderItemCount = count($orderItems);
+
+    $sumTotal = 0;
+    for ($o=0; $o < $orderItemCount; $o++)
+    {
+      $orderItem = $orderItems[$o];
+      $item = new Item($orderItem->GetItemID(), $conn);
+      GenerateBoughtItem($item, $orderItem, $memberID);
+
+      $quantity = $orderItem->GetQuantity();
+      $price = $orderItem->GetPrice();
+      $sumTotal += $price * $quantity;
+    }
+    $sumTotal = number_format($sumTotal+1, 2);
+
+    // order items list closing point
+    echo("</ul></div>");
+
+    GenerateOrderDetails($orderItemCount, $sumTotal);
+
+    // row closing point
+    echo("</div>");
+  }
+
+?>
