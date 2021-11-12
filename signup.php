@@ -58,7 +58,7 @@
 
               else if ($_GET["error"] == "none")
               {
-                echo "<p>You have signed up! Redirecting to login page...</p>";
+                echo "<p class='green-text bold'>You have signed up! Redirecting to login page...</p>";
                 header( "refresh:1.5;url=login.php" );
                 exit();
               }
