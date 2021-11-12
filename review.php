@@ -8,24 +8,23 @@
   require_once "includes/data/order_item.data.php";
   $orderItemID = $_GET["review_item"];
   require_once "includes/review.inc.php";
+
+  if (isset($orderItemID))
+  {
+    $sql = "SELECT I.Image, I.Name from Items I, OrderItems O, Items WHERE O.OrderItemID = $orderItemID AND I.ItemID = O.ItemID";
+    $result = $conn->query($sql) or die($conn->error);
+    $row = $result->fetch_assoc();
+    $image = $row["Image"];
+    $name = $row["Name"];
+  }
 ?>
 
 <link href="stylesheet" href="rating_stars.css">
 <div class="container" style="margin-top: 50px;">
   <div class="rounded-card-parent">
     <div class="card rounded-card">
-      <h4 class="orange-text bold">Review Page</h4>
+      <h4 class="orange-text bold"><?php echo($name) ?></h4>
       <div class="col s4">
-        <?php 
-          if (isset($_GET["review_item"]))
-          {
-            $orderItemID = $_GET["review_item"];
-            $sql = "SELECT I.Image from Items I INNER JOIN OrderItems O Items I WHERE OrderItemID = $orderItemID";
-            $result = $conn->query($sql) or die($conn->error);
-            $row = $result->fetch_assoc();
-            $image = $row["Image"];
-          }
-        ?>   
         <img class="shadow-img" src="images/<?php echo($image); ?>"
           style="max-height: 300px; max-width: 300px;">
       </div>

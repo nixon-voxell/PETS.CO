@@ -10,17 +10,17 @@
   <div class="carousel-fixed-item center">
     <a class="btn waves-effect waves-teal grey darken-4 cyan-text">Shop!</a>
   </div>
-  <a class="carousel-item carousel-magic" href="#"
+  <a class="carousel-item carousel-magic" href="search_catalogue.php?category=0"
   style="background-image: url('./static/images/solo_dog.jpg'); background-position-y: 50%;">
     <h2>DOGS</h2>
     <p class="white-text fixed center">Find your fur-ever family member. <br> We offer the best quality dogs at the best price. </p>
   </a>
-  <a class="carousel-item carousel-magic" href="#"
+  <a class="carousel-item carousel-magic" href="search_catalogue.php?category=1"
   style="background-image: url('./static/images/dog_food.jpg'); background-position-y: 60%;">
     <h2>FOOD</h2>
     <p class="white-text">At Pets.co, we strive to provide the best for your dogs by sourcing only the best wholesome products. <br> We are dog lovers too! Your dog will definitely love our delicious dog food!</p>
   </a>
-  <a class="carousel-item carousel-magic" href="#"
+  <a class="carousel-item carousel-magic" href="search_catalogue.php?category=2"
   style="background-image: url('./static/images/dog_toy.jpg'); background-position-y: 20%;">
     <h2>ACCESSORIES</h2>
     <p class="white-text">Give your dog the most comfortable life with our accessories!</p>
@@ -130,7 +130,7 @@
   ?>
 </div>
 
-<div class="section">
+<div class="section" style="margin-top: 100px;">
   <div class="wide-container">
     <h3 class="white-text">You're in good company!</h3>
     <h5 class="white-text">

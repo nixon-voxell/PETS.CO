@@ -62,7 +62,7 @@ class Item
       WHERE OI.ItemID = $this->itemID AND OI.OrderID = O.OrderID";
     $result = $conn->query($sql) or die ($conn->error);
 
-    $this->avgRating = -1;
+    $this->avgRating = 0;
     $totalRatings = 0;
     while ($row = $result->fetch_assoc())
     {

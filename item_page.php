@@ -158,8 +158,9 @@
               </div>
               <div class=input-field row'>
               <i class='material-icons prefix cyan-text'>account_circle</i>
-              <input id='icon_prefix' disabled type='text' class='white-text' value='$feedback'>
-              <label for='icon_prefix' class='white-text'>$username</label>
+              <textarea id='icon_prefix2' disabled type='text'
+                class='white-text materialize-textarea'>$feedback</textarea>
+              <label for='icon_prefix2' class='white-text'>$username</label>
               </div>"
             );
           }
