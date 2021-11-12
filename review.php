@@ -15,6 +15,20 @@
   <div class="rounded-card-parent">
     <div class="card rounded-card">
       <h4 class="orange-text bold">Review Page</h4>
+      <div class="col s4">
+        <?php 
+          if (isset($_GET["review_item"]))
+          {
+            $orderItemID = $_GET["review_item"];
+            $sql = "SELECT I.Image from Items I INNER JOIN OrderItems O Items I WHERE OrderItemID = $orderItemID";
+            $result = $conn->query($sql) or die($conn->error);
+            $row = $result->fetch_assoc();
+            $image = $row["Image"];
+          }
+        ?>   
+        <img class="shadow-img" src="images/<?php echo($image); ?>"
+          style="max-height: 300px; max-width: 300px;">
+      </div>
       <form action="review.php?review_item=<?php echo($orderItemID); ?>" method="POST" style="padding-left: 10px;">
         <?php
           $rating = CheckRating($conn, $orderItemID);
@@ -94,7 +108,6 @@
       if (STARS[i].checked == true) 
       {
         RATING.value = STARS[i].value;
-        console.log(RATING.value);
         break;
       }
     }
