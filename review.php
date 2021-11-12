@@ -6,8 +6,8 @@
   include "header.php";
   require_once "includes/utils/dbhandler.php";
   require_once "includes/data/order_item.data.php";
-  require_once "includes/review.inc.php";
   $orderItemID = $_GET["review_item"];
+  require_once "includes/review.inc.php";
 ?>
 
 <link href="stylesheet" href="rating_stars.css">
@@ -80,10 +80,9 @@
     STAR_COUNT = STARS.length
     
     // initial condition of rating (from database)
-    for (var i=0; i < STAR_COUNT; i++) 
+    for (var i=0; i < RATING.value; i++) 
     {
-      if (STARS[i].value > RATING.value) continue;
-      else STARS[i].checked = true;
+      document.getElementById(`star${i+1}`).checked = true;
     }
     $("textarea#review").characterCounter();
   });

@@ -33,21 +33,17 @@ if (isset($_POST["submit"]))
 {
   $review = $_POST["review"];
   $rating = $_POST["rating"];
-  echo($review);
-  echo($rating);
-  die();
 
   if (EmptyInputReview($rating, $review))
   {
-    $orderItemID = $_GET["review_item"];
     echo("<script>location.href = 'review.php?error=empty_input&review_item=$orderItemID';</script>");
     exit();
   } else
   {
-    $sql = "UPDATE OrderItems SET Feedback = '$review' AND Rating = $rating
+    $sql = "UPDATE OrderItems SET Feedback = '$review', Rating = $rating
       WHERE OrderItemID = $orderItemID";
     $conn->query($sql) or die($conn->error);
-    echo("<script>location.href = 'review.php?error=none&review_item=$orderItemID'&redirect=1;</script>");
-    exit();
+    // echo("<script>location.href = 'review.php?error=none&review_item=$orderItemID&redirect=1';</script>");
+    // exit();
   }
 }
