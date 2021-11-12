@@ -35,7 +35,7 @@
       <?php
         if (isset($cartItems))
         {
-          $totalSum = 0;
+          $sumTotal = 0;
           for ($c=0; $c < $cartItemCount; $c++)
           {
             $orderItem = $cartItems[$c];
@@ -44,9 +44,9 @@
 
             $quantity = $orderItem->GetQuantity();
             $price = $orderItem->GetPrice();
-            $totalSum += $price * $quantity;
+            $sumTotal += $price * $quantity;
           }
-          $totalSum = number_format($totalSum+1, 2);
+          $sumTotal = number_format($sumTotal+1, 2);
         }
       ?>
     </ul>
@@ -60,21 +60,13 @@
           <table class="responsive-table">
             <tbody>
               <?php
-                if (isset($cartItems))
-                {
-                  echo("<tr><th>Total Items:</th><td>$cartItemCount</td></tr>");
-                  echo("<tr><th>Delivery Charges:</th><td>$1.00</td></tr>");
-                  echo("<tr><th>Sum Total:</th><td>$$totalSum</td></tr>");
-                } else
-                {
-                  echo("<tr><th>Total Items:</th><td>0</td></tr>");
-                  echo("<tr><th>Delivery Charges:</th><td>$0.00</td></tr>");
-                  echo("<tr><th>Sum Total:</th><td>$0.00</td></tr>");
-                }
+                echo("<tr><th>Total Items:</th><td>$cartItemCount</td></tr>");
+                echo("<tr><th>Delivery Charges:</th><td>$1.00</td></tr>");
+                echo("<tr><th>Sum Total:</th><td>$$sumTotal</td></tr>");
               ?>
             </tbody>
           </table>
-          <?php if (!isset($_GET["view_order"])) { ?>
+          <?php if (!isset($_GET["view_order"]) && $cartItemCount > 0) { ?>
           <button class="btn orange darken-3" style="margin-top: 10px;">
             Checkout
           </button>
