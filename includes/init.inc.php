@@ -50,7 +50,7 @@ function CreateNeededTables($conn)
       Category INT NOT NULL,
       SellingPrice FLOAT NOT NULL,
       QuantityInStock INT NOT NULL,
-      Image VARCHAR(64) NOT NULL
+      Image VARCHAR(512) NOT NULL
     )"
   );
 
