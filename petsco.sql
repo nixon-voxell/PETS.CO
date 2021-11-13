@@ -35,7 +35,7 @@ CREATE TABLE `items` (
   `Category` int(11) NOT NULL,
   `SellingPrice` float NOT NULL,
   `QuantityInStock` int(11) NOT NULL,
-  `Image` varchar(64) NOT NULL
+  `Image` varchar(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
