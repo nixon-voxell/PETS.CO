@@ -75,7 +75,7 @@ if (isset($_POST["submit_otp"]))
       $fetch_data = mysqli_fetch_assoc($code_res);
       $submit_email = $fetch_data["email"];
       $_SESSION["Email"] = $submit_email;
-      $info = "Please create a new password and save it";
+      $info = "<p class='page-title'>Please create a new password and save it</p>";
       $_SESSION["Info"] = $info;
       header("location: new_pass.php");
       exit();
@@ -91,7 +91,7 @@ if (isset($_POST["change_pass"]))
 
   if (empty($pwd) || empty($repeatPwd))
   {
-    header("location: ../new_pass.php?error=empty_input");
+    header("location: new_pass.php?error=empty_input");
     exit();
   } else
   {
@@ -111,7 +111,7 @@ if (isset($_POST["change_pass"]))
       $run_query = mysqli_query($conn, $update_pass);
       if ($run_query)
       {
-        $info = "You've changed your password! Redirecting to login page...";
+        $info = "<p class='page-title'>You've changed your password! Redirecting to login page...</p>";
         $_SESSION["Info"] = $info;
         header( "refresh:5;url=login.php" );
       } else $errors["db_error"] = "Faied to change your password!";
