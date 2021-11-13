@@ -65,7 +65,7 @@
                   Cart<span class='new badge unglow' id='cart_badge'>$orderItemCount</span></a>
               </li>
               <li><a class='manage_profile' href='manage_profile.php?email=$email'>Manage Profile</a></li>
-              <li><a href='includes/logout.inc.php'>Log out</a></li>
+              <li><a href='includes/logout.inc.php'>Logout</a></li>
             ");
           } else
           {

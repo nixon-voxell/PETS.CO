@@ -55,11 +55,6 @@ function LoginUser($conn, $loginName, $pwd)
     $_SESSION["Member"] = $member;
     header("location: ../index.php");
     exit();
-
-    // $_SESSION["MemberID"] = $memberDetail["MemberID"];
-    // $_SESSION["Username"] = $memberDetail["Username"];
-    // $_SESSION["Email"] = $memberDetail["Email"];
-    // $_SESSION["PrivilegeLevel"] = $memberDetail["PrivilegeLevel"];
   }
 }
 
