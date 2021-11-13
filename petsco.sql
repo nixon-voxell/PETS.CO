@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2021 at 03:29 PM
+-- Generation Time: Nov 13, 2021 at 03:34 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -57,10 +57,10 @@ INSERT INTO `items` (`ItemID`, `Name`, `Brand`, `Description`, `Category`, `Sell
 (13, 'Red Leash', 'PETS.CO', 'A red leash to guide your dog.', 2, 10, 49, 'leash red-400x385h.jpg'),
 (14, 'Dark Blue Harness', 'PETS.CO', 'Use this harness to keep your dog safe!', 2, 15, 60, 'dark-blue harness.jpg'),
 (15, 'Ceramic Dish', 'Dz', 'A brown ceramic dish with stainless steel inner coating.', 2, 20.5, 40, 'Name-Ceramic Dish with stainless steel bowl Brand-Dz.png'),
-(16, 'Feeding Dish', 'PETS.CO', 'White feeding dish 2 in 1 with stainless steel bowl and 500ml bottle.', 2, 40.2, 31, 'Name-Feeding Dish 4in1 With Stainless Steel Bowl and 500ml Bottl'),
+(16, 'Feeding Dish', 'PETS.CO', 'White feeding dish 2 in 1 with stainless steel bowl and 500ml bottle.', 2, 40.2, 31, 'Name-Feeding Dish 4in1 With Stainless Steel Bowl and 500ml Bottle Grey Brand-Pets.co.jpg'),
 (17, 'Yellow Collar', 'PETS.CO', 'A simple yellow collar.', 2, 13.8, 37, 'yellow collar-400x385h.jpg'),
 (18, 'Lamb and Rice', 'Brit', 'A packet of lamb and rice dog food.', 1, 25.1, 27, 'brit_care_adult_large_1.png'),
-(19, 'Salmon and Herring', 'Brit', 'A packet of delicious salmon and herring dog food.', 1, 29.4, 23, 'Brit-Care-Hair-Skin-Health-Small-Breed-Dog-Food-with-Salmon-and-'),
+(19, 'Salmon and Herring', 'Brit', 'A packet of delicious salmon and herring dog food.', 1, 29.4, 23, 'Brit-Care-Hair-Skin-Health-Small-Breed-Dog-Food-with-Salmon-and-Herring-2-Kg-Food.webp'),
 (20, 'Doge', 'Maltese', 'White a furry dog with big black eyes.', 0, 256.5, 5, 'Brand - Maltese.jpg'),
 (21, 'Buudie', 'Pug', 'A foolish and innocent looking black pug.', 0, 375, 7, 'Brand - Pug.jpg'),
 (22, 'Bendy', 'Toy Poodle', 'Small cute dog with brown fur. It is very playful!', 0, 124.3, 8, 'Brand - Toy Poodle.jpg');
