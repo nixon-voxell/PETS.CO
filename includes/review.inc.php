@@ -40,7 +40,7 @@ if (isset($_POST["submit"]))
     exit();
   } else
   {
-    $sql = "UPDATE OrderItems SET Feedback = '$review', Rating = $rating
+    $sql = "UPDATE OrderItems SET Feedback = \"$review\", Rating = $rating
       WHERE OrderItemID = $orderItemID";
     $conn->query($sql) or die($conn->error);
     echo("<script>location.href = 'review.php?error=none&review_item=$orderItemID&redirect=1';</script>");
