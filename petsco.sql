@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2021 at 12:36 PM
+-- Generation Time: Nov 13, 2021 at 03:29 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -44,7 +44,7 @@ CREATE TABLE `items` (
 
 INSERT INTO `items` (`ItemID`, `Name`, `Brand`, `Description`, `Category`, `SellingPrice`, `QuantityInStock`, `Image`) VALUES
 (2, 'Rover', 'Husky', 'A super awesome dog.', 0, 200, 3, 'dog1.jpg'),
-(3, 'Coco', 'German Shephard', 'Huge lazy dog.', 0, 100, 1, 'dog2.jpg'),
+(3, 'Coco', 'German Shephard', 'Huge lazy dog.', 0, 100, 2, 'dog2.jpg'),
 (4, 'Mini Indoor Adult Food', 'Royal Canin', 'Dog food for adult dog.', 1, 20.1, 9, '541ca8aad3a9b4444265538d74d125de.png'),
 (5, 'Puppy Mini Food', 'Royal Canin', 'Dog food for puppy.', 1, 18.2, 9, '85c9e183179520e9e8bfdc078a048aa7.jpg'),
 (6, 'Large Bed', 'PETS.CO', 'Super large and comfy bed.', 2, 50.3, 3, 'ins bed large grey-400x385h.jpg'),
@@ -55,7 +55,15 @@ INSERT INTO `items` (`ItemID`, `Name`, `Brand`, `Description`, `Category`, `Sell
 (11, 'Salmon', 'Alps Natural', 'Premium salmon food.', 1, 30.5, 20, '550010_ALPS_DOG_1.8KG_SMALLBITESALMON-400x385h.jpg'),
 (12, 'Tin Salmon', 'Alps Natural', 'A tin of premium salmon.', 1, 28.3, 24, 'alpls salmon-400x385h.jpg'),
 (13, 'Red Leash', 'PETS.CO', 'A red leash to guide your dog.', 2, 10, 49, 'leash red-400x385h.jpg'),
-(14, 'Dark Blue Harness', 'PETS.CO', 'Use this harness to keep your dog safe!', 2, 15, 60, 'dark-blue harness.jpg');
+(14, 'Dark Blue Harness', 'PETS.CO', 'Use this harness to keep your dog safe!', 2, 15, 60, 'dark-blue harness.jpg'),
+(15, 'Ceramic Dish', 'Dz', 'A brown ceramic dish with stainless steel inner coating.', 2, 20.5, 40, 'Name-Ceramic Dish with stainless steel bowl Brand-Dz.png'),
+(16, 'Feeding Dish', 'PETS.CO', 'White feeding dish 2 in 1 with stainless steel bowl and 500ml bottle.', 2, 40.2, 31, 'Name-Feeding Dish 4in1 With Stainless Steel Bowl and 500ml Bottl'),
+(17, 'Yellow Collar', 'PETS.CO', 'A simple yellow collar.', 2, 13.8, 37, 'yellow collar-400x385h.jpg'),
+(18, 'Lamb and Rice', 'Brit', 'A packet of lamb and rice dog food.', 1, 25.1, 27, 'brit_care_adult_large_1.png'),
+(19, 'Salmon and Herring', 'Brit', 'A packet of delicious salmon and herring dog food.', 1, 29.4, 23, 'Brit-Care-Hair-Skin-Health-Small-Breed-Dog-Food-with-Salmon-and-'),
+(20, 'Doge', 'Maltese', 'White a furry dog with big black eyes.', 0, 256.5, 5, 'Brand - Maltese.jpg'),
+(21, 'Buudie', 'Pug', 'A foolish and innocent looking black pug.', 0, 375, 7, 'Brand - Pug.jpg'),
+(22, 'Bendy', 'Toy Poodle', 'Small cute dog with brown fur. It is very playful!', 0, 124.3, 8, 'Brand - Toy Poodle.jpg');
 
 -- --------------------------------------------------------
 
@@ -80,7 +88,7 @@ INSERT INTO `members` (`MemberID`, `Username`, `Password`, `Email`, `PrivilegeLe
 (1, 'admin', '$2y$10$zNm0pAQGWib65F96Jkt86u8HCux/ClBrRlEYLLz/tL4edTEPxNaAS', 'admin@gmail.com', 1, 0),
 (2, 'nixon', '$2y$10$dY81kwdCdkiaZkSCuyWtQeIqdi1ddcqoXrbS3xiYscplnt/50FIy2', 'nixon@gmail.com', 0, 0),
 (8, 'test123', '$2y$10$JCrci.8DtUUi3QBBenl/uu360mw7PFT3CFxG/b7SgOgnSiN26nwva', 'admin@gmail.com', 0, 0),
-(9, 'maxwell', '$2y$10$lYNNdqzgJ9Pjn3CZ0w8DRO9AMM6gyJZ4WVR/GfLDsvmx5qw9csJ.2', 'admin@gmail.com', 0, 0),
+(9, 'alex', '$2y$10$lYNNdqzgJ9Pjn3CZ0w8DRO9AMM6gyJZ4WVR/GfLDsvmx5qw9csJ.2', 'alex@gmail.com', 0, 0),
 (10, 'rover', '$2y$10$R8og8/eyhBZkRP2hxgib0eL/Zl1kVrJkeqEVfsOcgSJQdvS4HCAsm', 'rover@gmail.com', 0, 0),
 (11, 'andrew', '$2y$10$vI5IHZTAv0OeZi1KaJTr7eOWjv6KVYpD0/vyHTg7Mgx6dM3ca.6Dy', 'andrew@gmail.com', 0, 0);
 
@@ -119,8 +127,7 @@ INSERT INTO `orderitems` (`OrderItemID`, `OrderID`, `ItemID`, `Price`, `Quantity
 (37, 9, 3, '100', 1, '2021-11-12 18:35:09', 'Coco is cute but naughty.', 4),
 (38, 5, 3, '100', 1, '2021-11-12 18:55:10', 'Coco is too innocent.', 5),
 (40, 7, 6, '50.3', 1, '2021-11-12 18:57:35', 'This bed is too large, I can even sleep in it!\r\nMy dogs hates it really much!', 1),
-(41, 12, 13, '10', 1, '2021-11-12 19:19:38', 'Super awesome leash, my dog likes it!', 4),
-(42, 11, 3, '100', 1, '2021-11-12 19:31:55', NULL, NULL);
+(41, 12, 13, '10', 1, '2021-11-12 19:19:38', 'Super awesome leash, my dog likes it!', 4);
 
 -- --------------------------------------------------------
 
@@ -224,7 +231,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `members`

@@ -141,10 +141,9 @@
         header( "url=manage_user_products.php" );
         exit();
       }
-    }    
-    ?>
-  </div>
-</html>
+    }
+  ?>
+</div>
 
 <script>
   $(document).ready(function () 
