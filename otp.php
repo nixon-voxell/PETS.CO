@@ -16,45 +16,45 @@ if ($submit_email !== false)
 {
   ?>
   <div class="container">
-    <form class="col s12" action="otp.php" method="POST">
-      <h3 class="grey-text">Code Verification</h3>
-      <!-- error message -->
-      <?php 
-      if (isset($_SESSION["Info"])){
-        ?>
-        <div class="card-panel light-blue lighten-4">
-            <?php echo "Check your OTP code - $submit_email"; ?>
-        </div>
-        <?php
-      }
-      ?>
-      <?php
-      if (count($errors) > 0)
-      {
-        ?>
-        <div class="card-panel red lighten-2">
-        <?php
-        foreach($errors as $showerror){
-          echo $showerror;
-        }
-        ?>
-        </div>
-        <?php
-      }
-      ?>
-      <!-- end of error message -->
+    <div class="rounded-card-parent">
+      <div class="rounded-card" style="margin-top: 100px">
+        <form class="col s12" action="otp.php" method="POST">
+          <h3 class="grey-text">Code Verification</h3>
+          <!-- error message -->
+          <?php 
+          if (isset($_SESSION["Info"])){
+            ?>
+            <?php
+          }
+          ?>
+          <?php
+          if (count($errors) > 0)
+          {
+            ?>
+            <div class="card-panel red lighten-2">
+            <?php
+            foreach($errors as $showerror){
+              echo $showerror;
+            }
+            ?>
+            </div>
+            <?php
+          }
+          ?>
+          <!-- end of error message -->
 
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix white-text"> pin</i>
-          <input name="entered_otp" type="text" class="validate white-text" minlength="6" maxlength="6">
-          <label for="password" class="white-text"> OTP code here</label>
-          <span class="helper-text white-text" data-error="6 Digit OTP" data-success="6 Digit OTP">6 Digit OTP</span>
-        </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix white-text"> pin</i>
+              <input name="entered_otp" type="text" class="validate white-text" minlength="6" maxlength="6">
+              <label for="password" class="white-text"> OTP code here</label>
+              <span class="helper-text white-text" data-error="6 Digit OTP" data-success="6 Digit OTP">6 Digit OTP</span>
+            </div>
+          </div>
+          <input class="btn btn-block" type="submit" name="submit_otp" value="Submit OTP">
+        </form>
       </div>
-
-      <input class="btn btn-block" type="submit" name="submit_otp" value="Submit OTP">
-    </form>
+    </div>
   </div>
 </html>
 

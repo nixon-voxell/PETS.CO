@@ -15,63 +15,67 @@
   {
     ?>
     <div class="container">
-      <form class="col s12" action="new_pass.php" method="POST">
-        <h3 class="grey-text">Create New Password</h3>
-        <!-- error message -->
-        <?php 
-        if (isset($_SESSION["Info"]))
-        {
-          ?>
-          <div class="card-panel light-blue lighten-4">
-              <?php echo $_SESSION["Info"]; ?>
-          </div>
-          <?php
-        }
-        ?>
-        <?php
-        if (count($errors) > 0)
-        {
-          ?>
-          <div class="card-panel red lighten-2">
-          <?php
-            foreach($errors as $showerror)
+      <div class="rounded-card-parent">
+        <div class="rounded-card">
+          <form class="col s12" action="new_pass.php" method="POST">
+            <h3 class="grey-text">Create New Password</h3>
+            <!-- error message -->
+            <?php 
+            if (isset($_SESSION["Info"]))
             {
-              echo $showerror;
+              ?>
+              <div class="card-panel light-blue lighten-4">
+                  <?php echo $_SESSION["Info"]; ?>
+              </div>
+              <?php
             }
-          ?>
-          </div>
-          <?php
-        }
-        ?>
-        <!-- end of error message -->
+            ?>
+            <?php
+            if (count($errors) > 0)
+            {
+              ?>
+              <div class="card-panel red lighten-2">
+              <?php
+                foreach($errors as $showerror)
+                {
+                  echo $showerror;
+                }
+              ?>
+              </div>
+              <?php
+            }
+            ?>
+            <!-- end of error message -->
 
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix white-text"> password</i>
-            <input name="password" type="password" class="validate white-text" minlength="8" maxlength="20">
-            <label for="password" class="white-text">Create new password</label>
-            <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix white-text"> password</i>
+                <input name="password" type="password" class="validate white-text" minlength="8" maxlength="20">
+                <label for="password" class="white-text">Create new password</label>
+                <span class="helper-text white-text" data-error="Min 8, Max 20 characters" data-success="Min 8, Max 20 characters">Min 8, Max 20 characters</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix white-text"> password</i>
+                <input name="cpassword" type="password" class="validate white-text" maxlength="20">
+                <label for="password" class="white-text">Confirm your password</label>
+              </div>
+            </div>
+
+            <input class="btn btn-block" type="submit" name="change_pass" value="Change Password">
+          </form>
+
+          <div class="errormsg">
+            <?php
+              if (isset($_GET["error"]))
+              {
+                if ($_GET["error"] == "empty_input")
+                  echo "<p>*Fill in all fields!<p>";
+              }
+            ?>
           </div>
         </div>
-        <div class="row">
-          <div class="input-field col s6">
-            <i class="material-icons prefix white-text"> password</i>
-            <input name="cpassword" type="password" class="validate white-text" maxlength="20">
-            <label for="password" class="white-text">Confirm your password</label>
-          </div>
-        </div>
-
-        <input class="btn btn-block" type="submit" name="change_pass" value="Change Password">
-      </form>
-
-      <div class="errormsg">
-        <?php
-          if (isset($_GET["error"]))
-          {
-            if ($_GET["error"] == "empty_input")
-              echo "<p>*Fill in all fields!<p>";
-          }
-        ?>
       </div>
     </div>
   </html>
