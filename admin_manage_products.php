@@ -13,7 +13,6 @@
 <div class="container">
   <h3 class="page-title">Manage Products</h3>
 
-  <!-- users list start -->
   <div class="rounded-card-parent">
     <div class="card rounded-card">
       <div class="card-content black-text">

@@ -9,7 +9,7 @@
     <div class="col s2">
       <h5 class="white-text lovelo">Contact Us</h5>
       <h6 class="grey-text bold text-lighten-4"><a href="call:+60104438322" style="color: white"><i class="material-icons">phone</i>+60104438322</a></h6>
-      <h6 class="grey-text bold text-lighten-4"><a href="mailto:Pets.Co.customerservice@gmail.com" style="color: white"><i class="material-icons">email</i> Email</a></h6>
+      <h6 class="grey-text bold text-lighten-4"><a href="mailto:Pets.Co.customerservice@gmail.com" style="color: white"><i class="material-icons">email</i>Email</a></h6>
     </div>
     <div class="col s2">
       <h5 class="white-text lovelo">Find Us</h5>
