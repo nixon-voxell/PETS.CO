@@ -1,6 +1,7 @@
 <?php
 require_once "utils/dbhandler.php";
 require_once "utils/common_util.php";
+require_once "data/member.data.php";
 
 function UpdateUser($conn, $username, $pwd, $email, $memberID)
 {
