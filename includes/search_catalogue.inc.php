@@ -17,10 +17,11 @@ function GenerateItemList($items)
   {
     echo("<div class='row'>");
     // generate 4 items in a row
-    for ($i=0; $itemIdx < $itemCount && $i < 4; $i++, $itemIdx++)
+    for ($i=0; $itemIdx < $itemCount && $i < 4; $itemIdx++)
     {
       $item = $items[$itemIdx];
       if ($item->GetQuantityInStock() <= 0) continue;
+      $i++;
 
       $itemID = $item->GetItemID();
       $image = $item->GetImage();
