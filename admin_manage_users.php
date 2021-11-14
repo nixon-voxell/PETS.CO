@@ -133,10 +133,6 @@
                         <td>$username</td>
                         <td>$email</td>
                         <td>$privilegeLevel</td>
-                        <td><a>
-                          <button class='btn red darken-4' name='delete' value='$deleteid'
-                            onclick=\"return confirm('Are you sure you want delete \'$username\'?');\">Delete User</button>
-                        </a></td>
                       </tr>"
                     );
                   }
@@ -148,17 +144,6 @@
       </div>
     </div>
   <?php } ?>
-
-  <?php
-    // delete user
-    if (isset($_GET["delete"]))
-    {
-      $id = $_GET["delete"];
-      $sql =  "DELETE FROM Members WHERE MemberID = $id";
-      $conn->query($sql) or die ("<p class='red-text'>*Delete statement FAILED!</p>");
-    }
-  ?>
-  <!-- selected member details end -->
 
   <div class="rounded-card-parent">
     <div class="card rounded-card">
