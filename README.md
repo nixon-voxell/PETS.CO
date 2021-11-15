@@ -35,3 +35,9 @@ This is a online pet store demo website.
 
 ### Admin Panel
 ![main_menu](screenshots/admin_panel.png)
+
+## References
+
+1. [Walking Dog](https://codepen.io/davidkpiano/pen/BGxgLa)
+2. [Dog and Bone](https://codepen.io/chrisgannon/pen/OMomWJ)
+3. [Bounce](https://codepen.io/aepicos/pen/RZwJYe)
