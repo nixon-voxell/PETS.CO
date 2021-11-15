@@ -1,6 +1,6 @@
 # PETS.CO - Online Pet Store
 
-This is a online pet store demo website.
+This is an online pet store demo website.
 
 ## How to use
 
