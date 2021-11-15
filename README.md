@@ -1,6 +1,6 @@
 # PETS.CO - Online Pet Store
 
-This is a online pet store demo website.
+This is an online pet store demo website.
 
 ## How to use
 
@@ -22,19 +22,19 @@ This is a online pet store demo website.
 ![main_menu](screenshots/main_menu.png)
 
 ### Search Catalogue
-![main_menu](screenshots/search_catalogue.png)
+![search_catalogue](screenshots/search_catalogue.png)
 
 ### Item Page
-![main_menu](screenshots/item_page.png)
+![item_page](screenshots/item_page.png)
 
 ### Cart & Previous Orders
-![main_menu](screenshots/cart_order.png)
+![cart_order](screenshots/cart_order.png)
 
 ### Checkout
-![main_menu](screenshots/checkout.png)
+![checkout](screenshots/checkout.png)
 
 ### Admin Panel
-![main_menu](screenshots/admin_panel.png)
+![admin_panel](screenshots/admin_panel.png)
 
 ## References
 
