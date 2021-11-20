@@ -2,6 +2,18 @@
 
 This is an online pet store demo website.
 
+- [PETS.CO - Online Pet Store](#petsco---online-pet-store)
+  - [How to use](#how-to-use)
+  - [Default Accounts](#default-accounts)
+  - [Sample Screenshots](#sample-screenshots)
+    - [Main Menu](#main-menu)
+    - [Search Catalogue](#search-catalogue)
+    - [Item Page](#item-page)
+    - [Cart & Previous Orders](#cart--previous-orders)
+    - [Checkout](#checkout)
+    - [Admin Panel](#admin-panel)
+  - [References](#references)
+
 ## How to use
 
 1. Download [XAMPP](https://www.apachefriends.org/download.html).
@@ -14,7 +26,16 @@ This is an online pet store demo website.
 
 6. Go to phpmyadmin and create a database with petsco as its name.
 7. Import data from [petsco.sql](petsco.sql).
-8. Enjoy!
+9. Enjoy!
+
+## Default Accounts
+
+Account Name, Password
+1. admin, admin123
+2. nixon, nixon123
+3. andrew, andrew123
+4. alex, alex123
+5. rover, rover123
 
 
 ## Sample Screenshots
