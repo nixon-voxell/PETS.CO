@@ -17,7 +17,7 @@
               if ($_GET["error"] == "empty_input")
                 echo "<p>*Fill in all fields!<p>";
 
-              else if ($_GET["error"] == "invaliid_uid")
+              else if ($_GET["error"] == "invalid_uid")
                 echo "<p>*Choose a proper username!</p>";
 
               else if ($_GET["error"] == "invalidemail")

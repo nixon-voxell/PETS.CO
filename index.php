@@ -46,7 +46,7 @@
         <div class="selectable-card" style="width: 350px; margin: 20px;">
           <a href="search_catalogue.php?category=1">
             <?php include_once "food.html"; ?>
-            <h5 class="orange-text center bold">FOOD</h5>
+            <h5 class="white-text center bold">FOOD</h5>
           </a>
         </div>
       </div>
